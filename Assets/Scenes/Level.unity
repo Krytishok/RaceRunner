@@ -2185,7 +2185,7 @@ WheelCollider:
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
     m_ExtremumSlip: 0.001
-    m_ExtremumValue: 0.48
+    m_ExtremumValue: 0.3
     m_AsymptoteSlip: 1
     m_AsymptoteValue: 1
     m_Stiffness: 2
@@ -2194,7 +2194,7 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
-    m_Stiffness: 2
+    m_Stiffness: 5
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -2359,13 +2359,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.94197303, z: -0.3356887, w: 0}
+  m_LocalRotation: {x: -0, y: 0.9589365, z: -0.28362086, w: 0}
   m_LocalPosition: {x: 0.97, y: 3.36, z: 48.09}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 39.229, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 32.953, y: 180, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2423,7 +2423,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 6494502545498950325}
-  _offset: {x: 0, y: 12, z: 12}
+  _offset: {x: 0, y: 11, z: 12}
 --- !u!1 &332648586
 GameObject:
   m_ObjectHideFlags: 0
@@ -8843,7 +8843,7 @@ WheelCollider:
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
     m_ExtremumSlip: 0.001
-    m_ExtremumValue: 0.48
+    m_ExtremumValue: 0.3
     m_AsymptoteSlip: 1
     m_AsymptoteValue: 1
     m_Stiffness: 2
@@ -8852,7 +8852,7 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
-    m_Stiffness: 2
+    m_Stiffness: 5
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -9428,7 +9428,7 @@ WheelCollider:
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
     m_ExtremumSlip: 0.001
-    m_ExtremumValue: 0.48
+    m_ExtremumValue: 0.3
     m_AsymptoteSlip: 1
     m_AsymptoteValue: 1
     m_Stiffness: 2
@@ -9437,7 +9437,7 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
-    m_Stiffness: 2
+    m_Stiffness: 5
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -10438,7 +10438,7 @@ WheelCollider:
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
     m_ExtremumSlip: 0.001
-    m_ExtremumValue: 0.48
+    m_ExtremumValue: 0.3
     m_AsymptoteSlip: 1
     m_AsymptoteValue: 1
     m_Stiffness: 2
@@ -10447,7 +10447,7 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
-    m_Stiffness: 2
+    m_Stiffness: 5
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
