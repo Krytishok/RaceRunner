@@ -9,6 +9,7 @@ public class CoinManager : MonoBehaviour
     [SerializeField] public int _numberOfCoinsInLevel;
     [SerializeField] TextMeshProUGUI _text;
 
+
    
     public void AddOne()
     {

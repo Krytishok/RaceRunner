@@ -7,12 +7,14 @@ using UnityEngine.SceneManagement;
 public class MainMenuScript : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI _NumberOfCoinsText;
+    private int _NumberOfCoins = 0;
 
 
 
     private void Start()
     {
         Time.timeScale = 1.0f;
+        _NumberOfCoinsText.text = PlayerPrefs.GetInt("Coins").ToString();
     }
     public void PlayGame()
     {
