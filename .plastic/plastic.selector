@@ -1,0 +1,4 @@
+repository "RaceRunner@Krytishok@cloud"
+  path "/"
+    br "/main"
+    co "/main"
