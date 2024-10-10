@@ -23,6 +23,8 @@ public class CarController : MonoBehaviour
 
     //Car properties
     [SerializeField] private float _forceEngine;
+    [SerializeField] private float _turningSpeed;
+    [SerializeField] private float _tiltAngle;
 
     [SerializeField] private float _maxAngleOfWheel;
 
@@ -36,9 +38,17 @@ public class CarController : MonoBehaviour
     //�������� ������
     public float _speed;
 
+
+    //auxiliary variables
+    private float _tilt;
+
+
     void Start()
     {
         gameObject.tag = "Player";
+
+        _wheelColliderFL.motorTorque = 1000f;
+        _wheelColliderFR.motorTorque = 1000f;
     }
 
     private void FixedUpdate()
@@ -46,10 +56,10 @@ public class CarController : MonoBehaviour
         _speed = Math.Abs(GetComponent<Rigidbody>().linearVelocity.magnitude);
         Debug.Log("Speed: " + _speed);
 
-        if ( _speed <= 20) 
+        if (_speed <= 20)
         {
-            _wheelColliderFL.motorTorque = 1000f;
-            _wheelColliderFR.motorTorque = 1000f;
+            _wheelColliderFL.motorTorque = 5000f;
+            _wheelColliderFR.motorTorque = 5000f;
         }
         _wheelColliderFL.motorTorque = Input.GetAxis("Vertical") * _forceEngine;
         _wheelColliderFR.motorTorque = Input.GetAxis("Vertical") * _forceEngine;
@@ -63,7 +73,7 @@ public class CarController : MonoBehaviour
             _wheelColliderBL.brakeTorque = 3000f;
             _wheelColliderBR.brakeTorque = 3000f;
         }
-        else if(_speed < 20)
+        else if (_speed < 20)
         {
             _wheelColliderFL.brakeTorque = 0;
             _wheelColliderFR.brakeTorque = 0;
@@ -73,24 +83,31 @@ public class CarController : MonoBehaviour
             _wheelColliderFR.motorTorque = 1000f;
         }
 
-        // Rotating collider of wheels
-        _wheelColliderFL.steerAngle = _maxAngleOfWheel * Input.GetAxis("Horizontal");
-        _wheelColliderFR.steerAngle = _maxAngleOfWheel * Input.GetAxis("Horizontal");
+        // Получаем ввод от клавиатуры (стрелки влево и вправо или A и D)
+        float move = Input.GetAxis("Horizontal") * -1;
+
+        // Рассчитываем новое положение объекта
+        Vector3 newPosition = transform.position + new Vector3(move, 0, 0) * _turningSpeed * Time.deltaTime;
+
+        // Ограничиваем движение по оси X
+        newPosition.x = Mathf.Clamp(newPosition.x, _minX, _maxX);
+
+        // Применяем новое положение к объекту
+        transform.position = newPosition;
+
+        _tilt = move * _tiltAngle;
+
+        // Применяем наклон по оси Z
+        transform.rotation = Quaternion.Euler(0, 180, _tilt);
+
+
 
         RotateWheel(_wheelColliderFL, _transformFL);
         RotateWheel(_wheelColliderFR, _transformFR);
         RotateWheel(_wheelColliderBL, _transformBL);
         RotateWheel(_wheelColliderBR, _transformBR);
 
-        // ����������� ������� ������
-        Vector3 position = transform.position;
-        position.x = Mathf.Clamp(position.x, _minX, _maxX);
-        transform.position = position;
-
-        float currentRotationY = transform.eulerAngles.y;
-        currentRotationY = Mathf.Clamp(currentRotationY, _minYangle, _maxYangle);
-        Quaternion newRotation = Quaternion.Euler(new Vector3(transform.eulerAngles.x, currentRotationY, transform.eulerAngles.z));
-        transform.rotation = newRotation;
+        UpdateVisualWheels(move);
 
     }
 
@@ -105,5 +122,15 @@ public class CarController : MonoBehaviour
 
         transform.rotation = rotation;
         transform.position = position;
+    }
+
+
+    private void UpdateVisualWheels(float steerInput)
+    {
+        float steerAngle = steerInput * _maxAngleOfWheel;
+
+        // Поворачиваем только передние визуальные колеса
+        _transformFL.localRotation = Quaternion.Euler(0, -steerAngle, 0);
+        _transformFR.localRotation = Quaternion.Euler(0, -steerAngle, 0);
     }
 }

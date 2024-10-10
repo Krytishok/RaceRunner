@@ -12436,8 +12436,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5866724714787213327}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0.0000029504295}
-  m_LocalPosition: {x: 4.02, y: 1.6, z: 40.3}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 4.229631, y: -0.5, z: 35.43997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12469,7 +12469,9 @@ MonoBehaviour:
   BodyCar: {fileID: 0}
   FrontOfCar: {fileID: 0}
   _forceEngine: 1500
-  _maxAngleOfWheel: 17
+  _turningSpeed: 10
+  _tiltAngle: 5
+  _maxAngleOfWheel: 10
   _minX: -3.5
   _maxX: 11.5
   _minYangle: 135
