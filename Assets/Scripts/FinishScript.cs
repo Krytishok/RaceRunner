@@ -9,8 +9,8 @@ public class FinishScript : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            FindObjectOfType<CameraController>()._player = FinishPositionOfCamera;
-            FindObjectOfType<CameraController>().transform.rotation = FinishPositionOfCamera.transform.rotation;
+            //FindObjectOfType<CameraController>()._player = FinishPositionOfCamera;
+            //FindObjectOfType<CameraController>().transform.rotation = FinishPositionOfCamera.transform.rotation;
             FindObjectOfType<UI_Manager>().SpawnButtonBackToMenu();
         }
     }
