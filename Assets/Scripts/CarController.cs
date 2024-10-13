@@ -35,17 +35,20 @@ public class CarController : MonoBehaviour
     [SerializeField] private float _minYangle;
     [SerializeField] private float _maxYangle;
 
+
     //�������� ������
     public float _speed;
 
 
     //auxiliary variables
     private float _tilt;
+    private Rigidbody _rigidbody;
 
 
     void Start()
     {
         gameObject.tag = "Player";
+        _rigidbody = GetComponent<Rigidbody>();
 
         _wheelColliderFL.motorTorque = 1000f;
         _wheelColliderFR.motorTorque = 1000f;
@@ -53,7 +56,7 @@ public class CarController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _speed = Math.Abs(GetComponent<Rigidbody>().linearVelocity.magnitude);
+        _speed = Mathf.Abs(_rigidbody.linearVelocity.magnitude);
         Debug.Log("Speed: " + _speed);
 
         if (_speed <= 20)
@@ -86,19 +89,7 @@ public class CarController : MonoBehaviour
         // Получаем ввод от клавиатуры (стрелки влево и вправо или A и D)
         float move = Input.GetAxis("Horizontal") * -1;
 
-        // Рассчитываем новое положение объекта
-        Vector3 newPosition = transform.position + new Vector3(move, 0, 0) * _turningSpeed * Time.deltaTime;
-
-        // Ограничиваем движение по оси X
-        newPosition.x = Mathf.Clamp(newPosition.x, _minX, _maxX);
-
-        // Применяем новое положение к объекту
-        transform.position = newPosition;
-
-        _tilt = move * _tiltAngle;
-
-        // Применяем наклон по оси Z
-        transform.rotation = Quaternion.Euler(0, 180, _tilt);
+        UpdatePositionAndRotation(Input.GetAxis("Horizontal") * -1);
 
 
 
@@ -132,5 +123,21 @@ public class CarController : MonoBehaviour
         // Поворачиваем только передние визуальные колеса
         _transformFL.localRotation = Quaternion.Euler(0, -steerAngle, 0);
         _transformFR.localRotation = Quaternion.Euler(0, -steerAngle, 0);
+    }
+
+    private void UpdatePositionAndRotation(float move)
+    {
+        // Новая позиция с ограничением по X
+        Vector3 newPosition = transform.position + new Vector3(move, 0, 0) * _turningSpeed * Time.deltaTime;
+        newPosition.x = Mathf.Clamp(newPosition.x, _minX, _maxX);
+
+        // Применяем только при необходимости
+        if (transform.position != newPosition)
+            transform.position = newPosition;
+
+        // Рассчитываем наклон и применяем плавное вращение
+        float newTilt = move * _tiltAngle;
+        Quaternion targetRotation = Quaternion.Euler(0, 180, newTilt);
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
     }
 }
