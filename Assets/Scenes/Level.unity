@@ -12470,7 +12470,7 @@ MonoBehaviour:
   FrontOfCar: {fileID: 0}
   _forceEngine: 1500
   _turningSpeed: 10
-  _tiltAngle: 5
+  _tiltAngle: 10
   _maxAngleOfWheel: 10
   _minX: -3.5
   _maxX: 11.5
