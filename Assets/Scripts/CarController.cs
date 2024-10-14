@@ -137,7 +137,8 @@ public class CarController : MonoBehaviour
 
         // Рассчитываем наклон и применяем плавное вращение
         float newTilt = move * _tiltAngle;
-        Quaternion targetRotation = Quaternion.Euler(0, 180, newTilt);
+        float bodyRotation = move * 5;
+        Quaternion targetRotation = Quaternion.Euler(0, 180 - bodyRotation, newTilt);
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
     }
 }
