@@ -12,7 +12,6 @@ public class MainMenuScript : MonoBehaviour
     [SerializeField] GameObject _buttonMuscle;
     [SerializeField] GameObject _buttonHatchback;
 
-    [SerializeField] GameObject _carCollection;
 
 
     [SerializeField] GameObject _mainCamera;
@@ -25,7 +24,9 @@ public class MainMenuScript : MonoBehaviour
     private int _NumberOfCoins = 0;
 
 
-    
+
+    private GameObject _hatchbackBox;
+    private GameObject _muscleBox;
 
 
 
@@ -36,6 +37,8 @@ public class MainMenuScript : MonoBehaviour
 
         _buttonHatchback.SetActive(false);
         _buttonMuscle.SetActive(false);
+
+        
 
     }
     public void PlayGame()
@@ -52,7 +55,6 @@ public class MainMenuScript : MonoBehaviour
         _mainCamera.transform.rotation = _garagePositionOfCamera.transform.rotation;
 
         _buttonExit.SetActive(false);
-        _buttonPlay.SetActive(false);
         _buttonToGarage.SetActive(false);
 
         _buttonMuscle.SetActive(true);
@@ -60,16 +62,5 @@ public class MainMenuScript : MonoBehaviour
 
 
     }
-    public void ChooseHatch()
-    {
-        _carCollection.GetComponentAtIndex(0).gameObject.SetActive(true);
-        _carCollection.GetComponentAtIndex(1).gameObject.SetActive(false);
-        PlayerPrefs.SetString("Vehicle", "Hatchback");
-    }
-    public void ChooseMuscle()
-    {
-        _carCollection.GetComponentAtIndex(0).gameObject.SetActive(false);
-        _carCollection.GetComponentAtIndex(1).gameObject.SetActive(true);
-        PlayerPrefs.SetString("Vehicle", "Muscle");
-    }
+    
 }
