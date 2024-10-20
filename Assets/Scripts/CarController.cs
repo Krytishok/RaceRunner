@@ -49,9 +49,8 @@ public class CarController : MonoBehaviour
     {
         gameObject.tag = "Player";
         _rigidbody = GetComponent<Rigidbody>();
+        
 
-        _wheelColliderFL.motorTorque = 1000f;
-        _wheelColliderFR.motorTorque = 1000f;
     }
 
     private void FixedUpdate()
@@ -59,13 +58,16 @@ public class CarController : MonoBehaviour
         _speed = Mathf.Abs(_rigidbody.linearVelocity.magnitude);
         Debug.Log("Speed: " + _speed);
 
+        _wheelColliderBL.motorTorque = Input.GetAxis("Vertical") * _forceEngine;
+        _wheelColliderBR.motorTorque = Input.GetAxis("Vertical") * _forceEngine;
+
+
+        
         if (_speed <= 20)
         {
-            _wheelColliderFL.motorTorque = 5000f;
-            _wheelColliderFR.motorTorque = 5000f;
+            _wheelColliderBL.motorTorque = 5000f;
+            _wheelColliderBR.motorTorque = 5000f;
         }
-        _wheelColliderFL.motorTorque = Input.GetAxis("Vertical") * _forceEngine;
-        _wheelColliderFR.motorTorque = Input.GetAxis("Vertical") * _forceEngine;
 
 
 
@@ -82,9 +84,10 @@ public class CarController : MonoBehaviour
             _wheelColliderFR.brakeTorque = 0;
             _wheelColliderBL.brakeTorque = 0;
             _wheelColliderBR.brakeTorque = 0;
-            _wheelColliderFL.motorTorque = 1000f;
-            _wheelColliderFR.motorTorque = 1000f;
+            _wheelColliderBL.motorTorque = 1000f;
+            _wheelColliderBR.motorTorque = 1000f;
         }
+        
 
         // Получаем ввод от клавиатуры (стрелки влево и вправо или A и D)
         float move = Input.GetAxis("Horizontal") * -1;
