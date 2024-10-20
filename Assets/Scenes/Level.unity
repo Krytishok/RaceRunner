@@ -9636,6 +9636,7 @@ MonoBehaviour:
   cars:
   - {fileID: 3008264972053466207, guid: ac4c91b86a59a2a4ca9c66758f5b4ac3, type: 3}
   - {fileID: 3008264972053466207, guid: 5582d5363a6df5f4d989a203bf908b03, type: 3}
+  - {fileID: 3008264972053466207, guid: 2ceee03fbe5bff145b2740b462e8848e, type: 3}
   _selectedCar: {fileID: 0}
 --- !u!4 &1865798576
 Transform:

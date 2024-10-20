@@ -38,9 +38,13 @@ public class MainMenuScript : MonoBehaviour
         _buttonHatchback.SetActive(false);
         _buttonMuscle.SetActive(false);
 
-        
-
     }
+
+    public void UpdateVisualCoins()
+    {
+        _NumberOfCoinsText.text = PlayerPrefs.GetInt("Coins").ToString();
+    }
+
     public void PlayGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);

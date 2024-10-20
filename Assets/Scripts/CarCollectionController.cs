@@ -41,7 +41,7 @@ public class CarCollectionController : MonoBehaviour
         // Переход к следующей машине
         int newIndex = (currentCarIndex + 1) % cars.Length; // Циклический переход
         ShowCar(newIndex);
-        PlayerPrefs.SetInt("Vehicle", newIndex);
+        //PlayerPrefs.SetInt("Vehicle", newIndex);
     }
 
     public void PreviousCar()
@@ -49,7 +49,17 @@ public class CarCollectionController : MonoBehaviour
         // Переход к предыдущей машине
         int newIndex = (currentCarIndex - 1 + cars.Length) % cars.Length; // Циклический переход
         ShowCar(newIndex);
-        PlayerPrefs.SetInt("Vehicle", newIndex);
+        //PlayerPrefs.SetInt("Vehicle", newIndex);
     }
+    public void BuyCar()
+    {
+        if(PlayerPrefs.GetInt("Coins") >= FindFirstObjectByType<CustomizationScript>()._costForBuyCar)
+        {
+            PlayerPrefs.SetInt("Coins", PlayerPrefs.GetInt("Coins") - FindFirstObjectByType<CustomizationScript>()._costForBuyCar);
+            FindFirstObjectByType<CustomizationScript>()._isPurchased = true;
+            PlayerPrefs.SetInt("Vehicle", currentCarIndex);
+        }
+    }
+
 
 }
