@@ -14,7 +14,7 @@ public class CoinScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        FindObjectOfType<CoinManager>().AddOne();
+        FindFirstObjectByType<CoinManager>().AddOne();
         Destroy(gameObject);
         
     }

@@ -434,6 +434,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3931382431649879900, guid: 9be5dc62cb9e0784195f84ae8c2ca8f2,
+        type: 3}
+      propertyPath: _costForBuyCar
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4207551203788784185, guid: 9be5dc62cb9e0784195f84ae8c2ca8f2,
         type: 3}
       propertyPath: m_Name
@@ -6166,6 +6171,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3931382431649879900, guid: 9be5dc62cb9e0784195f84ae8c2ca8f2,
+        type: 3}
+      propertyPath: _costForBuyCar
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4207551203788784185, guid: 9be5dc62cb9e0784195f84ae8c2ca8f2,
         type: 3}

@@ -10,7 +10,7 @@ public class ObstacleScript : MonoBehaviour
 
         if(other.gameObject.CompareTag("Player"))
         {
-            FindObjectOfType<UI_Manager>().SpawnButtonBackToMenu();
+            FindFirstObjectByType<UI_Manager>().SpawnButtonBackToMenu();
             Time.timeScale = 0;
         }
     }

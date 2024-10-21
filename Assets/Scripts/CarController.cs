@@ -17,9 +17,8 @@ public class CarController : MonoBehaviour
     [SerializeField] WheelCollider _wheelColliderFR;
     [SerializeField] WheelCollider _wheelColliderBR;
 
-    //Box colliders
-    [SerializeField] public BoxCollider BodyCar;
-    [SerializeField] public CapsuleCollider FrontOfCar;
+    //BodyCar
+    [SerializeField] public GameObject _bodyCar;
 
     //Car properties
     [SerializeField] private float _forceEngine;
@@ -35,6 +34,9 @@ public class CarController : MonoBehaviour
     [SerializeField] private float _minYangle;
     [SerializeField] private float _maxYangle;
 
+    [SerializeField] private float _minSpeed = 40;
+    [SerializeField] private float _maxSpeed = 50;
+
 
     //�������� ������
     public float _speed;
@@ -49,6 +51,9 @@ public class CarController : MonoBehaviour
     {
         gameObject.tag = "Player";
         _rigidbody = GetComponent<Rigidbody>();
+
+        _rigidbody.linearVelocity = new Vector3(0, 0, -40);
+
         
 
     }
@@ -58,35 +63,16 @@ public class CarController : MonoBehaviour
         _speed = Mathf.Abs(_rigidbody.linearVelocity.magnitude);
         Debug.Log("Speed: " + _speed);
 
-        _wheelColliderBL.motorTorque = Input.GetAxis("Vertical") * _forceEngine;
-        _wheelColliderBR.motorTorque = Input.GetAxis("Vertical") * _forceEngine;
+        //_wheelColliderBL.motorTorque = Input.GetAxis("Vertical") * _forceEngine;
+        //_wheelColliderBR.motorTorque = Input.GetAxis("Vertical") * _forceEngine;
+
+
+        _rigidbody.linearVelocity = new Vector3(_rigidbody.linearVelocity.x, _rigidbody.linearVelocity.y,
+            -Math.Clamp(Mathf.Abs(_rigidbody.linearVelocity.z), _minSpeed, _maxSpeed));
 
 
         
-        if (_speed <= 20)
-        {
-            _wheelColliderBL.motorTorque = 5000f;
-            _wheelColliderBR.motorTorque = 5000f;
-        }
-
-
-
-        if (Input.GetKey(KeyCode.Space) && _speed > 20)
-        {
-            _wheelColliderFL.brakeTorque = 3000f;
-            _wheelColliderFR.brakeTorque = 3000f;
-            _wheelColliderBL.brakeTorque = 3000f;
-            _wheelColliderBR.brakeTorque = 3000f;
-        }
-        else if (_speed < 20)
-        {
-            _wheelColliderFL.brakeTorque = 0;
-            _wheelColliderFR.brakeTorque = 0;
-            _wheelColliderBL.brakeTorque = 0;
-            _wheelColliderBR.brakeTorque = 0;
-            _wheelColliderBL.motorTorque = 1000f;
-            _wheelColliderBR.motorTorque = 1000f;
-        }
+        
         
 
         // Получаем ввод от клавиатуры (стрелки влево и вправо или A и D)
@@ -94,38 +80,27 @@ public class CarController : MonoBehaviour
 
         UpdatePositionAndRotation(Input.GetAxis("Horizontal") * -1);
 
-
-
-        RotateWheel(_wheelColliderFL, _transformFL);
-        RotateWheel(_wheelColliderFR, _transformFR);
         RotateWheel(_wheelColliderBL, _transformBL);
         RotateWheel(_wheelColliderBR, _transformBR);
+        RotateWheel(_wheelColliderFL, _transformFL);
+        RotateWheel(_wheelColliderFR, _transformFR);
 
-        UpdateVisualWheels(move);
+
+        UpdateVisuaFrontlWheels(move);
+       
 
     }
 
 
 
-    private void RotateWheel(WheelCollider collider, Transform transform)
-    {
-        Vector3 position;
-        Quaternion rotation;
 
-        collider.GetWorldPose(out position, out rotation);
-
-        transform.rotation = rotation;
-        transform.position = position;
-    }
-
-
-    private void UpdateVisualWheels(float steerInput)
+    private void UpdateVisuaFrontlWheels(float steerInput)
     {
         float steerAngle = steerInput * _maxAngleOfWheel;
 
         // Поворачиваем только передние визуальные колеса
-        _transformFL.localRotation = Quaternion.Euler(0, -steerAngle, 0);
-        _transformFR.localRotation = Quaternion.Euler(0, -steerAngle, 0);
+        _transformFL.localRotation = Quaternion.Euler(_transformFL.localRotation.eulerAngles.x, -steerAngle, 0);
+        _transformFR.localRotation = Quaternion.Euler(_transformFR.localRotation.eulerAngles.x, -steerAngle, 0);
     }
 
     private void UpdatePositionAndRotation(float move)
@@ -144,4 +119,22 @@ public class CarController : MonoBehaviour
         Quaternion targetRotation = Quaternion.Euler(0, 180 - bodyRotation, newTilt);
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
     }
+
+    private void RotateWheel(WheelCollider collider, Transform wheelTransform)
+    {
+        // Получаем позицию и вращение колес
+        Vector3 position;
+        Quaternion rotation;
+
+        collider.GetWorldPose(out position, out rotation);
+
+        // Устанавливаем позицию колес
+        wheelTransform.position = position;
+
+        // Поворачиваем колесо на основе вращения коллайдера
+        wheelTransform.rotation = rotation;
+
+
+    }
+
 }

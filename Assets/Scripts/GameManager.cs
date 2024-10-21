@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     public void Awake()
     {
         _selectedCar = cars[PlayerPrefs.GetInt("Vehicle")].gameObject;
-        _selectedCar = Instantiate(_selectedCar, new Vector3(0,0, 20), new Quaternion(0, 180, 0, 0));
+        _selectedCar = Instantiate(_selectedCar, new Vector3(3,0, 30), new Quaternion(0, 180, 0, 0));
 
     }
 
