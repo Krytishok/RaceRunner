@@ -97,8 +97,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 844593941217445307}
-  _straightForce: 20
-  _upForce: 5
+  animator: {fileID: 8092967326146479507}
+  _straightForce: 17
+  _upForce: 2.5
   _destroyDelay: 1
 --- !u!95 &8092967326146479507
 Animator:

@@ -3,6 +3,7 @@ using UnityEngine;
 public class DestructibleObstacleScript : MonoBehaviour
 {
     [SerializeField] Rigidbody rb;
+    [SerializeField] Animator animator;
 
     public float _straightForce = 1f;
     public float _upForce = 0.1f;
@@ -22,6 +23,7 @@ public class DestructibleObstacleScript : MonoBehaviour
             rb.AddForce(force, ForceMode.Impulse);
 
             GetComponent<Collider>().isTrigger = true;
+            animator.SetBool("IsTouched", true);
             Destroy(gameObject, _destroyDelay);
         }
     }
