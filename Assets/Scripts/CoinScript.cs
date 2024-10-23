@@ -14,8 +14,11 @@ public class CoinScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        FindFirstObjectByType<CoinManager>().AddOne();
-        Destroy(gameObject);
+        if (other.gameObject.CompareTag("Player"))
+        {
+            FindFirstObjectByType<CoinManager>().AddOne();
+            Destroy(gameObject);
+        }
         
     }
 }

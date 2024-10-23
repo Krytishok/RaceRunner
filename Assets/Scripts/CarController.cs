@@ -18,7 +18,8 @@ public class CarController : MonoBehaviour
     [SerializeField] WheelCollider _wheelColliderBR;
 
     //BodyCar
-    [SerializeField] public GameObject _bodyCar;
+    [SerializeField] public Animator _bodyCarAnimator;
+    [SerializeField] public int _hp;
 
     //Car properties
     [SerializeField] private float _forceEngine;
@@ -38,6 +39,7 @@ public class CarController : MonoBehaviour
     [SerializeField] private float _maxSpeed = 50;
 
 
+
     //�������� ������
     public float _speed;
 
@@ -47,6 +49,7 @@ public class CarController : MonoBehaviour
     private Rigidbody _rigidbody;
 
 
+
     void Start()
     {
         gameObject.tag = "Player";
@@ -54,14 +57,12 @@ public class CarController : MonoBehaviour
 
         _rigidbody.linearVelocity = new Vector3(0, 0, -40);
 
-        
-
     }
 
     private void FixedUpdate()
     {
         _speed = Mathf.Abs(_rigidbody.linearVelocity.magnitude);
-        Debug.Log("Speed: " + _speed);
+        //Debug.Log("Speed: " + _speed);
 
         //_wheelColliderBL.motorTorque = Input.GetAxis("Vertical") * _forceEngine;
         //_wheelColliderBR.motorTorque = Input.GetAxis("Vertical") * _forceEngine;
@@ -136,5 +137,11 @@ public class CarController : MonoBehaviour
 
 
     }
+
+    public void CollisionWithObstacle()
+    {
+        _bodyCarAnimator.SetTrigger("CollisionWithObstacle");
+    }
+
 
 }

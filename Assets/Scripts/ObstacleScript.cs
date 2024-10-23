@@ -10,8 +10,9 @@ public class ObstacleScript : MonoBehaviour
 
         if(other.gameObject.CompareTag("Player"))
         {
-            FindFirstObjectByType<UI_Manager>().SpawnButtonBackToMenu();
-            Time.timeScale = 0;
+            //FindFirstObjectByType<UI_Manager>().SpawnButtonBackToMenu();
+            //Time.timeScale = 0;
+            FindFirstObjectByType<CarController>().CollisionWithObstacle();
         }
     }
 }
