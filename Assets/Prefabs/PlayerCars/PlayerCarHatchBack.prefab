@@ -292,6 +292,7 @@ GameObject:
   - component: {fileID: 727936085871323002}
   - component: {fileID: 5567933213301782533}
   - component: {fileID: 325024186542040987}
+  - component: {fileID: 5506942494287716033}
   m_Layer: 0
   m_Name: PlayerCarHatchBack
   m_TagString: Untagged
@@ -385,7 +386,7 @@ MonoBehaviour:
   _wheelColliderBL: {fileID: 5577445883358129394}
   _wheelColliderFR: {fileID: 1893445597631335134}
   _wheelColliderBR: {fileID: 9112565713419076307}
-  _bodyCarAnimator: {fileID: 8064581729570821487}
+  _bodyCarAnimator: {fileID: 5506942494287716033}
   _hp: 0
   _forceEngine: 1500
   _turningSpeed: 10
@@ -421,6 +422,28 @@ CapsuleCollider:
   m_Height: 2.38
   m_Direction: 0
   m_Center: {x: 0, y: 0.72, z: 1.85}
+--- !u!95 &5506942494287716033
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3008264972053466207}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7581cc07f8977da4baa20ca6caec4eab, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3506333267691709675
 GameObject:
   m_ObjectHideFlags: 0
@@ -779,7 +802,6 @@ GameObject:
   - component: {fileID: 4148519238119913229}
   - component: {fileID: 3690023891331630382}
   - component: {fileID: 617099363660050509}
-  - component: {fileID: 8064581729570821487}
   m_Layer: 0
   m_Name: Tarabant
   m_TagString: Untagged
@@ -861,28 +883,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!95 &8064581729570821487
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5275997835496366200}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7581cc07f8977da4baa20ca6caec4eab, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5488054727021493060
 GameObject:
   m_ObjectHideFlags: 0
