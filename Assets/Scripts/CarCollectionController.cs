@@ -6,8 +6,12 @@ public class CarCollectionController : MonoBehaviour
     public GameObject[] cars; // Массив всех машин
     private int currentCarIndex = 0; // Индекс текущей машины
 
-    void Start()
+    private MonoBehaviour _mainMenuScript;
+
+
+void Start()
     {
+
         if (PlayerPrefs.HasKey("Vehicle"))
         {
             ShowCar(PlayerPrefs.GetInt("Vehicle"));
@@ -34,6 +38,9 @@ public class CarCollectionController : MonoBehaviour
         {
             cars[currentCarIndex].SetActive(true);
         }
+        //Сохраняем индекс первой показанной машинки
+        DataManager.Instance._currentIndexOfCar = currentCarIndex;
+        DataManager.Instance._currentCar = cars[currentCarIndex];
     }
 
     public void NextCar()
@@ -53,11 +60,15 @@ public class CarCollectionController : MonoBehaviour
     }
     public void BuyCar()
     {
-        if(PlayerPrefs.GetInt("Coins") >= FindFirstObjectByType<CustomizationScript>()._costForBuyCar)
+        if(DataManager.Instance._numberOfCoins >= FindFirstObjectByType<CustomizationScript>()._costForBuyCar)
         {
-            PlayerPrefs.SetInt("Coins", PlayerPrefs.GetInt("Coins") - FindFirstObjectByType<CustomizationScript>()._costForBuyCar);
+            DataManager.Instance._numberOfCoins -= FindFirstObjectByType<CustomizationScript>()._costForBuyCar;
             FindFirstObjectByType<CustomizationScript>()._isPurchased = true;
-            PlayerPrefs.SetInt("Vehicle", currentCarIndex);
+            DataManager.Instance._vehicleId = currentCarIndex;
+
+
+            FindFirstObjectByType<MainMenuScript>().HideOrSpawnBuyButton(false);
+            FindFirstObjectByType<MainMenuScript>().HideOrSpawnBuyButton(false);
         }
     }
 

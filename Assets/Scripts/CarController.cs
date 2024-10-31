@@ -57,6 +57,8 @@ public class CarController : MonoBehaviour
 
         _rigidbody.linearVelocity = new Vector3(0, 0, -40);
 
+        DontDestroyOnLoad(gameObject);
+
     }
 
     private void FixedUpdate()
@@ -143,5 +145,9 @@ public class CarController : MonoBehaviour
         _bodyCarAnimator.SetTrigger("CollisionWithObstacle");
     }
 
+    public void TurnOffControl()
+    {
+
+    }
 
 }

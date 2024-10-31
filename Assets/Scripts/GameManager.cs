@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public int NumberOfCoinsAtAll = 0;
+    public int NumberOfCoinsAtLevel = 0;
     private int incrementCoinToAll;
 
     //Link to Camera Script
@@ -18,9 +18,11 @@ public class GameManager : MonoBehaviour
     public void StopGame()
     {
         //Add collected coins in level to total
-        NumberOfCoinsAtAll += FindFirstObjectByType<CoinManager>()._numberOfCoinsInLevel;
+        NumberOfCoinsAtLevel += FindFirstObjectByType<CoinManager>()._numberOfCoinsInLevel;
 
-        PlayerPrefs.SetInt("Coins", PlayerPrefs.GetInt("Coins") + NumberOfCoinsAtAll);
+        DataManager.Instance._numberOfCoins += NumberOfCoinsAtLevel;
+
+        //PlayerPrefs.SetInt("Coins", PlayerPrefs.GetInt("Coins") + NumberOfCoinsAtAll);
 
 
         SceneManager.LoadScene("MainMenu");
@@ -29,7 +31,7 @@ public class GameManager : MonoBehaviour
 
     public void Awake()
     {
-        _selectedCar = cars[PlayerPrefs.GetInt("Vehicle")].gameObject;
+        _selectedCar = cars[DataManager.Instance._vehicleId].gameObject;
         _selectedCar = Instantiate(_selectedCar, new Vector3(3,0, 30), new Quaternion(0, 180, 0, 0));
 
     }
