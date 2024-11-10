@@ -13,8 +13,7 @@ public class MainMenuScript : MonoBehaviour
     [SerializeField] GameObject _buttonPlay;
     [SerializeField] GameObject _buttonExit;
     [SerializeField] GameObject _buttonToGarage;
-    [SerializeField] GameObject _buttonNext;
-    [SerializeField] GameObject _buttonPrevious;
+    [SerializeField] GameObject _groupArrowButtons;
     [SerializeField] GameObject _buttonBuy;
     [SerializeField] GameObject _buttonBody;
     [SerializeField] GameObject _buttonEngine;
@@ -22,8 +21,9 @@ public class MainMenuScript : MonoBehaviour
     [SerializeField] GameObject _groupOfCustomizationButtons;
     [SerializeField] GameObject _buttonSelect;
     [SerializeField] GameObject _buttonBuyTuning;
+    [SerializeField] GameObject _buttonBackToPreviousUI;
 
-    [SerializeField] Image _infoBar;
+    [SerializeField] GameObject _infoBar;
     [SerializeField] GameObject _lockIcon;
 
     [SerializeField] TextMeshProUGUI _priceForBuy;
@@ -31,17 +31,14 @@ public class MainMenuScript : MonoBehaviour
 
 
 
-    [SerializeField] GameObject _mainCamera;
-
-    [SerializeField] GameObject _garagePositionOfCamera;
-    [SerializeField] GameObject _mainMenuPositionOfCamera;
-
 
     [SerializeField] TextMeshProUGUI _NumberOfCoinsText;
     private int _NumberOfCoins = 0;
 
     //Вспомогательная переменная для хранения информации о текущем окне кастомизации
     public string _currentCustomization;
+
+    public string _currentUIstyle;
 
     CarCollectionController CarCollectionController;
 
@@ -52,6 +49,8 @@ public class MainMenuScript : MonoBehaviour
     {
         Time.timeScale = 1.0f;
         _NumberOfCoinsText.text = DataManager.Instance._numberOfCoins.ToString();
+
+        _currentUIstyle = "MainMenu";
 
         CarCollectionController = FindFirstObjectByType<CarCollectionController>();
 
@@ -66,19 +65,14 @@ public class MainMenuScript : MonoBehaviour
     {
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        // Дополнительная мера передачи информации о текущей машинке в следующую сцену
+        DataManager.Instance._currentCarData = CarCollectionController.GetCurrentCarData();
     }
     public void ExitGame()
     {
         Application.Quit();
     }
-    public void ToGarage()
-    {
-        _mainCamera.transform.position = _garagePositionOfCamera.transform.position;
-        _mainCamera.transform.rotation = _garagePositionOfCamera.transform.rotation;
-        _buttonExit.SetActive(false);
-        _buttonToGarage.SetActive(false);
-
-    }
+   
     public void HideOrSpawnBuyButton(bool flag)
     {
         _buttonBuy.SetActive(flag);
@@ -122,6 +116,7 @@ public class MainMenuScript : MonoBehaviour
             {
                 _buttonBuyTuning.SetActive(true);
                 _lockIcon.SetActive(false);
+                _buttonBackToPreviousUI.SetActive(true);
                 _priceForBuyTuning.text = "КУПЛЕНО";
 
             }
@@ -129,6 +124,7 @@ public class MainMenuScript : MonoBehaviour
             {
                 _buttonBuyTuning.SetActive(true);
                 _lockIcon.SetActive(true);
+                _buttonBackToPreviousUI.SetActive(false);
                 _priceForBuyTuning.text = _cardata._priceForBodies[index].ToString();
             }
         }
@@ -138,12 +134,14 @@ public class MainMenuScript : MonoBehaviour
             {
                 _buttonBuyTuning.SetActive(true);
                 _lockIcon.SetActive(false);
+                _buttonBackToPreviousUI.SetActive(true);
                 _priceForBuyTuning.text = "КУПЛЕНО";
             }
             else
             {
                 _buttonBuyTuning.SetActive(true);
                 _lockIcon.SetActive(true);
+                _buttonBackToPreviousUI.SetActive(false);
                 _priceForBuyTuning.text = _cardata._priceForEngines[index].ToString();
             }
         }
@@ -153,12 +151,14 @@ public class MainMenuScript : MonoBehaviour
             {
                 _buttonBuyTuning.SetActive(true);
                 _lockIcon.SetActive(false);
+                _buttonBackToPreviousUI.SetActive(true);
                 _priceForBuyTuning.text = "КУПЛЕНО";
             }
             else
             {
                 _buttonBuyTuning.SetActive(true);
                 _lockIcon.SetActive(true);
+                _buttonBackToPreviousUI.SetActive(false);
                 _priceForBuyTuning.text = _cardata._priceForWheels[index].ToString();
             }
         }
@@ -168,12 +168,14 @@ public class MainMenuScript : MonoBehaviour
             {
                 _buttonBuyTuning.SetActive(true);
                 _lockIcon.SetActive(false);
+                _buttonBackToPreviousUI.SetActive(true);
                 _priceForBuyTuning.text = "КУПЛЕНО";
             }
             else
             {
                 _buttonBuyTuning.SetActive(true);
                 _lockIcon.SetActive(true);
+                _buttonBackToPreviousUI.SetActive(false);
                 _priceForBuyTuning.text = _cardata._priceForWeapons[index].ToString();
             }
         }
@@ -184,7 +186,52 @@ public class MainMenuScript : MonoBehaviour
         _currentCustomization = customizationName;
     }
     
+    public void BackToPreviosStyleUI()
+    {
+        if (_currentUIstyle == "CustomizationOfCar")
+        {
+            //Убираем текущий UI
+            _groupOfCustomizationButtons.SetActive(false);
+            _buttonBuyTuning.SetActive(false);
+            _lockIcon.SetActive(false);
+            _infoBar.SetActive(false);
+            //Активируем предыдущий
+            UpdatePriceForCar();
+            _groupArrowButtons.SetActive(true);
 
+            FindFirstObjectByType<MenuCameraController>().ToSelectView();
+            _currentUIstyle = "SelectingCar";
+
+
+
+        }
+        else if (_currentUIstyle == "SelectingCar")
+        {
+            _groupArrowButtons.SetActive(false);
+            _buttonBuy.SetActive(false);
+            _buttonSelect.SetActive(false);
+            _buttonBackToPreviousUI.SetActive(false);
+            _lockIcon.SetActive(false);
+
+            _buttonToGarage.SetActive(true);
+
+            FindFirstObjectByType<MenuCameraController>().ToMainMenuView();
+
+            _currentUIstyle = "MainMenu";
+
+        } else if(_currentUIstyle == "MainMenu")
+        {
+            _buttonBackToPreviousUI.SetActive(false);
+        }
+    }
+    public void ChangeCurrentUIstyleInfo(string uiStyle)
+    {
+        _currentUIstyle = uiStyle;
+    }
+    public void HideOrSpawnBackToPreviosUIButton(bool flag)
+    {
+        _buttonBackToPreviousUI.SetActive(flag);
+    }
     
     
 

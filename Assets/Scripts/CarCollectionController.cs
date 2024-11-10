@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 
 public class CarCollectionController : MonoBehaviour
@@ -21,7 +22,7 @@ public class CarCollectionController : MonoBehaviour
 
 
 
-void Start()
+    void Start()
     {
         currentCarIndex = PlayerPrefs.GetInt("currentCarIndex");
         ShowCar(currentCarIndex);
@@ -29,6 +30,20 @@ void Start()
 
 
     }
+    //Если машина не куплена, то убираем кнопку "Вернуться"
+    private void UpdateInfoAboutBackToPreviousUIButton(int index)
+    {
+        if (_carsData[index]._costForBuyCar == 0)
+        {
+            FindFirstObjectByType<MainMenuScript>().HideOrSpawnBackToPreviosUIButton(true);
+        }
+        else
+        {
+            FindFirstObjectByType<MainMenuScript>().HideOrSpawnBackToPreviosUIButton(false);
+        }
+
+    }
+
 
     public void ShowCar(int index)
     {
@@ -41,6 +56,7 @@ void Start()
         // Обновляем индекс текущей машины
         currentCarIndex = index;
         PlayerPrefs.SetInt("currentCarIndex", index);
+
 
 
         // Включаем новую машину
@@ -56,6 +72,9 @@ void Start()
         // Переход к следующей машине
         int newIndex = (currentCarIndex + 1) % cars.Length; // Циклический переход
         ShowCar(newIndex);
+        UpdateInfoAboutBackToPreviousUIButton(newIndex);
+
+        
 
     }
 
@@ -64,6 +83,8 @@ void Start()
         // Переход к предыдущей машине
         int newIndex = (currentCarIndex - 1 + cars.Length) % cars.Length; // Циклический переход
         ShowCar(newIndex);
+        UpdateInfoAboutBackToPreviousUIButton(newIndex);
+
     }
     public void BuyCar()
     {
@@ -171,6 +192,7 @@ void Start()
     {
         DataManager.Instance._currentCarData = _carsData[currentCarIndex];
         PlayerPrefs.SetInt("currentCarInex", currentCarIndex);
+
     }
 
     public void InizializeCustomizationOfCar()

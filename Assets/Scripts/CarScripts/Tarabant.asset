@@ -20,7 +20,7 @@ MonoBehaviour:
   _priceForWheels: 020000000300000004000000
   _priceForEngines: 010000000200000003000000
   _priceForWeapons: 000000000000000003000000
-  _bodyId: 0
+  _bodyId: 1
   _engineId: 2
   _wheelsId: 0
-  _weaponId: 1
+  _weaponId: 0

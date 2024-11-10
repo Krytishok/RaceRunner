@@ -2,8 +2,29 @@ using UnityEngine;
 
 public class MenuCameraController : MonoBehaviour
 {
-    public void LookCloser(Transform transform, Vector3 _offset)
+    [SerializeField] Transform _garagePostion;
+    [SerializeField] Transform _mainMenuPosition;
+    [SerializeField] Transform _selectCarPosition;
+
+
+    private void Start()
     {
-        gameObject.transform.position = transform.position + _offset;
+        ToMainMenuView();
+    }
+
+    public void ToGarageView()
+    {
+        transform.position = _garagePostion.position;
+        transform.rotation = _garagePostion.rotation;
+    }
+    public void ToMainMenuView()
+    {
+        transform.position = _mainMenuPosition.position;
+        transform.rotation = _mainMenuPosition.rotation;
+    }
+    public void ToSelectView()
+    {
+        transform.position = _selectCarPosition.position;
+        transform.rotation = _selectCarPosition.rotation;
     }
 }
