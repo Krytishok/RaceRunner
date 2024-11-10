@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2441fa1262035f48b98fb198a5a4b26, type: 3}
+  m_Name: Muscle
+  m_EditorClassIdentifier: 
+  _nameOfCar: Muscle
+  _carPrefab: {fileID: 3008264972053466207, guid: 5582d5363a6df5f4d989a203bf908b03,
+    type: 3}
+  _costForBuyCar: 0
+  _priceForBodies: 
+  _priceForWheels: 
+  _priceForEngines: 
+  _priceForWeapons: 
+  _bodyId: 0
+  _engineId: 0
+  _wheelsId: 0
+  _weaponId: 0

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -8,6 +9,7 @@ using UnityEngine.UIElements;
 
 public class MainMenuScript : MonoBehaviour
 {
+
     [SerializeField] GameObject _buttonPlay;
     [SerializeField] GameObject _buttonExit;
     [SerializeField] GameObject _buttonToGarage;
@@ -18,8 +20,14 @@ public class MainMenuScript : MonoBehaviour
     [SerializeField] GameObject _buttonEngine;
     [SerializeField] GameObject _buttonWheels;
     [SerializeField] GameObject _groupOfCustomizationButtons;
+    [SerializeField] GameObject _buttonSelect;
+    [SerializeField] GameObject _buttonBuyTuning;
 
     [SerializeField] Image _infoBar;
+    [SerializeField] GameObject _lockIcon;
+
+    [SerializeField] TextMeshProUGUI _priceForBuy;
+    [SerializeField] TextMeshProUGUI _priceForBuyTuning;
 
 
 
@@ -32,10 +40,11 @@ public class MainMenuScript : MonoBehaviour
     [SerializeField] TextMeshProUGUI _NumberOfCoinsText;
     private int _NumberOfCoins = 0;
 
+    //Вспомогательная переменная для хранения информации о текущем окне кастомизации
+    public string _currentCustomization;
 
+    CarCollectionController CarCollectionController;
 
-    private GameObject _hatchbackBox;
-    private GameObject _muscleBox;
 
 
 
@@ -44,9 +53,7 @@ public class MainMenuScript : MonoBehaviour
         Time.timeScale = 1.0f;
         _NumberOfCoinsText.text = DataManager.Instance._numberOfCoins.ToString();
 
-        _buttonNext.SetActive(false);
-        _buttonPrevious.SetActive(false);
-        _buttonBuy.SetActive(false);
+        CarCollectionController = FindFirstObjectByType<CarCollectionController>();
 
     }
 
@@ -57,6 +64,7 @@ public class MainMenuScript : MonoBehaviour
 
     public void PlayGame()
     {
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
     public void ExitGame()
@@ -70,27 +78,114 @@ public class MainMenuScript : MonoBehaviour
         _buttonExit.SetActive(false);
         _buttonToGarage.SetActive(false);
 
-        _buttonNext.SetActive(true);
-        _buttonPrevious.SetActive(true);
-        _buttonBuy.SetActive(true);
-
-
     }
     public void HideOrSpawnBuyButton(bool flag)
     {
         _buttonBuy.SetActive(flag);
     }
-    public void HideOrSpawnArrows(bool flag)
+
+    private CarDataScript GetCardata()
     {
-        _buttonNext.SetActive(flag);
+        return FindFirstObjectByType<CarCollectionController>().GetCurrentCarData();
     }
-    public void BodyKit2ButtonIsPressed()
+
+    public void HideOrSpawnSelectButton(bool flag)
     {
-        //FindFirstObjectByType<CustomizationScript>().SetBodyKitToSecondLevel();
+        _buttonSelect.SetActive(flag);
     }
-    public void BodyKit1ButtonIsPressed()
+    
+    
+    public void UpdatePriceForCar()
     {
-        //FindFirstObjectByType<CustomizationScript>().SetBodyKitToFirstLevel();
+        if (GetCardata()._costForBuyCar == 0)
+        {
+            _buttonBuy.SetActive(false);
+            _lockIcon.SetActive(false);
+            _buttonSelect.SetActive(true);
+        }
+        else
+        {
+            _buttonSelect.SetActive(false);
+            _buttonBuy.SetActive(true);
+            _lockIcon.SetActive(true);
+            _priceForBuy.text = GetCardata()._costForBuyCar.ToString();
+        }
+
     }
+
+    public void UpdatePriceForTuning(int index)
+    {
+        CarDataScript _cardata = GetCardata();
+        if (_currentCustomization == "Body")
+        {
+            if (_cardata._priceForBodies[index] == 0)
+            {
+                _buttonBuyTuning.SetActive(true);
+                _lockIcon.SetActive(false);
+                _priceForBuyTuning.text = "КУПЛЕНО";
+
+            }
+            else
+            {
+                _buttonBuyTuning.SetActive(true);
+                _lockIcon.SetActive(true);
+                _priceForBuyTuning.text = _cardata._priceForBodies[index].ToString();
+            }
+        }
+        else if (_currentCustomization == "Engine")
+        {
+            if (_cardata._priceForEngines[index] == 0)
+            {
+                _buttonBuyTuning.SetActive(true);
+                _lockIcon.SetActive(false);
+                _priceForBuyTuning.text = "КУПЛЕНО";
+            }
+            else
+            {
+                _buttonBuyTuning.SetActive(true);
+                _lockIcon.SetActive(true);
+                _priceForBuyTuning.text = _cardata._priceForEngines[index].ToString();
+            }
+        }
+        else if (_currentCustomization == "Wheels")
+        {
+            if (_cardata._priceForWheels[index] == 0)
+            {
+                _buttonBuyTuning.SetActive(true);
+                _lockIcon.SetActive(false);
+                _priceForBuyTuning.text = "КУПЛЕНО";
+            }
+            else
+            {
+                _buttonBuyTuning.SetActive(true);
+                _lockIcon.SetActive(true);
+                _priceForBuyTuning.text = _cardata._priceForWheels[index].ToString();
+            }
+        }
+        else if (_currentCustomization == "Weapon")
+        {
+            if (_cardata._priceForWeapons[index] == 0)
+            {
+                _buttonBuyTuning.SetActive(true);
+                _lockIcon.SetActive(false);
+                _priceForBuyTuning.text = "КУПЛЕНО";
+            }
+            else
+            {
+                _buttonBuyTuning.SetActive(true);
+                _lockIcon.SetActive(true);
+                _priceForBuyTuning.text = _cardata._priceForWeapons[index].ToString();
+            }
+        }
+    }
+    //Данную функцию вызывают кнопки кастомизации и дают нам знать о нажатой кастомизации
+    public void ChangeCurrentCustomization(string customizationName)
+    {
+        _currentCustomization = customizationName;
+    }
+    
+
+    
+    
 
 }

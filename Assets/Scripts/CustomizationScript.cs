@@ -4,31 +4,64 @@ using UnityEngine;
 
 public class CustomizationScript : MonoBehaviour
 {
-    //Data for visual
-    public int _id;
-    public int _currentTuningId;
-    public bool _isPurchased = false;
-    public int _costForBuyCar;
+
 
     [SerializeField] GameObject[] _listOfBodies;
-    [SerializeField] int[] _priceForBodies;
-
-    [SerializeField] CarDataScript _carData;
-
-
-
+    [SerializeField] GameObject[] _listOfWheels;
+    [SerializeField] GameObject[] _listOfEngines;
+    [SerializeField] GameObject[] _listOfWeapons;
 
 
 
     private void Start()
     {
+       
     }
-   
 
-    private void LoadTypesOfTuningToScriptableObject()
+    public void ShowBodyAtIndex(int index)
     {
-        
+        for (int i = 0; i < _listOfBodies.Length; i++)
+        {
+            _listOfBodies[i].SetActive(false);
+        }
+        _listOfBodies[index].SetActive(true);
+
     }
+    public void ShowEngineAtIndex(int index)
+    {
+        for (int i = 0; i < _listOfEngines.Length; i++)
+        {
+            _listOfEngines[i].SetActive(false);
+        }
+        _listOfEngines[index].SetActive(true);
+
+    }
+    public void ShowWheelsAtIndex(int index)
+    {
+        for (int i = 0; i < _listOfWheels.Length; i++)
+        {
+            _listOfWheels[i].SetActive(false);
+        }
+        _listOfWheels[index].SetActive(true);
+
+    }
+    public void ShowWeaponyAtIndex(int index)
+    {
+        for (int i = 0; i < _listOfWeapons.Length; i++)
+        {
+            _listOfWeapons[i].SetActive(false);
+        }
+        _listOfWeapons[index].SetActive(true);
+
+    }
+    public void Initialize(int bodyId, int engineId, int wheelsId, int weaponId)
+    {
+        ShowBodyAtIndex(bodyId);
+        ShowEngineAtIndex(engineId);
+        ShowWheelsAtIndex(wheelsId);
+        ShowWeaponyAtIndex(weaponId);
+    }
+
 
 
 }

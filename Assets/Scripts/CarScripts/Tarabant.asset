@@ -13,9 +13,14 @@ MonoBehaviour:
   m_Name: Tarabant
   m_EditorClassIdentifier: 
   _nameOfCar: Tarabant
-  _bodyKits: []
-  _pricesForBodyKits: 
-  _engines: []
-  _pricesForEngines: 
-  _wheels: []
-  _pricesForWheels: 
+  _carPrefab: {fileID: 3008264972053466207, guid: ac4c91b86a59a2a4ca9c66758f5b4ac3,
+    type: 3}
+  _costForBuyCar: 0
+  _priceForBodies: 000000000000000003000000
+  _priceForWheels: 020000000300000004000000
+  _priceForEngines: 010000000200000003000000
+  _priceForWeapons: 000000000000000003000000
+  _bodyId: 0
+  _engineId: 2
+  _wheelsId: 0
+  _weaponId: 1

@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
     //Link to Camera Script
     [SerializeField] CameraController _cameraController;
 
+    //test ScriptableObject
+    private CarDataScript _currentCarData;
+
     //List of Playable cars
     public GameObject[] cars;
     public GameObject _selectedCar;
@@ -31,7 +34,8 @@ public class GameManager : MonoBehaviour
 
     public void Awake()
     {
-        _selectedCar = cars[DataManager.Instance._vehicleId].gameObject;
+
+        _selectedCar = DataManager.Instance._currentCarData._carPrefab.gameObject;
         _selectedCar = Instantiate(_selectedCar, new Vector3(3,0, 30), new Quaternion(0, 180, 0, 0));
 
     }

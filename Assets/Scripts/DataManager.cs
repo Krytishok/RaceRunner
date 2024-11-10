@@ -13,7 +13,8 @@ public class DataManager : MonoBehaviour
     public int _numberOfCoins = 100;
     public GameObject _currentCar;
 
-   public List<List<string>> _playerData = new List<List<string>>();
+    public CarDataScript _currentCarData;
+
 
     
    
