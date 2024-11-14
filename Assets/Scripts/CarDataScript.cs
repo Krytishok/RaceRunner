@@ -27,6 +27,12 @@ public class CarDataScript : ScriptableObject
     public int _wheelsId;
     public int _weaponId;
 
+    //Характеристики машины
+    [SerializeField] public int[] _hpConfig;
+    [SerializeField] public float[] _nitroConfig;
+    [SerializeField] public int[] _tiltSpeedConfig;
+    [SerializeField] public int[] _damageConfig;
+
     public void ChangeBodyID(int Id)
     {
         if (_priceForBodies[Id] == 0)
@@ -55,6 +61,7 @@ public class CarDataScript : ScriptableObject
             _weaponId = Id;
         }
     }
+   
 
 
 }

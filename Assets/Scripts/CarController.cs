@@ -22,7 +22,6 @@ public class CarController : MonoBehaviour
     [SerializeField] public int _hp;
 
     //Car properties
-    [SerializeField] private float _forceEngine;
     [SerializeField] private float _turningSpeed;
     [SerializeField] private float _tiltAngle;
 
@@ -35,8 +34,11 @@ public class CarController : MonoBehaviour
     [SerializeField] private float _minYangle;
     [SerializeField] private float _maxYangle;
 
-    [SerializeField] private float _minSpeed = 40;
-    [SerializeField] private float _maxSpeed = 50;
+    [SerializeField] private float _minSpeed = 60;
+    [SerializeField] private float _maxSpeed = 80;
+
+    //Applying customization
+    [SerializeField] CustomizationScript _customizationScript;
 
 
 
@@ -57,7 +59,8 @@ public class CarController : MonoBehaviour
 
         _rigidbody.linearVelocity = new Vector3(0, 0, -40);
 
-        DontDestroyOnLoad(gameObject);
+        InitializeCustomization();
+
 
     }
 
@@ -145,9 +148,11 @@ public class CarController : MonoBehaviour
         _bodyCarAnimator.SetTrigger("CollisionWithObstacle");
     }
 
-    public void TurnOffControl()
+    private void InitializeCustomization()
     {
-
+        CarDataScript _cardata = DataManager.Instance._currentCarData;
+        _customizationScript.ShowBodyAtIndex(_cardata._bodyId);
+        _customizationScript.ShowWeaponyAtIndex(_cardata._weaponId);
     }
 
 }

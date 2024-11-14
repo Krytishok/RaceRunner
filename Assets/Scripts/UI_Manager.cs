@@ -8,7 +8,7 @@ public class UI_Manager : MonoBehaviour
 
     private void Start()
     {
-        ButtonBackToMenu.SetActive(false);
+
     }
 
     public void SpawnButtonBackToMenu()

@@ -17,6 +17,8 @@ public class CarCollectionController : MonoBehaviour
     private string _whichTuningToShow;
     private int _currentIndexOfTuning;
 
+    public MainMenuScript _mainMenuScript;
+
 
 
 
@@ -108,31 +110,36 @@ public class CarCollectionController : MonoBehaviour
 
         _whichTuningToShow = FindFirstObjectByType<MainMenuScript>()._currentCustomization;
         _currentIndexOfTuning = index;
+
         if (_whichTuningToShow == "Body")
         {
+
+            _carsData[currentCarIndex].ChangeBodyID(index);
             FindFirstObjectByType<CustomizationScript>().ShowBodyAtIndex(index);
             FindFirstObjectByType<MainMenuScript>().UpdatePriceForTuning(index);
 
-            _carsData[currentCarIndex].ChangeBodyID(index);
+
         } else if(_whichTuningToShow == "Engine")
         {
+            _carsData[currentCarIndex].ChangeEngineID(index);
             FindFirstObjectByType<CustomizationScript>().ShowEngineAtIndex(index);
             FindFirstObjectByType<MainMenuScript>().UpdatePriceForTuning(index);
 
-            _carsData[currentCarIndex].ChangeEngineID(index);
         } else if (_whichTuningToShow == "Wheels")
         {
+            _carsData[currentCarIndex].ChangeWheelsID(index);
             FindFirstObjectByType<CustomizationScript>().ShowWheelsAtIndex(index);
             FindFirstObjectByType<MainMenuScript>().UpdatePriceForTuning(index);
 
-            _carsData[currentCarIndex].ChangeWheelsID(index);
         } else if(_whichTuningToShow == "Weapon")
         {
+            _carsData[currentCarIndex].ChangeWeaponID(index);
             FindFirstObjectByType<CustomizationScript>().ShowWeaponyAtIndex(index);
             FindFirstObjectByType<MainMenuScript>().UpdatePriceForTuning(index);
 
-            _carsData[currentCarIndex].ChangeWeaponID(index);
         }
+        //Показываем характеристики автомобиля
+        _mainMenuScript.UpdateTuningConfig(_carsData[currentCarIndex], _whichTuningToShow, index);
     }
 
 
@@ -148,6 +155,7 @@ public class CarCollectionController : MonoBehaviour
                 DataManager.Instance._numberOfCoins -= _carsData[currentCarIndex]._priceForBodies[_currentIndexOfTuning];
                 //Инициализируем покупку в SO
                 _carsData[currentCarIndex]._priceForBodies[_currentIndexOfTuning] = 0;
+                FindFirstObjectByType<MainMenuScript>().HideOrSpawnCustomizationButtons(true);
             } 
         }
         else if (_whichTuningToShow == "Engine")
@@ -157,6 +165,7 @@ public class CarCollectionController : MonoBehaviour
                 DataManager.Instance._numberOfCoins -= _carsData[currentCarIndex]._priceForEngines[_currentIndexOfTuning];
                 //Инициализируем покупку в SO
                 _carsData[currentCarIndex]._priceForEngines[_currentIndexOfTuning] = 0;
+                FindFirstObjectByType<MainMenuScript>().HideOrSpawnCustomizationButtons(true);
 
             }
         }
@@ -167,6 +176,7 @@ public class CarCollectionController : MonoBehaviour
                 DataManager.Instance._numberOfCoins -= _carsData[currentCarIndex]._priceForWheels[_currentIndexOfTuning];
                 //Инициализируем покупку в SO
                 _carsData[currentCarIndex]._priceForWheels[_currentIndexOfTuning] = 0;
+                FindFirstObjectByType<MainMenuScript>().HideOrSpawnCustomizationButtons(true);
             }
         }
         else if (_whichTuningToShow == "Weapon")
@@ -176,6 +186,7 @@ public class CarCollectionController : MonoBehaviour
                 DataManager.Instance._numberOfCoins -= _carsData[currentCarIndex]._priceForWeapons[_currentIndexOfTuning];
                 //Инициализируем покупку в SO
                 _carsData[currentCarIndex]._priceForWeapons[_currentIndexOfTuning] = 0;
+                FindFirstObjectByType<MainMenuScript>().HideOrSpawnCustomizationButtons(true);
             }
         }
         //Обновляем визуальные данные
@@ -193,6 +204,12 @@ public class CarCollectionController : MonoBehaviour
         DataManager.Instance._currentCarData = _carsData[currentCarIndex];
         PlayerPrefs.SetInt("currentCarInex", currentCarIndex);
 
+        //Обновляем текст с характеристиками машины
+        _mainMenuScript.UpdateTuningConfig(_carsData[currentCarIndex], "Body", _carsData[currentCarIndex]._bodyId);
+        _mainMenuScript.UpdateTuningConfig(_carsData[currentCarIndex], "Engine", _carsData[currentCarIndex]._engineId);
+        _mainMenuScript.UpdateTuningConfig(_carsData[currentCarIndex], "Wheels", _carsData[currentCarIndex]._wheelsId);
+        _mainMenuScript.UpdateTuningConfig(_carsData[currentCarIndex], "Weapon", _carsData[currentCarIndex]._weaponId);
+
     }
 
     public void InizializeCustomizationOfCar()
@@ -200,5 +217,11 @@ public class CarCollectionController : MonoBehaviour
         CarDataScript car = _carsData[currentCarIndex];
         FindFirstObjectByType<CustomizationScript>().Initialize(car._bodyId, car._engineId, car._wheelsId, car._weaponId);
     }
+    public void HideOrSpawnCarHood(bool flag)
+    {
+        FindFirstObjectByType<CustomizationScript>().HideOrSpawnCarHood(flag);
+    }
+
+
 
 }

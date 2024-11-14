@@ -11,6 +11,8 @@ public class CustomizationScript : MonoBehaviour
     [SerializeField] GameObject[] _listOfEngines;
     [SerializeField] GameObject[] _listOfWeapons;
 
+    [SerializeField] GameObject _carHood;
+
 
 
     private void Start()
@@ -53,6 +55,10 @@ public class CustomizationScript : MonoBehaviour
         }
         _listOfWeapons[index].SetActive(true);
 
+    }
+    public void HideOrSpawnCarHood(bool flag)
+    {
+        _carHood.SetActive(flag);
     }
     public void Initialize(int bodyId, int engineId, int wheelsId, int weaponId)
     {

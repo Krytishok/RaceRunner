@@ -27,4 +27,9 @@ public class MenuCameraController : MonoBehaviour
         transform.position = _selectCarPosition.position;
         transform.rotation = _selectCarPosition.rotation;
     }
+    public void ToPosition(Transform inputTransform)
+    {
+        transform.position = inputTransform.position;
+        transform.rotation = inputTransform.rotation;
+    }
 }

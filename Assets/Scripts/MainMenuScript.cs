@@ -9,6 +9,7 @@ using UnityEngine.UIElements;
 
 public class MainMenuScript : MonoBehaviour
 {
+    [SerializeField] GameObject[] _buttonsChooseTuning;
 
     [SerializeField] GameObject _buttonPlay;
     [SerializeField] GameObject _buttonExit;
@@ -28,6 +29,11 @@ public class MainMenuScript : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI _priceForBuy;
     [SerializeField] TextMeshProUGUI _priceForBuyTuning;
+
+    [SerializeField] TextMeshProUGUI _hpConfigNumber;
+    [SerializeField] TextMeshProUGUI _nitroTimeNumber;
+    [SerializeField] TextMeshProUGUI _controllabilityNumber;
+    [SerializeField] TextMeshProUGUI _firePowerNumber;
 
 
 
@@ -80,7 +86,7 @@ public class MainMenuScript : MonoBehaviour
 
     private CarDataScript GetCardata()
     {
-        return FindFirstObjectByType<CarCollectionController>().GetCurrentCarData();
+        return CarCollectionController.GetCurrentCarData();
     }
 
     public void HideOrSpawnSelectButton(bool flag)
@@ -117,6 +123,7 @@ public class MainMenuScript : MonoBehaviour
                 _buttonBuyTuning.SetActive(true);
                 _lockIcon.SetActive(false);
                 _buttonBackToPreviousUI.SetActive(true);
+                _groupOfCustomizationButtons.SetActive(true);
                 _priceForBuyTuning.text = "йсокемн";
 
             }
@@ -125,16 +132,19 @@ public class MainMenuScript : MonoBehaviour
                 _buttonBuyTuning.SetActive(true);
                 _lockIcon.SetActive(true);
                 _buttonBackToPreviousUI.SetActive(false);
+                _groupOfCustomizationButtons.SetActive(false);
                 _priceForBuyTuning.text = _cardata._priceForBodies[index].ToString();
             }
         }
         else if (_currentCustomization == "Engine")
         {
+            Debug.Log(index);
             if (_cardata._priceForEngines[index] == 0)
             {
                 _buttonBuyTuning.SetActive(true);
                 _lockIcon.SetActive(false);
                 _buttonBackToPreviousUI.SetActive(true);
+                _groupOfCustomizationButtons.SetActive(true);
                 _priceForBuyTuning.text = "йсокемн";
             }
             else
@@ -142,6 +152,7 @@ public class MainMenuScript : MonoBehaviour
                 _buttonBuyTuning.SetActive(true);
                 _lockIcon.SetActive(true);
                 _buttonBackToPreviousUI.SetActive(false);
+                _groupOfCustomizationButtons.SetActive(false);
                 _priceForBuyTuning.text = _cardata._priceForEngines[index].ToString();
             }
         }
@@ -152,6 +163,7 @@ public class MainMenuScript : MonoBehaviour
                 _buttonBuyTuning.SetActive(true);
                 _lockIcon.SetActive(false);
                 _buttonBackToPreviousUI.SetActive(true);
+                _groupOfCustomizationButtons.SetActive(true);
                 _priceForBuyTuning.text = "йсокемн";
             }
             else
@@ -159,6 +171,7 @@ public class MainMenuScript : MonoBehaviour
                 _buttonBuyTuning.SetActive(true);
                 _lockIcon.SetActive(true);
                 _buttonBackToPreviousUI.SetActive(false);
+                _groupOfCustomizationButtons.SetActive(false);
                 _priceForBuyTuning.text = _cardata._priceForWheels[index].ToString();
             }
         }
@@ -169,6 +182,7 @@ public class MainMenuScript : MonoBehaviour
                 _buttonBuyTuning.SetActive(true);
                 _lockIcon.SetActive(false);
                 _buttonBackToPreviousUI.SetActive(true);
+                _groupOfCustomizationButtons.SetActive(true);
                 _priceForBuyTuning.text = "йсокемн";
             }
             else
@@ -176,6 +190,7 @@ public class MainMenuScript : MonoBehaviour
                 _buttonBuyTuning.SetActive(true);
                 _lockIcon.SetActive(true);
                 _buttonBackToPreviousUI.SetActive(false);
+                _groupOfCustomizationButtons.SetActive(false);
                 _priceForBuyTuning.text = _cardata._priceForWeapons[index].ToString();
             }
         }
@@ -184,6 +199,11 @@ public class MainMenuScript : MonoBehaviour
     public void ChangeCurrentCustomization(string customizationName)
     {
         _currentCustomization = customizationName;
+        for(int i = 0; i < _buttonsChooseTuning.Length; i++)
+        {
+            _buttonsChooseTuning[i].SetActive(false);
+        }
+        _buttonBuyTuning.SetActive(false);
     }
     
     public void BackToPreviosStyleUI()
@@ -227,10 +247,39 @@ public class MainMenuScript : MonoBehaviour
     public void ChangeCurrentUIstyleInfo(string uiStyle)
     {
         _currentUIstyle = uiStyle;
+
     }
     public void HideOrSpawnBackToPreviosUIButton(bool flag)
     {
         _buttonBackToPreviousUI.SetActive(flag);
+        
+    }
+    public void HideOrSpawnCustomizationButtons(bool flag)
+    {
+        _groupOfCustomizationButtons.SetActive(flag);
+    }
+
+    public void UpdateTuningConfig(CarDataScript _config, string _typeOfTuning, int index)
+    {
+        if (_typeOfTuning == "Body")
+        {
+            _hpConfigNumber.text = _config._hpConfig[index].ToString();
+        }
+        else if (_typeOfTuning == "Engine")
+        {
+            _nitroTimeNumber.text = _config._nitroConfig[index].ToString();
+        }
+        else if (_typeOfTuning == "Wheels")
+        {
+            _controllabilityNumber.text = _config._tiltSpeedConfig[index].ToString();
+        }
+        else if (_typeOfTuning == "Weapon")
+        {
+            _firePowerNumber.text = _config._damageConfig[index].ToString();
+        }
+        
+        
+
     }
     
     
