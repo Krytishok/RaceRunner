@@ -34,10 +34,27 @@ public class GameManager : MonoBehaviour
 
     public void Awake()
     {
-
-        _selectedCar = DataManager.Instance._currentCarData._carPrefab.gameObject;
+        if(_selectedCar == null)
+        {
+            _selectedCar = cars[0].gameObject;
+        }
+        else
+        {
+            _selectedCar = DataManager.Instance._currentCarData._carPrefab.gameObject;
+        }
+        
         _selectedCar = Instantiate(_selectedCar, new Vector3(3,0, 30), new Quaternion(0, 180, 0, 0));
 
+        Time.timeScale = 0f;
+
     }
+
+    public void SetTimeScaleTo(float timeScale)
+    {
+        Time.timeScale = timeScale;
+    }
+
+    
+
 
 }

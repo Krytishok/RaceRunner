@@ -19,11 +19,13 @@ public class CarController : MonoBehaviour
 
     //BodyCar
     [SerializeField] public Animator _bodyCarAnimator;
-    [SerializeField] public int _hp;
 
     //Car properties
-    [SerializeField] private float _turningSpeed;
     [SerializeField] private float _tiltAngle;
+    [SerializeField] public float _turningSpeed;
+    [SerializeField] public int _hp;
+    [SerializeField] public int _firePower;
+    [SerializeField] public float _nitroTime;
 
     [SerializeField] private float _maxAngleOfWheel;
 
@@ -150,9 +152,17 @@ public class CarController : MonoBehaviour
 
     private void InitializeCustomization()
     {
+        //Визуальная часть
         CarDataScript _cardata = DataManager.Instance._currentCarData;
         _customizationScript.ShowBodyAtIndex(_cardata._bodyId);
         _customizationScript.ShowWeaponyAtIndex(_cardata._weaponId);
+
+        //Программная часть
+        _turningSpeed = _cardata._tiltSpeedConfig[_cardata._wheelsId];
+        _hp = _cardata._hpConfig[_cardata._bodyId];
+        _firePower = _cardata._damageConfig[_cardata._weaponId];
+        _nitroTime = _cardata._nitroConfig[_cardata._engineId];
+
     }
 
 }
