@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     private CarDataScript _currentCarData;
 
     //List of Playable cars
-    public GameObject[] cars;
+    public CarDataScript[] cars;
     public GameObject _selectedCar;
 
     public void StopGame()
@@ -34,15 +34,20 @@ public class GameManager : MonoBehaviour
 
     public void Awake()
     {
-        if(_selectedCar == null)
-        {
-            _selectedCar = cars[0].gameObject;
-        }
-        else
-        {
-            _selectedCar = DataManager.Instance._currentCarData._carPrefab.gameObject;
-        }
-        
+
+        //Debug.Log(DataManager.Instance._currentCarData._carPrefab);
+        //if (DataManager.Instance._currentCarData._carPrefab == null)
+        //{
+        //    Debug.Log("SelectedCarIsNull");
+        //    _selectedCar = cars[0]._carPrefab;
+        //}
+        //else
+        //{
+        //    _selectedCar = DataManager.Instance._currentCarData._carPrefab.gameObject;
+        //}
+
+        _selectedCar = cars[0]._carPrefab;
+
         _selectedCar = Instantiate(_selectedCar, new Vector3(3,0, 30), new Quaternion(0, 180, 0, 0));
 
         Time.timeScale = 0f;

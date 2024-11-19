@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class ObstacleScript : MonoBehaviour
 {
+    [SerializeField] private int _damage = 1;
+    [SerializeField] private BoxCollider _colliderObstacle;
+
+    private bool _IsTriggered = false;
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Collision");
+        Debug.Log("Collision" + " HP:" + FindFirstObjectByType<CarController>()._hp.ToString());
 
-        if(other.gameObject.CompareTag("Player"))
+        if(other.gameObject.CompareTag("Player") && !_IsTriggered)
         {
-            //FindFirstObjectByType<UI_Manager>().SpawnButtonBackToMenu();
-            //Time.timeScale = 0;
-            FindFirstObjectByType<CarController>().CollisionWithObstacle();
+            FindFirstObjectByType<CarController>().GetDamage(1);
+            _IsTriggered = true;
+            _colliderObstacle.enabled = false;
+
+
         }
     }
+
+   
 }

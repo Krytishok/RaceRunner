@@ -22,7 +22,7 @@ public class DestructibleObstacleScript : MonoBehaviour
             rb.AddForce(upwardForce, ForceMode.Impulse);
             rb.AddForce(force, ForceMode.Impulse);
 
-            GetComponent<Collider>().isTrigger = true;
+            GetComponent<Collider>().providesContacts = false;
             animator.SetBool("IsTouched", true);
             Destroy(gameObject, _destroyDelay);
         }

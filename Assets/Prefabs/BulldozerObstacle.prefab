@@ -67,6 +67,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c0d0204fe45f5f44ad5e768cc6b3955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _damage: 1
+  _colliderObstacle: {fileID: 8721277047079518154}
 --- !u!1 &7033896146992913255
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,6 +127,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

@@ -28,6 +28,7 @@ public class CarController : MonoBehaviour
     [SerializeField] public float _nitroTime;
 
     [SerializeField] private float _maxAngleOfWheel;
+    [SerializeField] private float _bodyRotation;
 
     // ����������� ��� ������� ������
     [SerializeField] private float _minX;
@@ -123,7 +124,7 @@ public class CarController : MonoBehaviour
 
         // Рассчитываем наклон и применяем плавное вращение
         float newTilt = move * _tiltAngle;
-        float bodyRotation = move * 5;
+        float bodyRotation = move * _bodyRotation;
         Quaternion targetRotation = Quaternion.Euler(0, 180 - bodyRotation, newTilt);
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
     }
@@ -156,6 +157,7 @@ public class CarController : MonoBehaviour
         CarDataScript _cardata = DataManager.Instance._currentCarData;
         _customizationScript.ShowBodyAtIndex(_cardata._bodyId);
         _customizationScript.ShowWeaponyAtIndex(_cardata._weaponId);
+        _customizationScript.InitializeWheels(_cardata._wheelsId);
 
         //Программная часть
         _turningSpeed = _cardata._tiltSpeedConfig[_cardata._wheelsId];
@@ -163,6 +165,21 @@ public class CarController : MonoBehaviour
         _firePower = _cardata._damageConfig[_cardata._weaponId];
         _nitroTime = _cardata._nitroConfig[_cardata._engineId];
 
+    }
+
+    public void GetDamage(int damage)
+    {
+        _hp -= damage;
+        if (_hp <= 0)
+        {
+            FindFirstObjectByType<UI_Manager>().PauseButtonLogic();
+            Destroy(gameObject);
+        }
+        else
+        {
+            CollisionWithObstacle();
+            FindFirstObjectByType<CameraController>().CameraShake();
+        }
     }
 
 }
