@@ -1,13 +1,18 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UI_Manager : MonoBehaviour
 {
     [SerializeField] GameObject ButtonBackToMenu;
     [SerializeField] GameObject PauseBar;
+    [SerializeField] UnityEngine.UI.Image _healthbar;
 
     private bool _isPause = false;
+    public int _health;
+
 
     private void Start()
     {
@@ -38,5 +43,12 @@ public class UI_Manager : MonoBehaviour
         yield return new WaitForSecondsRealtime(delay); // Æה¸ל נואכüםמו גנולÿ
         Time.timeScale = 1f;
         _isPause = false;
+    }
+
+    public void UpdateHealthBar(float currentHealth)
+    {
+        _healthbar.fillAmount = currentHealth/_health;
+        Debug.Log("fillAmount " + (currentHealth / _health).ToString());
+        Debug.Log("Current Health" + currentHealth.ToString() + " _health " + _health.ToString());
     }
 }

@@ -53,18 +53,22 @@ public class CarController : MonoBehaviour
     private float _tilt;
     private Rigidbody _rigidbody;
 
+    private UI_Manager _uiManager;
+
 
 
     void Start()
     {
         gameObject.tag = "Player";
         _rigidbody = GetComponent<Rigidbody>();
-
         _rigidbody.linearVelocity = new Vector3(0, 0, -40);
-
+        
         InitializeCustomization();
 
+        _uiManager = FindFirstObjectByType<UI_Manager>();
+        _uiManager._health = _hp;
 
+        
     }
 
     private void FixedUpdate()
@@ -170,9 +174,11 @@ public class CarController : MonoBehaviour
     public void GetDamage(int damage)
     {
         _hp -= damage;
+
+        _uiManager.UpdateHealthBar(_hp);
         if (_hp <= 0)
         {
-            FindFirstObjectByType<UI_Manager>().PauseButtonLogic();
+            _uiManager.PauseButtonLogic();
             Destroy(gameObject);
         }
         else
