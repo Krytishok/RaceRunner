@@ -1282,8 +1282,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 0
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e29994f8028048f429aa07e3edef75e2, type: 2}
+  m_sharedMaterial: {fileID: -681369561444106646, guid: e29994f8028048f429aa07e3edef75e2,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -10621,8 +10622,8 @@ Transform:
   m_GameObject: {fileID: 8393049401261751231}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 5.154554, y: -4.743084, z: 9.520416}
-  m_LocalScale: {x: 624.924, y: 297.566, z: 100}
+  m_LocalPosition: {x: 5.154554, y: -4.743084, z: 9.503}
+  m_LocalScale: {x: 624.924, y: 250.3891, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3784401873712758595}
@@ -12123,22 +12124,37 @@ PrefabInstance:
     - target: {fileID: 1365545113042883143, guid: d05a4b33ca383024cbb3303f4a1df025,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5399791791707303227, guid: d05a4b33ca383024cbb3303f4a1df025,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.95757
+      objectReference: {fileID: 0}
+    - target: {fileID: 5399791791707303227, guid: d05a4b33ca383024cbb3303f4a1df025,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.95757
+      objectReference: {fileID: 0}
+    - target: {fileID: 5399791791707303227, guid: d05a4b33ca383024cbb3303f4a1df025,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.95757
       objectReference: {fileID: 0}
     - target: {fileID: 5399791791707303227, guid: d05a4b33ca383024cbb3303f4a1df025,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 5399791791707303227, guid: d05a4b33ca383024cbb3303f4a1df025,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.02
       objectReference: {fileID: 0}
     - target: {fileID: 5399791791707303227, guid: d05a4b33ca383024cbb3303f4a1df025,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.13
       objectReference: {fileID: 0}
     - target: {fileID: 5399791791707303227, guid: d05a4b33ca383024cbb3303f4a1df025,
         type: 3}

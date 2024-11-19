@@ -220,6 +220,7 @@ public class MainMenuScript : MonoBehaviour
             _groupArrowButtons.SetActive(true);
 
             FindFirstObjectByType<MenuCameraController>().ToSelectView();
+            FindFirstObjectByType<CustomizationScript>().HideOrSpawnCarHood(true);
             _currentUIstyle = "SelectingCar";
 
 
