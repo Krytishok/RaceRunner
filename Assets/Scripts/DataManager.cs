@@ -2,6 +2,8 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[System.Serializable]
 public class DataManager : MonoBehaviour
 {
     // Статическая переменная для хранения единственного экземпляра
@@ -10,7 +12,7 @@ public class DataManager : MonoBehaviour
     //Data
     public int _vehicleId;
     public int _currentIndexOfCar;
-    public int _numberOfCoins = 100;
+    public int _numberOfCoins = 0;
     public GameObject _currentCar;
 
     public CarDataScript _currentCarData;

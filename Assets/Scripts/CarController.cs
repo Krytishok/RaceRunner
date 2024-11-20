@@ -120,7 +120,8 @@ public class CarController : MonoBehaviour
     {
         // Новая позиция с ограничением по X
         Vector3 newPosition = transform.position + new Vector3(move, 0, 0) * _turningSpeed * Time.deltaTime;
-        newPosition.x = Mathf.Clamp(newPosition.x, _minX, _maxX);
+        //Костыль
+        newPosition.x = Mathf.Clamp(newPosition.x, -10, 17);
 
         // Применяем только при необходимости
         if (transform.position != newPosition)

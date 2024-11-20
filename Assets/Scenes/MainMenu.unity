@@ -1633,12 +1633,6 @@ RectTransform:
   m_AnchoredPosition: {x: 59.8, y: 41.7}
   m_SizeDelta: {x: 134.74582, y: 44.127403}
   m_Pivot: {x: 0, y: 0.5}
---- !u!1 &652611770 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1709698135528936248, guid: 3720acbd926c289429fa6e67facbe2d4,
-    type: 3}
-  m_PrefabInstance: {fileID: 668864586263588315}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &652611772 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1341156757424464842, guid: 3720acbd926c289429fa6e67facbe2d4,
@@ -3005,12 +2999,10 @@ MonoBehaviour:
   cars:
   - {fileID: 1308294673}
   - {fileID: 4207551203404492568}
-  - {fileID: 652611770}
   currentCarIndex: 0
   _carsData:
   - {fileID: 11400000, guid: b262a772c2804ac48aa0ffd1470cbc07, type: 2}
   - {fileID: 11400000, guid: 1762e17dec3833c428a69342b7e9c1e9, type: 2}
-  - {fileID: 11400000, guid: 5a362765147a6ec44ac2201bad85562c, type: 2}
   _mainMenuScript: {fileID: 513153135}
 --- !u!1 &1211753927
 GameObject:
@@ -12124,7 +12116,7 @@ PrefabInstance:
     - target: {fileID: 1365545113042883143, guid: d05a4b33ca383024cbb3303f4a1df025,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5399791791707303227, guid: d05a4b33ca383024cbb3303f4a1df025,
         type: 3}

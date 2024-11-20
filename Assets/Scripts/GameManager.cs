@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
 
         DataManager.Instance._numberOfCoins += NumberOfCoinsAtLevel;
 
-        //PlayerPrefs.SetInt("Coins", PlayerPrefs.GetInt("Coins") + NumberOfCoinsAtAll);
+        PlayerPrefs.SetInt("Coins", PlayerPrefs.GetInt("Coins") + NumberOfCoinsAtLevel);
 
 
         SceneManager.LoadScene("MainMenu");

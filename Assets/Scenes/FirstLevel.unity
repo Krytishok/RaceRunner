@@ -202,7 +202,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1865798575}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: StopGame
         m_Mode: 1
@@ -1664,7 +1664,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _vehicleId: 0
   _currentIndexOfCar: 0
-  _numberOfCoins: 100
+  _numberOfCoins: 0
   _currentCar: {fileID: 0}
   _currentCarData: {fileID: 11400000, guid: b262a772c2804ac48aa0ffd1470cbc07, type: 2}
 --- !u!4 &1356827211
@@ -2302,7 +2302,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 870592751}
         m_TargetAssemblyTypeName: UI_Manager, Assembly-CSharp
         m_MethodName: PauseButtonLogic
         m_Mode: 1
