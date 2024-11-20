@@ -26,7 +26,7 @@ public class RoadManager : MonoBehaviour
     public float spawnHeight = 20f;           // Высота начала спавна (для Raycast)
     public float spawnHeightOffset = 1f;     // Сдвиг высоты для монет над поверхностью
 
-    private float[] lanePositions = new float[] { -5f, 0f, 5f, 10f };  // Позиции полос
+    private float[] lanePositions = new float[] { -10f, -3f, 3f, 10f };  // Позиции полос
 
     private void Start()
     {
@@ -67,7 +67,7 @@ public class RoadManager : MonoBehaviour
     private void SpawnObstaclesAndCoins(GameObject section)
     {
         int obstaclesPerSection = (int)Mathf.Min(difficultyLevel * 2f, maxObstaclesPerSection);
-        int coinsPerSection = 3;
+        int coinsPerSection = 10;
 
         List<Vector3> obstaclePositions = new List<Vector3>();
         List<Vector3> coinPositions = new List<Vector3>();
