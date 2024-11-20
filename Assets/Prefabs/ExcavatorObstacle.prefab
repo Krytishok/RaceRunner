@@ -5077,7 +5077,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c0d0204fe45f5f44ad5e768cc6b3955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 1
+  _damage: 15
   _colliderObstacle: {fileID: 6542245543635146059}
   _explosion: {fileID: 706803924217916439}
   _body: {fileID: 7200146747850515818}

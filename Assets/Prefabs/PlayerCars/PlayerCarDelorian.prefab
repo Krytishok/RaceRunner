@@ -2665,8 +2665,8 @@ MonoBehaviour:
   _maxX: 11.5
   _minYangle: 135
   _maxYangle: 225
-  _minSpeed: 40
-  _maxSpeed: 50
+  _minSpeed: 60
+  _maxSpeed: 70
   _customizationScript: {fileID: 1124049755886069778}
   _speed: 0
 --- !u!136 &325024186542040987

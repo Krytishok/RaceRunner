@@ -54,7 +54,10 @@ public class MainMenuScript : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1.0f;
+        //Костыль
+        DataManager.Instance._numberOfCoins = PlayerPrefs.GetInt("Coins");
         _NumberOfCoinsText.text = DataManager.Instance._numberOfCoins.ToString();
+
 
         _currentUIstyle = "MainMenu";
 
@@ -70,7 +73,7 @@ public class MainMenuScript : MonoBehaviour
     public void PlayGame()
     {
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("FirstLevel");
         // Дополнительная мера передачи информации о текущей машинке в следующую сцену
         DataManager.Instance._currentCarData = CarCollectionController.GetCurrentCarData();
     }
