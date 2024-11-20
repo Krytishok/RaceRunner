@@ -1861,12 +1861,12 @@ MonoBehaviour:
   - {fileID: 7723942495232824356, guid: 003acb84e4be8f842bfbf5dc523ca568, type: 3}
   coinPrefabs:
   - {fileID: 2519256228215097869, guid: 63c202c2fcaeed143b031d07eaac44be, type: 3}
-  initialSections: 3
+  initialSections: 2
   sectionLength: 570
   despawnDistance: 1
-  minDistanceBetweenObstacles: 15
+  minDistanceBetweenObstacles: 50
   difficultyIncreaseRate: 0.05
-  maxObstaclesPerSection: 15
+  maxObstaclesPerSection: 20
   laneOffsetX: 20
   spawnHeight: 50
   spawnHeightOffset: 1
