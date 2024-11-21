@@ -72,11 +72,11 @@ public class RoadManager : MonoBehaviour
         List<Vector3> obstaclePositions = new List<Vector3>();
         List<Vector3> coinPositions = new List<Vector3>();
 
+        // Спавн препятствий
         for (int i = 0; i < obstaclesPerSection; i++)
         {
-            GameObject obstaclePrefab = difficultyLevel > 3 && obstaclePrefabs.Length > 1
-                ? obstaclePrefabs[Random.Range(1, obstaclePrefabs.Length)]
-                : obstaclePrefabs[0];
+            // Выбираем случайный префаб препятствия
+            GameObject obstaclePrefab = obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)];
 
             Collider obstacleCollider = obstaclePrefab.GetComponent<Collider>();
             float obstacleSize = obstacleCollider ? obstacleCollider.bounds.size.z : 5f;
@@ -87,6 +87,7 @@ public class RoadManager : MonoBehaviour
             float zPosition;
             bool positionIsValid;
 
+            // Выбираем позицию для препятствия
             do
             {
                 zPosition = Random.Range(currentMinDistance, sectionLength / 2 - currentMinDistance);
@@ -116,6 +117,7 @@ public class RoadManager : MonoBehaviour
             }
         }
 
+        // Спавн монет
         for (int j = 0; j < coinsPerSection; j++)
         {
             GameObject coinPrefab = coinPrefabs[Random.Range(0, coinPrefabs.Length)];
@@ -125,6 +127,7 @@ public class RoadManager : MonoBehaviour
             float zPosition;
             bool positionIsValid;
 
+            // Выбираем позицию для монеты
             do
             {
                 zPosition = Random.Range(-sectionLength / 2 + 2f, sectionLength / 2 - 2f);
