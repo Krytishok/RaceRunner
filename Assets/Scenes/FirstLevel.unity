@@ -1859,13 +1859,14 @@ MonoBehaviour:
   - {fileID: 5538410024181082014}
   obstaclePrefabs:
   - {fileID: 6588068486144254929, guid: 34ea6d7a8aab105439a0d0341fb28b2b, type: 3}
+  - {fileID: 7723942495232824356, guid: 003acb84e4be8f842bfbf5dc523ca568, type: 3}
   coinPrefabs:
   - {fileID: 2519256228215097869, guid: 63c202c2fcaeed143b031d07eaac44be, type: 3}
-  initialSections: 2
-  sectionLength: 570
+  initialSections: 3
+  sectionLength: 577.2
   despawnDistance: 1
-  minDistanceBetweenObstacles: 100
-  difficultyIncreaseRate: 0.05
+  minDistanceBetweenObstacles: 150
+  difficultyIncreaseRate: 0.03
   maxObstaclesPerSection: 7
   laneOffsetX: 20
   spawnHeight: 50
@@ -2363,7 +2364,7 @@ PrefabInstance:
     - target: {fileID: 5119160024861356388, guid: 59dd903821de45f42be178418a9d2ada,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -17.752104
+      value: -17.4
       objectReference: {fileID: 0}
     - target: {fileID: 5119160024861356388, guid: 59dd903821de45f42be178418a9d2ada,
         type: 3}
@@ -2373,7 +2374,7 @@ PrefabInstance:
     - target: {fileID: 5119160024861356388, guid: 59dd903821de45f42be178418a9d2ada,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -67.60885
+      value: -60.64
       objectReference: {fileID: 0}
     - target: {fileID: 5119160024861356388, guid: 59dd903821de45f42be178418a9d2ada,
         type: 3}
