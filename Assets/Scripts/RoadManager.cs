@@ -26,11 +26,11 @@ public class RoadManager : MonoBehaviour
     public float spawnHeight = 20f;           // Высота начала спавна (для Raycast)
     public float spawnHeightOffset = 1f;     // Сдвиг высоты для монет над поверхностью
 
-    private float[] lanePositions = new float[] { -10f, -3f, 3f, 10f };  // Позиции полос
+    private float[] lanePositions = new float[] { -10f, -3f, 4f, 11f };  // Позиции полос
 
     private void Start()
     {
-        nextPosition = new Vector3(-17.27f, -29.843f, (-637.73f - sectionLength * (startSectionPrefabs.Length - 1)));
+        nextPosition = new Vector3(-17.27f, -29.843f, (-635.73f - sectionLength * (startSectionPrefabs.Length - 1)));
 
         foreach (var section in startSectionPrefabs)
         {
@@ -128,6 +128,9 @@ public class RoadManager : MonoBehaviour
         {
             GameObject coinPrefab = coinPrefabs[Random.Range(0, coinPrefabs.Length)];
 
+            Collider coinCollider = coinPrefab.GetComponent<Collider>();
+            float coinSize = coinCollider ? coinCollider.bounds.size.z : 2f;
+
             float xPosition = lanePositions[Random.Range(0, lanePositions.Length)] + laneOffsetX;
 
             float zPosition;
@@ -136,21 +139,32 @@ public class RoadManager : MonoBehaviour
             int attemptCount = 0;
             do
             {
-                zPosition = Random.Range(-sectionLength + 20f, sectionLength  - 20f);
+                zPosition = Random.Range(-sectionLength / 2 + coinSize, sectionLength / 2 - coinSize);
                 positionIsValid = true;
 
-                foreach (Vector3 pos in coinPositions)
+                Vector3 potentialPosition = section.transform.position + new Vector3(xPosition, 0, zPosition);
+
+                // Проверка перекрытия через Physics.OverlapSphere
+                Collider[] colliders = Physics.OverlapSphere(potentialPosition, Mathf.Max(coinSize, 1f));
+                if (colliders.Length > 0)
                 {
-                    if (Vector3.Distance(new Vector3(xPosition, 0, zPosition), pos) < 2f)
+                    positionIsValid = false;
+                }
+
+                // Проверка на перекрытие с препятствиями
+                foreach (Vector3 pos in obstaclePositions)
+                {
+                    if (Mathf.Abs(xPosition - pos.x) < coinSize && Mathf.Abs(zPosition - pos.z) < coinSize * 2f)
                     {
                         positionIsValid = false;
                         break;
                     }
                 }
 
-                foreach (Vector3 pos in obstaclePositions)
+                // Проверка на перекрытие с другими монетами
+                foreach (Vector3 pos in coinPositions)
                 {
-                    if (Vector3.Distance(new Vector3(xPosition, 0, zPosition), pos) < 2f)
+                    if (Mathf.Abs(xPosition - pos.x) < coinSize && Mathf.Abs(zPosition - pos.z) < coinSize * 2f)
                     {
                         positionIsValid = false;
                         break;
@@ -162,6 +176,7 @@ public class RoadManager : MonoBehaviour
 
             if (!positionIsValid) continue;
 
+            // Спавн монеты
             Vector3 coinRayStart = section.transform.position + new Vector3(xPosition, spawnHeight, zPosition);
             Debug.DrawRay(coinRayStart, Vector3.down * 100f, Color.yellow, 2f);
 
@@ -172,10 +187,13 @@ public class RoadManager : MonoBehaviour
 
                 GameObject coin = Instantiate(coinPrefab, coinPosition, Quaternion.identity);
                 coin.transform.SetParent(section.transform);
+
                 coinPositions.Add(new Vector3(xPosition, 0, zPosition));
             }
         }
+
     }
+
 
 
     public void DespawnOldSection()
