@@ -576,7 +576,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 300
+  far clip plane: 500
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -1858,17 +1858,15 @@ MonoBehaviour:
   startSectionPrefabs:
   - {fileID: 5538410024181082014}
   obstaclePrefabs:
-  - {fileID: 7723942495232824356, guid: 003acb84e4be8f842bfbf5dc523ca568, type: 3}
-  - {fileID: 1008538492450448176, guid: 8104f09e45a30424db2e314eccdb5d92, type: 3}
   - {fileID: 6588068486144254929, guid: 34ea6d7a8aab105439a0d0341fb28b2b, type: 3}
   coinPrefabs:
   - {fileID: 2519256228215097869, guid: 63c202c2fcaeed143b031d07eaac44be, type: 3}
   initialSections: 2
   sectionLength: 570
   despawnDistance: 1
-  minDistanceBetweenObstacles: 50
-  difficultyIncreaseRate: 0.1
-  maxObstaclesPerSection: 20
+  minDistanceBetweenObstacles: 100
+  difficultyIncreaseRate: 0.05
+  maxObstaclesPerSection: 7
   laneOffsetX: 20
   spawnHeight: 50
   spawnHeightOffset: 1

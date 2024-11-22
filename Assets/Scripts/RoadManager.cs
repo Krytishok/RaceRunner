@@ -30,7 +30,7 @@ public class RoadManager : MonoBehaviour
 
     private void Start()
     {
-        nextPosition = new Vector3(-17.27f, -29.843f, (-635.73f - sectionLength * (startSectionPrefabs.Length - 1)));
+        nextPosition = new Vector3(-17.27f, -29.843f, (-637.73f - sectionLength * (startSectionPrefabs.Length - 1)));
 
         foreach (var section in startSectionPrefabs)
         {
@@ -82,26 +82,32 @@ public class RoadManager : MonoBehaviour
             float obstacleSize = obstacleCollider ? obstacleCollider.bounds.size.z : 5f;
 
             float xPosition = lanePositions[Random.Range(0, lanePositions.Length)] + laneOffsetX;
-            float currentMinDistance = Mathf.Max(obstacleSize * 1.5f, minDistanceBetweenObstacles - difficultyLevel * 0.5f);
+            float currentMinDistance = Mathf.Max(obstacleSize * 2f, minDistanceBetweenObstacles - difficultyLevel * 0.5f);
 
             float zPosition;
             bool positionIsValid;
 
             // Выбираем позицию для препятствия
+            int attemptCount = 0; // Ограничение попыток поиска валидной позиции
             do
             {
-                zPosition = Random.Range(currentMinDistance, sectionLength / 2 - currentMinDistance);
+                zPosition = Random.Range(-sectionLength / 2 + obstacleSize, sectionLength / 2 - obstacleSize);
                 positionIsValid = true;
 
                 foreach (Vector3 pos in obstaclePositions)
                 {
-                    if (Vector3.Distance(new Vector3(xPosition, 0, zPosition), pos) < currentMinDistance)
+                    // Проверяем расстояние только по Z
+                    if (Mathf.Abs(zPosition - pos.z) < currentMinDistance && Mathf.Abs(xPosition - pos.x) < 0.1f)
                     {
                         positionIsValid = false;
                         break;
                     }
                 }
-            } while (!positionIsValid);
+
+                attemptCount++;
+            } while (!positionIsValid && attemptCount < 20); // Предотвращаем бесконечный цикл
+
+            if (!positionIsValid) continue; // Если не смогли найти место, пропускаем
 
             Vector3 rayStart = section.transform.position + new Vector3(xPosition, spawnHeight, zPosition);
             Debug.DrawRay(rayStart, Vector3.down * 100f, Color.red, 2f);
@@ -113,7 +119,7 @@ public class RoadManager : MonoBehaviour
 
                 GameObject obstacle = Instantiate(obstaclePrefab, obstaclePosition, Quaternion.identity);
                 obstacle.transform.SetParent(section.transform);
-                obstaclePositions.Add(obstaclePosition);
+                obstaclePositions.Add(new Vector3(xPosition, 0, zPosition)); // Добавляем только X и Z
             }
         }
 
@@ -127,10 +133,10 @@ public class RoadManager : MonoBehaviour
             float zPosition;
             bool positionIsValid;
 
-            // Выбираем позицию для монеты
+            int attemptCount = 0;
             do
             {
-                zPosition = Random.Range(-sectionLength / 2 + 2f, sectionLength / 2 - 2f);
+                zPosition = Random.Range(-sectionLength + 20f, sectionLength  - 20f);
                 positionIsValid = true;
 
                 foreach (Vector3 pos in coinPositions)
@@ -150,7 +156,11 @@ public class RoadManager : MonoBehaviour
                         break;
                     }
                 }
-            } while (!positionIsValid);
+
+                attemptCount++;
+            } while (!positionIsValid && attemptCount < 20);
+
+            if (!positionIsValid) continue;
 
             Vector3 coinRayStart = section.transform.position + new Vector3(xPosition, spawnHeight, zPosition);
             Debug.DrawRay(coinRayStart, Vector3.down * 100f, Color.yellow, 2f);
@@ -162,10 +172,11 @@ public class RoadManager : MonoBehaviour
 
                 GameObject coin = Instantiate(coinPrefab, coinPosition, Quaternion.identity);
                 coin.transform.SetParent(section.transform);
-                coinPositions.Add(coinPosition);
+                coinPositions.Add(new Vector3(xPosition, 0, zPosition));
             }
         }
     }
+
 
     public void DespawnOldSection()
     {
