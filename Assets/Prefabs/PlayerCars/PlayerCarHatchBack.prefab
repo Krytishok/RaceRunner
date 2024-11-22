@@ -1565,14 +1565,15 @@ MonoBehaviour:
   _hp: 10
   _firePower: 0
   _nitroTime: 0
-  _maxAngleOfWheel: 10
-  _bodyRotation: 10
+  _maxAngleOfWheel: 30
+  _bodyRotation: 35
+  _speedOfBodyRotation: 1.2
   _minX: -3.5
   _maxX: 11.5
   _minYangle: 135
   _maxYangle: 225
-  _minSpeed: 60
-  _maxSpeed: 70
+  _minSpeed: 80
+  _maxSpeed: 120
   _customizationScript: {fileID: 5929539600743678435}
   _speed: 0
 --- !u!136 &325024186542040987

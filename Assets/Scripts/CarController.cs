@@ -29,6 +29,7 @@ public class CarController : MonoBehaviour
 
     [SerializeField] private float _maxAngleOfWheel;
     [SerializeField] private float _bodyRotation;
+    [SerializeField] private float _speedOfBodyRotation;
 
     // ����������� ��� ������� ������
     [SerializeField] private float _minX;
@@ -112,8 +113,8 @@ public class CarController : MonoBehaviour
         float steerAngle = steerInput * _maxAngleOfWheel;
 
         // Поворачиваем только передние визуальные колеса
-        _transformFL.localRotation = Quaternion.Euler(_transformFL.localRotation.eulerAngles.x, -steerAngle, 0);
-        _transformFR.localRotation = Quaternion.Euler(_transformFR.localRotation.eulerAngles.x, -steerAngle, 0);
+        _transformFL.localRotation = Quaternion.Euler(_transformFL.localRotation.eulerAngles.x, steerAngle, 0);
+        _transformFR.localRotation = Quaternion.Euler(_transformFR.localRotation.eulerAngles.x, steerAngle, 0);
     }
 
     private void UpdatePositionAndRotation(float move)
@@ -129,7 +130,7 @@ public class CarController : MonoBehaviour
 
         // Рассчитываем наклон и применяем плавное вращение
         float newTilt = move * _tiltAngle;
-        float bodyRotation = move * _bodyRotation;
+        float bodyRotation = move * _bodyRotation * _speedOfBodyRotation;
         Quaternion targetRotation = Quaternion.Euler(0, 180 - bodyRotation, newTilt);
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
     }
