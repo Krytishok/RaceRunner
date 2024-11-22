@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 2a4b059b364dbab48ac5aec04d5a230e, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -2999,10 +2999,12 @@ MonoBehaviour:
   cars:
   - {fileID: 1308294673}
   - {fileID: 4207551203404492568}
+  - {fileID: 1365470179}
   currentCarIndex: 0
   _carsData:
   - {fileID: 11400000, guid: b262a772c2804ac48aa0ffd1470cbc07, type: 2}
   - {fileID: 11400000, guid: 1762e17dec3833c428a69342b7e9c1e9, type: 2}
+  - {fileID: 11400000, guid: 5a362765147a6ec44ac2201bad85562c, type: 2}
   _mainMenuScript: {fileID: 513153135}
 --- !u!1 &1211753927
 GameObject:
@@ -3958,6 +3960,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1347657666}
   m_CullTransparentMesh: 1
+--- !u!1 &1365470179 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1709698135528936248, guid: 3720acbd926c289429fa6e67facbe2d4,
+    type: 3}
+  m_PrefabInstance: {fileID: 668864586263588315}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1432914426
 GameObject:
   m_ObjectHideFlags: 0
@@ -5513,8 +5521,8 @@ Light:
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_ColorTemperature: 6944
-  m_UseColorTemperature: 1
+  m_ColorTemperature: 2264
+  m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
@@ -7966,8 +7974,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1341156757424464842, guid: 3720acbd926c289429fa6e67facbe2d4,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1341156757424464842, guid: 3720acbd926c289429fa6e67facbe2d4,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1341156757424464842, guid: 3720acbd926c289429fa6e67facbe2d4,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1341156757424464842, guid: 3720acbd926c289429fa6e67facbe2d4,
+        type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.729
+      value: 0.73
       objectReference: {fileID: 0}
     - target: {fileID: 1341156757424464842, guid: 3720acbd926c289429fa6e67facbe2d4,
         type: 3}
@@ -7977,7 +8000,7 @@ PrefabInstance:
     - target: {fileID: 1341156757424464842, guid: 3720acbd926c289429fa6e67facbe2d4,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.841
+      value: -0.88
       objectReference: {fileID: 0}
     - target: {fileID: 1341156757424464842, guid: 3720acbd926c289429fa6e67facbe2d4,
         type: 3}
@@ -9836,6 +9859,11 @@ PrefabInstance:
     - target: {fileID: 2969699198692970803, guid: bade04a6e35a2084b97e62a1b039ca8e,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3829547471843841791, guid: bade04a6e35a2084b97e62a1b039ca8e,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7828366262333492966, guid: bade04a6e35a2084b97e62a1b039ca8e,
