@@ -154,7 +154,7 @@ public class RoadManager : MonoBehaviour
                 // ѕроверка на перекрытие с преп€тстви€ми
                 foreach (Vector3 pos in obstaclePositions)
                 {
-                    if (Mathf.Abs(xPosition - pos.x) < coinSize && Mathf.Abs(zPosition - pos.z) < coinSize * 2f)
+                    if (Mathf.Abs(xPosition - pos.x) < coinSize && Mathf.Abs(zPosition - pos.z) < coinSize * 4f)
                     {
                         positionIsValid = false;
                         break;
@@ -164,7 +164,7 @@ public class RoadManager : MonoBehaviour
                 // ѕроверка на перекрытие с другими монетами
                 foreach (Vector3 pos in coinPositions)
                 {
-                    if (Mathf.Abs(xPosition - pos.x) < coinSize && Mathf.Abs(zPosition - pos.z) < coinSize * 2f)
+                    if (Mathf.Abs(xPosition - pos.x) < coinSize && Mathf.Abs(zPosition - pos.z) < coinSize * 4f)
                     {
                         positionIsValid = false;
                         break;
