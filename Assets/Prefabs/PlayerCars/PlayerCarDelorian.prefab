@@ -2659,8 +2659,9 @@ MonoBehaviour:
   _hp: 0
   _firePower: 0
   _nitroTime: 0
-  _maxAngleOfWheel: 10
+  _maxAngleOfWheel: 25
   _bodyRotation: 25
+  _speedOfBodyRotation: 1
   _minX: -3.5
   _maxX: 11.5
   _minYangle: 135
