@@ -31,6 +31,11 @@ public class CameraController : MonoBehaviour
         _animator.SetBool("GetDamage", false);
     }
 
+    public void CameraAcceleration(bool flag)
+    {
+        _animator.SetBool("GetNitro", flag);
+    }
+
 
 
     private void LateUpdate()

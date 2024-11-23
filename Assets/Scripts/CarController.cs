@@ -56,6 +56,7 @@ public class CarController : MonoBehaviour
 
     //auxiliary variables
     private float _tilt;
+    private int _damageCoef = 1;
     private Rigidbody _rigidbody;
 
     private UI_Manager _uiManager;
@@ -95,7 +96,6 @@ public class CarController : MonoBehaviour
 
         // Получаем ввод от клавиатуры (стрелки влево и вправо или A и D)
         float move = Input.GetAxis("Horizontal") * -1;
-        Debug.Log(move);
 
         UpdatePositionAndRotation(Input.GetAxis("Horizontal") * -1);
 
@@ -186,7 +186,7 @@ public class CarController : MonoBehaviour
 
     public void GetDamage(int damage)
     {
-        _hp -= damage;
+        _hp -= damage * _damageCoef;
 
         _uiManager.UpdateHealthBar(_hp);
         if (_hp <= 0)
@@ -199,6 +199,26 @@ public class CarController : MonoBehaviour
             CollisionWithObstacle();
             FindFirstObjectByType<CameraController>().CameraShake();
         }
+    }
+
+    public void GetNitro()
+    {
+        _rigidbody.linearVelocity += new Vector3(0, 0, -_maxSpeed);
+        _damageCoef = 0;
+        FindFirstObjectByType<CameraController>().CameraAcceleration(true);
+        _carEffectController.SetNitro();
+        StartCoroutine(NitroDelay(_nitroTime));
+        
+    }
+
+    private IEnumerator NitroDelay(float delay)
+    {
+
+        yield return new WaitForSecondsRealtime(delay); // Ждём реальное время
+        _rigidbody.linearVelocity -= new Vector3(0, 0, -_minSpeed);
+        FindFirstObjectByType<CameraController>().CameraAcceleration(false);
+        _carEffectController.ResetNitro();
+        _damageCoef = 1;
     }
 
 }

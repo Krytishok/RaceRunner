@@ -6,6 +6,7 @@ public class CarEffectController : MonoBehaviour
 
     [SerializeField] private ParticleSystem _particleSystemLeft;
     [SerializeField] private ParticleSystem _particleSystemRight;
+    [SerializeField] private ParticleSystem _particleSystemNitro;
 
     [SerializeField] private TrailRenderer _trailRendererLeft;
     [SerializeField] private TrailRenderer _trailRendererRight;
@@ -31,5 +32,13 @@ public class CarEffectController : MonoBehaviour
             _particleSystemLeft.Stop();
             _particleSystemRight.Stop();
         }
+    }
+    public void SetNitro()
+    {
+        _particleSystemNitro.Play();
+    }
+    public void ResetNitro()
+    {
+        _particleSystemNitro.Stop();
     }
 }
