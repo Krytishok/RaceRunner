@@ -44,9 +44,6 @@ public class CarController : MonoBehaviour
     //Applying customization
     [SerializeField] CustomizationScript _customizationScript;
 
-    //EffectController
-    [SerializeField] private CarEffectController _carEffectController;
-
 
 
     //�������� ������
@@ -94,7 +91,6 @@ public class CarController : MonoBehaviour
 
         // Получаем ввод от клавиатуры (стрелки влево и вправо или A и D)
         float move = Input.GetAxis("Horizontal") * -1;
-        Debug.Log(move);
 
         UpdatePositionAndRotation(Input.GetAxis("Horizontal") * -1);
 
@@ -105,8 +101,6 @@ public class CarController : MonoBehaviour
 
 
         UpdateVisuaFrontlWheels(move);
-
-        _carEffectController.UpdateEffect(move);
        
 
     }
@@ -157,7 +151,6 @@ public class CarController : MonoBehaviour
 
 
     }
-    
 
     public void CollisionWithObstacle()
     {

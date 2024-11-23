@@ -16,8 +16,8 @@ RenderSettings:
   serializedVersion: 10
   m_Fog: 1
   m_FogColor: {r: 0.9215687, g: 0.4666667, b: 0.227451, a: 1}
-  m_FogMode: 1
-  m_FogDensity: 1
+  m_FogMode: 2
+  m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
@@ -502,6 +502,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1473349279}
   - {fileID: 489382521}
   - {fileID: 1261848597}
   - {fileID: 2059369120}
@@ -840,13 +841,12 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1473349279}
+  m_Children: []
   m_Father: {fileID: 306301253}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -24.233643, y: -24.233765}
+  m_AnchoredPosition: {x: -24.23375, y: -24.23375}
   m_SizeDelta: {x: 48.4675, y: 48.4675}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &489382522
@@ -869,7 +869,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 889bd804fcad0ae4db8280d49110c404, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8ae9896956ab2b44ca4ea35ea67e209f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1707,18 +1707,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1473349278}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 489382521}
+  m_Father: {fileID: 306301253}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -48.854, y: -6.9}
-  m_SizeDelta: {x: 199.546, y: 32.019}
-  m_Pivot: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -162, y: -28}
+  m_SizeDelta: {x: 200, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1473349280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1749,8 +1749,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294901766
-  m_fontColor: {r: 0.024425507, g: 0, b: 1, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1865,15 +1865,9 @@ MonoBehaviour:
   initialSections: 3
   sectionLength: 577.2
   despawnDistance: 1
-<<<<<<< Updated upstream
   minDistanceBetweenObstacles: 150
   difficultyIncreaseRate: 0.03
   maxObstaclesPerSection: 7
-=======
-  minDistanceBetweenObstacles: 100
-  difficultyIncreaseRate: 0.05
-  maxObstaclesPerSection: 5
->>>>>>> Stashed changes
   laneOffsetX: 20
   spawnHeight: 50
   spawnHeightOffset: 1
@@ -1886,7 +1880,7 @@ Transform:
   m_GameObject: {fileID: 1682178696}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 27.67039, y: -109.32694, z: -245.6714}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
