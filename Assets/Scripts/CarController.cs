@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -107,6 +108,7 @@ public class CarController : MonoBehaviour
         UpdateVisuaFrontlWheels(move);
 
         _carEffectController.UpdateEffect(move);
+
        
 
     }
@@ -121,6 +123,7 @@ public class CarController : MonoBehaviour
         // Поворачиваем только передние визуальные колеса
         _transformFL.localRotation = Quaternion.Euler(_transformFL.localRotation.eulerAngles.x, steerAngle, 0);
         _transformFR.localRotation = Quaternion.Euler(_transformFR.localRotation.eulerAngles.x, steerAngle, 0);
+
     }
 
     private void UpdatePositionAndRotation(float move)
@@ -157,6 +160,7 @@ public class CarController : MonoBehaviour
 
 
     }
+    
     
 
     public void CollisionWithObstacle()
