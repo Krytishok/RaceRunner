@@ -57,6 +57,10 @@ public class CarController : MonoBehaviour
     //auxiliary variables
     private float _tilt;
     private int _damageCoef = 1;
+    private float _moveCoef = 1;
+    private bool _isMoving = true;
+
+
     private Rigidbody _rigidbody;
 
     private UI_Manager _uiManager;
@@ -74,30 +78,26 @@ public class CarController : MonoBehaviour
         _uiManager = FindFirstObjectByType<UI_Manager>();
         _uiManager._health = _hp;
 
+
         
+    }
+
+    public void StartPlay()
+    {
+
     }
 
     private void FixedUpdate()
     {
         _speed = Mathf.Abs(_rigidbody.linearVelocity.magnitude);
-        //Debug.Log("Speed: " + _speed);
-
-        //_wheelColliderBL.motorTorque = Input.GetAxis("Vertical") * _forceEngine;
-        //_wheelColliderBR.motorTorque = Input.GetAxis("Vertical") * _forceEngine;
-
-
-        _rigidbody.linearVelocity = new Vector3(_rigidbody.linearVelocity.x, _rigidbody.linearVelocity.y,
-            -Math.Clamp(Mathf.Abs(_rigidbody.linearVelocity.z), _minSpeed, _maxSpeed));
-
-
         
-        
-        
+        MoveForward();
 
         // Получаем ввод от клавиатуры (стрелки влево и вправо или A и D)
-        float move = Input.GetAxis("Horizontal") * -1;
+        float move = Input.GetAxis("Horizontal") * _moveCoef * -1;
+        Debug.Log(move);
 
-        UpdatePositionAndRotation(Input.GetAxis("Horizontal") * -1);
+        UpdatePositionAndRotation(move);
 
         RotateWheel(_wheelColliderBL, _transformBL);
         RotateWheel(_wheelColliderBR, _transformBR);
@@ -112,6 +112,16 @@ public class CarController : MonoBehaviour
        
 
     }
+
+    private void MoveForward()
+    {
+        if (_isMoving)
+        {
+            _rigidbody.linearVelocity = new Vector3(_rigidbody.linearVelocity.x, _rigidbody.linearVelocity.y,
+                -Math.Clamp(Mathf.Abs(_rigidbody.linearVelocity.z), _minSpeed, _maxSpeed));
+        }
+    }
+
 
 
 
@@ -191,8 +201,7 @@ public class CarController : MonoBehaviour
         _uiManager.UpdateHealthBar(_hp);
         if (_hp <= 0)
         {
-            _uiManager.PauseButtonLogic();
-            Destroy(gameObject);
+            DestroyCar();
         }
         else
         {
@@ -219,6 +228,21 @@ public class CarController : MonoBehaviour
         FindFirstObjectByType<CameraController>().CameraAcceleration(false);
         _carEffectController.ResetNitro();
         _damageCoef = 1;
+    }
+
+    private void DestroyCar()
+    {
+        _isMoving = false;
+        _rigidbody.linearVelocity = new Vector3(0, 2, 10);
+
+        
+
+        _moveCoef = 0;
+        _carEffectController.Explosion();
+        _wheelColliderBL.gameObject.SetActive(false);
+        _wheelColliderBR.gameObject.SetActive(false);
+        _wheelColliderFL.gameObject.SetActive(false);
+        _wheelColliderFR.gameObject.SetActive(false);
     }
 
 }

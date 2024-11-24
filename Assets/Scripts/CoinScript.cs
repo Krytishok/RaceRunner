@@ -6,6 +6,8 @@ using UnityEngine;
 public class CoinScript : MonoBehaviour
 {
     [SerializeField] float _rotation_speed;
+
+    [SerializeField] AudioSource _pickUpSound;
     void Start()
     {
         
@@ -21,4 +23,5 @@ public class CoinScript : MonoBehaviour
         }
         
     }
+    
 }
