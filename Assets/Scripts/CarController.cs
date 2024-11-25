@@ -60,6 +60,8 @@ public class CarController : MonoBehaviour
     private float _moveCoef = 1;
     private bool _isMoving = true;
 
+    private float _distanceTraveled = 0f;
+
 
     private Rigidbody _rigidbody;
 
@@ -79,8 +81,11 @@ public class CarController : MonoBehaviour
         _uiManager._health = _hp;
 
 
+
         
     }
+    
+
 
     public void StartPlay()
     {
@@ -90,12 +95,12 @@ public class CarController : MonoBehaviour
     private void FixedUpdate()
     {
         _speed = Mathf.Abs(_rigidbody.linearVelocity.magnitude);
+        //Debug.Log(_speed);
         
         MoveForward();
 
         // Получаем ввод от клавиатуры (стрелки влево и вправо или A и D)
         float move = Input.GetAxis("Horizontal") * _moveCoef * -1;
-        Debug.Log(move);
 
         UpdatePositionAndRotation(move);
 
@@ -202,6 +207,7 @@ public class CarController : MonoBehaviour
         if (_hp <= 0)
         {
             DestroyCar();
+            FindFirstObjectByType<UI_Manager>().GameOverUI();
         }
         else
         {

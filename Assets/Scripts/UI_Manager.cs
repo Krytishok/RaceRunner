@@ -1,27 +1,60 @@
 
+using System;
 using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+
 
 public class UI_Manager : MonoBehaviour
 {
     [SerializeField] GameObject ButtonBackToMenu;
     [SerializeField] GameObject PauseBar;
+    [SerializeField] GameObject PauseButton;
+    [SerializeField] GameObject GameOverMenu;
     [SerializeField] UnityEngine.UI.Image _healthbar;
+    [SerializeField] TextMeshProUGUI _distanceTraveledNumber;
+    [SerializeField] TextMeshProUGUI _distanceTraveledMenuText;
 
     private bool _isPause = false;
     public int _health;
 
+    private Transform _playerPosition;
+    private float _distanceTraveled = 0;
+
 
     private void Start()
     {
-        
+        _playerPosition = FindFirstObjectByType<CarController>().transform;
+
+        StartCoroutine(UpdateDistance(0.8f));
     }
+    
+    private IEnumerator UpdateDistance(float delay)
+    {
+        while (true)
+        {
+            _distanceTraveledNumber.text = Mathf.Abs(MathF.Round(_playerPosition.position.z / 1000, 1)).ToString();
+
+            Debug.Log("Distance Updated");
+
+            yield return new WaitForSeconds(delay);
+        }
+    }
+   
+
 
     public void SpawnButtonBackToMenu()
     {
         ButtonBackToMenu.SetActive(true);
+    }
+    public void GameOverUI()
+    {
+        PauseButton.SetActive(false);
+        GameOverMenu.SetActive(true);
+        StopAllCoroutines();
+        _distanceTraveledMenuText.text = _distanceTraveledNumber.text;
+        _distanceTraveledNumber.text = "";
+
     }
     public void PauseButtonLogic()
     {
