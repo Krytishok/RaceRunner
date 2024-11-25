@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4580631644880016262}
   m_Layer: 0
   m_Name: LeftBoard
-  m_TagString: Untagged
+  m_TagString: Border
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 7999167166296530731}
   m_Layer: 0
   m_Name: RightBoard
-  m_TagString: Untagged
+  m_TagString: Border
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -136,7 +136,7 @@ Transform:
   m_GameObject: {fileID: 4532891200064959128}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5, y: 29, z: -166.096}
+  m_LocalPosition: {x: 4.7, y: 29, z: -166.096}
   m_LocalScale: {x: 1.6574979, y: 4.767933, z: 577.3178}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -387,7 +387,7 @@ Transform:
   m_GameObject: {fileID: 7827284701312979156}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13.1, y: 28.5, z: -76}
+  m_LocalPosition: {x: 14.33, y: 28.5, z: -76}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -410,9 +410,9 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 35.75624, y: 0.95241547, z: 577.59515}
+  m_Size: {x: 30.85, y: 0.95241547, z: 577.59515}
   m_Center: {x: 6.6916313, y: -0.023792267, z: -89.98288}
 --- !u!1 &8311361781340220022
 GameObject:

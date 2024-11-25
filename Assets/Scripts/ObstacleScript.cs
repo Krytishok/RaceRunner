@@ -8,6 +8,7 @@ public class ObstacleScript : MonoBehaviour
     [SerializeField] private BoxCollider _colliderObstacle;
     [SerializeField] private ParticleSystem _explosion;
     [SerializeField] private GameObject _body;
+    [SerializeField] private AudioSource _boomSound;
 
     private bool _IsTriggered = false;
     private void OnTriggerEnter(Collider other)
@@ -21,6 +22,7 @@ public class ObstacleScript : MonoBehaviour
             _colliderObstacle.enabled = false;
             _body.SetActive(false);
             _explosion.Play();
+            _boomSound.Play();
 
 
 

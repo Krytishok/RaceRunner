@@ -637,6 +637,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5919006452788435389}
+  - component: {fileID: 2584703362337007319}
   m_Layer: 0
   m_Name: Audio
   m_TagString: Untagged
@@ -660,6 +661,20 @@ Transform:
   - {fileID: 2969198205645932047}
   m_Father: {fileID: 2148656157120388383}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2584703362337007319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1815441146137569356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40cd1acc6b00a3d4ab85c40f0cb575db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sounds:
+  - {fileID: 3986165240818779249}
 --- !u!1 &2044484200761024293
 GameObject:
   m_ObjectHideFlags: 0
@@ -6534,6 +6549,7 @@ MonoBehaviour:
   _maxSpeed: 130
   _customizationScript: {fileID: 5929539600743678435}
   _carEffectController: {fileID: 6327192881544298076}
+  _audio: {fileID: 2584703362337007319}
   _speed: 0
 --- !u!136 &325024186542040987
 CapsuleCollider:
@@ -6784,7 +6800,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: aab9893499f2db14d982ea3c214622ec, type: 3}
   m_Resource: {fileID: 8300000, guid: aab9893499f2db14d982ea3c214622ec, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.05
   m_Pitch: 1
   Loop: 1

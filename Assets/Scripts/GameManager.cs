@@ -58,6 +58,12 @@ public class GameManager : MonoBehaviour
         Time.timeScale = timeScale;
     }
 
+    public void StartGame()
+    {
+        Time.timeScale = 1;
+        _selectedCar.GetComponent<CarController>().StartCar();
+    }
+
     
 
 

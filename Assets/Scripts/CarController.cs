@@ -47,6 +47,7 @@ public class CarController : MonoBehaviour
 
     //EffectController
     [SerializeField] private CarEffectController _carEffectController;
+    [SerializeField] private CarAudioScript _audio;
 
 
 
@@ -84,13 +85,14 @@ public class CarController : MonoBehaviour
 
         
     }
-    
-
-
-    public void StartPlay()
+    public void StartCar()
     {
-
+        _audio.PlayEngine();
     }
+
+
+
+    
 
     private void FixedUpdate()
     {
@@ -208,6 +210,8 @@ public class CarController : MonoBehaviour
         {
             DestroyCar();
             FindFirstObjectByType<UI_Manager>().GameOverUI();
+            FindFirstObjectByType<AudioManagerController>().StopMusic();
+            _audio.StopEngine();
         }
         else
         {

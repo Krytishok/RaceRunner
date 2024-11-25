@@ -6,6 +6,7 @@ using UnityEngine;
 public class CoinScript : MonoBehaviour
 {
     [SerializeField] float _rotation_speed;
+    [SerializeField] GameObject _body;
 
     [SerializeField] AudioSource _pickUpSound;
     void Start()
@@ -19,7 +20,10 @@ public class CoinScript : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             FindFirstObjectByType<CoinManager>().AddOne();
-            Destroy(gameObject);
+            _body.SetActive(false);
+            _pickUpSound.Play();
+            Invoke(nameof(Destroy), 2f);
+            
         }
         
     }
