@@ -124,12 +124,13 @@ public class RoadManager : MonoBehaviour
         }
 
         // Спавн монет
+        // Спавн монет
         for (int j = 0; j < coinsPerSection; j++)
         {
             GameObject coinPrefab = coinPrefabs[Random.Range(0, coinPrefabs.Length)];
 
             Collider coinCollider = coinPrefab.GetComponent<Collider>();
-            float coinSize = coinCollider ? coinCollider.bounds.size.z : 2f;
+            float coinSize = coinCollider ? coinCollider.bounds.size.z : 5f;
 
             float xPosition = lanePositions[Random.Range(0, lanePositions.Length)] + laneOffsetX;
 
@@ -145,7 +146,7 @@ public class RoadManager : MonoBehaviour
                 Vector3 potentialPosition = section.transform.position + new Vector3(xPosition, 0, zPosition);
 
                 // Проверка перекрытия через Physics.OverlapSphere
-                Collider[] colliders = Physics.OverlapSphere(potentialPosition, Mathf.Max(coinSize, 1f));
+                Collider[] colliders = Physics.OverlapSphere(potentialPosition, Mathf.Max(coinSize, 5f));
                 if (colliders.Length > 0)
                 {
                     positionIsValid = false;
@@ -154,7 +155,7 @@ public class RoadManager : MonoBehaviour
                 // Проверка на перекрытие с препятствиями
                 foreach (Vector3 pos in obstaclePositions)
                 {
-                    if (Mathf.Abs(xPosition - pos.x) < coinSize && Mathf.Abs(zPosition - pos.z) < coinSize * 4f)
+                    if (Mathf.Abs(xPosition - pos.x) < coinSize && Mathf.Abs(zPosition - pos.z) < coinSize * 5f)
                     {
                         positionIsValid = false;
                         break;
@@ -164,7 +165,7 @@ public class RoadManager : MonoBehaviour
                 // Проверка на перекрытие с другими монетами
                 foreach (Vector3 pos in coinPositions)
                 {
-                    if (Mathf.Abs(xPosition - pos.x) < coinSize && Mathf.Abs(zPosition - pos.z) < coinSize * 4f)
+                    if (Mathf.Abs(xPosition - pos.x) < coinSize && Mathf.Abs(zPosition - pos.z) < coinSize * 5f)
                     {
                         positionIsValid = false;
                         break;
