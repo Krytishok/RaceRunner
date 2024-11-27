@@ -42,21 +42,21 @@ public class CarDataScript : ScriptableObject
     }
     public void ChangeEngineID(int Id)
     {
-        if (_priceForBodies[Id] == 0)
+        if (_priceForEngines[Id] == 0)
         {
             _engineId = Id;
         }
     }
     public void ChangeWheelsID(int Id)
     {
-        if (_priceForBodies[Id] == 0)
+        if (_priceForWheels[Id] == 0)
         {
             _wheelsId = Id;
         }
     }
     public void ChangeWeaponID(int Id)
     {
-        if (_priceForBodies[Id] == 0)
+        if (_priceForWeapons[Id] == 0)
         {
             _weaponId = Id;
         }

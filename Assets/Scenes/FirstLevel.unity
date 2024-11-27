@@ -2498,55 +2498,6 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
---- !u!1 &1356827209
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1356827211}
-  - component: {fileID: 1356827210}
-  m_Layer: 0
-  m_Name: DataManeger
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1356827210
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1356827209}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e78538d818b0ab4da948eca66774a48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _vehicleId: 0
-  _currentIndexOfCar: 0
-  _numberOfCoins: 0
-  _currentCar: {fileID: 0}
-  _currentCarData: {fileID: 11400000, guid: b262a772c2804ac48aa0ffd1470cbc07, type: 2}
---- !u!4 &1356827211
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1356827209}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.7974808, y: -0.2698435, z: -0.022107052, w: 0.5391848}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1473349278
 GameObject:
   m_ObjectHideFlags: 0
@@ -3717,7 +3668,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 330585546}
   - {fileID: 1682178698}
-  - {fileID: 1356827211}
   - {fileID: 410087041}
   - {fileID: 1865798576}
   - {fileID: 288936661}
