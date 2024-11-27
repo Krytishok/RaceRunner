@@ -15,10 +15,10 @@ MonoBehaviour:
   _nameOfCar: Quadra
   _carPrefab: {fileID: 0}
   _costForBuyCar: 0
-  _priceForBodies: 000000003200000064000000
-  _priceForWheels: 000000006400000096000000
-  _priceForEngines: 000000004b00000064000000
-  _priceForWeapons: 010000000200000003000000
+  _priceForBodies: 000000000200000003000000
+  _priceForWheels: 000000000200000003000000
+  _priceForEngines: 000000000200000003000000
+  _priceForWeapons: 000000000200000003000000
   _bodyId: 0
   _engineId: 0
   _wheelsId: 0

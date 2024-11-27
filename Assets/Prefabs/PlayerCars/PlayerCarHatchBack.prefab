@@ -10293,6 +10293,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4226299536258946723}
     m_Modifications:
+    - target: {fileID: 2692393029169200490, guid: 26d92b7da1d136f49833c16ade4f7ecb,
+        type: 3}
+      propertyPath: ForceModule.x.scalar
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3345907125732180806, guid: 26d92b7da1d136f49833c16ade4f7ecb,
         type: 3}
       propertyPath: m_LocalPosition.x

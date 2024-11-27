@@ -1,3 +1,4 @@
+using NUnit.Framework.Internal;
 using UnityEngine;
 
 public class CarEffectController : MonoBehaviour
@@ -17,7 +18,7 @@ public class CarEffectController : MonoBehaviour
 
     private void Start()
     {
-
+        
     }
 
 
@@ -48,4 +49,6 @@ public class CarEffectController : MonoBehaviour
     {
         _particleSystemBoom.Play();
     }
+
+    
 }

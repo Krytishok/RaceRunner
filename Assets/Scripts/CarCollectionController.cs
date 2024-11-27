@@ -96,6 +96,8 @@ public class CarCollectionController : MonoBehaviour
             FindFirstObjectByType<MainMenuScript>().UpdatePriceForCar();
             DataManager.Instance._currentCarData = _carsData[currentCarIndex];
 
+            DataManager.SaveData(_carsData[currentCarIndex], _carsData[currentCarIndex].name);
+
 
 
         }
@@ -137,6 +139,8 @@ public class CarCollectionController : MonoBehaviour
         }
         //Показываем характеристики автомобиля
         _mainMenuScript.UpdateTuningConfig(_carsData[currentCarIndex], _whichTuningToShow, index);
+
+        DataManager.SaveData(_carsData[currentCarIndex], _carsData[currentCarIndex].name);
     }
 
 
@@ -189,6 +193,8 @@ public class CarCollectionController : MonoBehaviour
         //Обновляем визуальные данные
         FindFirstObjectByType<MainMenuScript>().UpdateVisualCoins();
         FindFirstObjectByType<MainMenuScript>().UpdatePriceForTuning(_currentIndexOfTuning);
+
+        DataManager.SaveData(_carsData[currentCarIndex], _carsData[currentCarIndex].name);
     }
 
     public CarDataScript GetCurrentCarData()
@@ -211,6 +217,11 @@ public class CarCollectionController : MonoBehaviour
 
     public void InizializeCustomizationOfCar()
     {
+        foreach(CarDataScript _data in _carsData)
+        {
+            DataManager.LoadData(_data, _data.name);
+        }
+
         CarDataScript car = _carsData[currentCarIndex];
         FindFirstObjectByType<CustomizationScript>().Initialize(car._bodyId, car._engineId, car._wheelsId, car._weaponId);
     }

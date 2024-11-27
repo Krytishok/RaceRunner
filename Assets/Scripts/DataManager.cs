@@ -53,6 +53,22 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    // ѕример метода дл€ управлени€ состо€нием игры
-    
+    public static void SaveData(ScriptableObject data, string key)
+    {
+        string json = JsonUtility.ToJson(data);
+        PlayerPrefs.SetString(key, json);
+        PlayerPrefs.Save();
+        Debug.Log(key + " DATA IS SUCCESFULLY SAVED");
+    }
+
+    public static void LoadData(ScriptableObject data, string key)
+    {
+        if (PlayerPrefs.HasKey(key))
+        {
+            string json = PlayerPrefs.GetString(key);
+            JsonUtility.FromJsonOverwrite(json, data);
+            Debug.Log(key + " DATA IS SUCCESFULLY LOADED");
+        }
+    }
+
 }
