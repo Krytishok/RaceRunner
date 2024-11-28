@@ -476,7 +476,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eb2e5da2ef7dca41b775e4b498fde80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnOffset: {x: 0, y: 5, z: -20}
+  _spawnOffset: {x: 0, y: 5, z: -23}
   _rb: {fileID: 4521468538646731621}
   _movementSpeedOfEnemy: 15
   _timeToReachPosition: 0.3
