@@ -90,6 +90,8 @@ public class CarController : MonoBehaviour
         _audio.PlayEngine();
     }
 
+    public float MinSpeedOfCar() { return _minSpeed; }
+
 
 
     

@@ -1492,6 +1492,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Nitro
       objectReference: {fileID: 0}
+    - target: {fileID: 712892036374375862, guid: 45eb3779d13da714aaaab1b7048ea653,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5220913520463022646, guid: 45eb3779d13da714aaaab1b7048ea653,
         type: 3}
       propertyPath: m_LocalPosition.x

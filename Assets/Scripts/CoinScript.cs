@@ -22,7 +22,7 @@ public class CoinScript : MonoBehaviour
             FindFirstObjectByType<CoinManager>().AddOne();
             _body.SetActive(false);
             _pickUpSound.Play();
-            Invoke(nameof(Destroy), 2f);
+            Destroy(gameObject, 1f);
             
         }
         
