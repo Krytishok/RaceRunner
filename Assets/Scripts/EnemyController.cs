@@ -15,6 +15,7 @@ public class EnemyController : MonoBehaviour
 
     [SerializeField] private GameObject _bomb;
     [SerializeField] GameObject _visualBomb;
+    [SerializeField] GameObject _visualBody;
 
 
 
@@ -23,7 +24,7 @@ public class EnemyController : MonoBehaviour
     private Vector3 _targetPosition;
     private Vector3 _velocity;
     private float _xOffset;
-    public float _speedModifier;
+    public float _speedModifier = 1;
 
     private bool _targetting;
 
@@ -45,6 +46,11 @@ public class EnemyController : MonoBehaviour
 
         StartCoroutine(UpdateTargetPosition(_timeToGetPositionMin, _timeToGetPositionMax));
         
+    }
+
+    public void RestartTargetting()
+    {
+        StartCoroutine(UpdateTargetPosition(_timeToGetPositionMin, _timeToGetPositionMax));
     }
 
     private IEnumerator UpdateTargetPosition(float delayMin, float delayMax)
@@ -73,17 +79,19 @@ public class EnemyController : MonoBehaviour
         // Плавное перемещение врага к целевой позиции
         _targetPosition = new Vector3(_xOffset, transform.position.y, transform.position.z);
         transform.position = new Vector3(transform.position.x, _player.transform.position.y, _player.transform.position.z) + _spawnOffset; //Движение по Z перед игроком
-        transform.position = Vector3.SmoothDamp(transform.position, _targetPosition, ref _velocity, _timeToReachPosition, _movementSpeedOfEnemy);
+        transform.position = Vector3.SmoothDamp(transform.position, _targetPosition, ref _velocity, _timeToReachPosition, _movementSpeedOfEnemy*_speedModifier);
         
     }
 
     private void BombDrop()
     {
-        var bomb = _bomb;
-        Vector3 SpawnPosition = _visualBomb.transform.position;
-        Quaternion SpawnRotation = _visualBomb.transform.rotation;
-        Instantiate(bomb, SpawnPosition, SpawnRotation);
-
+        if (!_gameManager._IsTimeToShoot)
+        {
+            var bomb = _bomb;
+            Vector3 SpawnPosition = _visualBomb.transform.position;
+            Quaternion SpawnRotation = _visualBomb.transform.rotation;
+            Instantiate(bomb, SpawnPosition, SpawnRotation);
+        }
 
     }
 
@@ -95,6 +103,9 @@ public class EnemyController : MonoBehaviour
         if(_health <= 0)
         {
             _gameManager._IsEnemyOnRoad = false;
+            _visualBody.SetActive(false);
+            
+            
 
             
         }

@@ -25,7 +25,7 @@ public class CarController : MonoBehaviour
     [SerializeField] private float _tiltAngle;
     [SerializeField] public float _turningSpeed;
     [SerializeField] public int _hp;
-    [SerializeField] public int _firePower;
+    [SerializeField] public float _firePower;
     [SerializeField] public float _nitroTime;
 
     [SerializeField] private float _maxAngleOfWheel;

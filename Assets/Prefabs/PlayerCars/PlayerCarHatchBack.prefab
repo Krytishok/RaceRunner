@@ -6536,7 +6536,7 @@ MonoBehaviour:
   _tiltAngle: 0
   _turningSpeed: 10
   _hp: 10
-  _firePower: 0
+  _firePower: 1
   _nitroTime: 0
   _maxAngleOfWheel: 30
   _bodyRotation: 35
@@ -6551,6 +6551,7 @@ MonoBehaviour:
   _carEffectController: {fileID: 6327192881544298076}
   _audio: {fileID: 2584703362337007319}
   _speed: 0
+  _speedModificator: 1
 --- !u!136 &325024186542040987
 CapsuleCollider:
   m_ObjectHideFlags: 0

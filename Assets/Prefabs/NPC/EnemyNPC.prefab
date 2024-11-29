@@ -478,6 +478,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawnOffset: {x: 0, y: 5, z: -23}
   _rb: {fileID: 4521468538646731621}
+  _health: 1
   _movementSpeedOfEnemy: 15
   _timeToReachPosition: 0.3
   _timeToGetPositionMin: 2
@@ -486,6 +487,8 @@ MonoBehaviour:
   _reloadingTimeMax: 3
   _bomb: {fileID: 8561838543734458304, guid: 513658bfd2d6d7243bcb86403012f017, type: 3}
   _visualBomb: {fileID: 4931291127274634561}
+  _visualBody: {fileID: 4369437080802120918}
+  _speedModifier: 1
 --- !u!1 &4188014883736394847
 GameObject:
   m_ObjectHideFlags: 0
