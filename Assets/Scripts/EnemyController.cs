@@ -34,6 +34,9 @@ public class EnemyController : MonoBehaviour
         _player = FindFirstObjectByType<CarController>();
         transform.position = _player.transform.position + _spawnOffset;
         //_rb.linearVelocity = new Vector3(0, 0, -_player.MinSpeedOfCar()); 
+
+        FindFirstObjectByType<GameManager>()._IsEnemyOnRoad = true;
+
         StartCoroutine(UpdateTargetPosition(_timeToGetPositionMin, _timeToGetPositionMax));
         
     }

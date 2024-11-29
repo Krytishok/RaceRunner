@@ -8,7 +8,7 @@ public class RoadTrigger : MonoBehaviour
     private void Start()
     {
         // Найти RoadManager в сцене
-        roadManager = FindObjectOfType<RoadManager>();
+        roadManager = FindFirstObjectByType<RoadManager>();
     }
 
     private void OnTriggerEnter(Collider other)

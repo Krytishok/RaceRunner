@@ -41,8 +41,13 @@ public class RoadManager : MonoBehaviour
     public float bonusSpawnChance = 0.05f;    // Шанс спавна бонуса (например, 5%)
     public float minDistanceFromObstacles = 10f; // Минимальное расстояние от препятствий и монет
 
+
+    //Managers
+    private GameManager _gameManager;
+
     private void Start()
     {
+        _gameManager = FindFirstObjectByType<GameManager>();
         nextPosition = new Vector3(-17.27f, -29.843f, (-635.73f - sectionLength * (startSectionPrefabs.Length - 1)));
 
         foreach (var section in startSectionPrefabs)
@@ -63,12 +68,7 @@ public class RoadManager : MonoBehaviour
         // Постепенно увеличиваем сложность по мере прохождения игроком дороги
         difficultyLevel += difficultyIncreaseRate * Time.deltaTime;
 
-        // Проверяем, активен ли NPC
-        if (currentNPC != null && !currentNPC.activeSelf)
-        {
-            Destroy(currentNPC);
-            currentNPC = null;
-        }
+        
     }
 
     public void SpawnSection()
@@ -102,9 +102,10 @@ public class RoadManager : MonoBehaviour
                 disableObstacles = false;
             }
         }
-        else
+        else if (!_gameManager._IsEnemyOnRoad)
         {
             // Генерация препятствий и монет только если NPC отсутствует
+            
             SpawnObstaclesAndCoins(newSection);
         }
 
@@ -113,7 +114,6 @@ public class RoadManager : MonoBehaviour
 
     private void SpawnObstaclesAndCoins(GameObject section)
     {
-        if (disableObstacles || currentNPC != null) return; // Остановка генерации, если NPC активен или отключена
 
         int obstaclesPerSection = (int)Mathf.Min(difficultyLevel * 2f, maxObstaclesPerSection);
         int coinsPerSection = 10;
@@ -173,7 +173,6 @@ public class RoadManager : MonoBehaviour
             }
         }
 
-        // Спавн монет
         // Спавн монет
         for (int j = 0; j < coinsPerSection; j++)
         {
@@ -315,9 +314,12 @@ public class RoadManager : MonoBehaviour
 
     private void SpawnNPC(GameObject section)
     {
-        Vector3 npcPosition = section.transform.position + new Vector3(0, 5, 0); // Смещение NPC над секцией
-        currentNPC = Instantiate(npcPrefab, npcPosition, Quaternion.identity);
-        Debug.Log("NPC Spawned");
+        if (!_gameManager._IsEnemyOnRoad) // Проверка наличия врага на сцене
+        {
+            Vector3 npcPosition = section.transform.position + new Vector3(0, 5, 0); // Смещение NPC над секцией
+            currentNPC = Instantiate(npcPrefab, npcPosition, Quaternion.identity);
+            Debug.Log("NPC Spawned");
+        }
     }
 
     public void DespawnOldSection()

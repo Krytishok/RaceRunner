@@ -18,6 +18,10 @@ public class GameManager : MonoBehaviour
     public CarDataScript[] cars;
     public GameObject _selectedCar;
 
+    //Events
+    public bool _IsEnemyOnRoad = false;
+    public bool _IsTimeToShoot = false;
+
     public void StopGame()
     {
         //Add collected coins in level to total
@@ -63,6 +67,9 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         _selectedCar.GetComponent<CarController>().StartCar();
     }
+
+
+    
 
     
 
