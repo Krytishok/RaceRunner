@@ -5,6 +5,7 @@ public class EnemyController : MonoBehaviour
 {
     [SerializeField] private Vector3 _spawnOffset;
     [SerializeField] private Rigidbody _rb;
+    [SerializeField] private float _health;
     [SerializeField] private float _movementSpeedOfEnemy = 5f; // скорость перемещения врага к новой позиции
     [SerializeField] private float _timeToReachPosition;
     [SerializeField] private float _timeToGetPositionMin;
@@ -18,11 +19,15 @@ public class EnemyController : MonoBehaviour
 
 
     private CarController _player;
+    private GameManager _gameManager;
     private Vector3 _targetPosition;
     private Vector3 _velocity;
     private float _xOffset;
+    public float _speedModifier;
 
     private bool _targetting;
+
+
 
     private void Start()
     {
@@ -32,10 +37,11 @@ public class EnemyController : MonoBehaviour
     public void SpawnEnemy()
     {
         _player = FindFirstObjectByType<CarController>();
+        _gameManager = FindFirstObjectByType<GameManager>();
         transform.position = _player.transform.position + _spawnOffset;
         //_rb.linearVelocity = new Vector3(0, 0, -_player.MinSpeedOfCar()); 
 
-        FindFirstObjectByType<GameManager>()._IsEnemyOnRoad = true;
+        _gameManager._IsEnemyOnRoad = true;
 
         StartCoroutine(UpdateTargetPosition(_timeToGetPositionMin, _timeToGetPositionMax));
         
@@ -43,7 +49,7 @@ public class EnemyController : MonoBehaviour
 
     private IEnumerator UpdateTargetPosition(float delayMin, float delayMax)
     {
-        while (true)
+        while (!_gameManager._IsTimeToShoot)
         {
             // Обновляем целевую позицию
             _targetting = true;
@@ -83,13 +89,14 @@ public class EnemyController : MonoBehaviour
 
     
 
-    private void OnTriggerEnter(Collider other)
+    public void GetDamage(float damage)
     {
-
-        if (other.gameObject.CompareTag("Player"))
+        _health -= damage;
+        if(_health <= 0)
         {
-            
+            _gameManager._IsEnemyOnRoad = false;
 
+            
         }
     }
 

@@ -70,6 +70,10 @@ public class CarController : MonoBehaviour
 
 
 
+    public float _speedModificator = 1f;
+
+
+
     void Start()
     {
         gameObject.tag = "Player";
@@ -104,7 +108,7 @@ public class CarController : MonoBehaviour
         MoveForward();
 
         // Получаем ввод от клавиатуры (стрелки влево и вправо или A и D)
-        float move = Input.GetAxis("Horizontal") * _moveCoef * -1;
+        float move = Input.GetAxis("Horizontal") * _speedModificator * _moveCoef * -1;
 
         UpdatePositionAndRotation(move);
 
@@ -127,7 +131,7 @@ public class CarController : MonoBehaviour
         if (_isMoving)
         {
             _rigidbody.linearVelocity = new Vector3(_rigidbody.linearVelocity.x, _rigidbody.linearVelocity.y,
-                -Math.Clamp(Mathf.Abs(_rigidbody.linearVelocity.z), _minSpeed, _maxSpeed));
+                -Math.Clamp(Mathf.Abs(_rigidbody.linearVelocity.z), _minSpeed, _maxSpeed) * _speedModificator);
         }
     }
 
