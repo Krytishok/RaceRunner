@@ -104,6 +104,10 @@ public class EnemyController : MonoBehaviour
         {
             _gameManager._IsEnemyOnRoad = false;
             _visualBody.SetActive(false);
+            _gameManager._IsTimeToShoot = false;
+            FindAnyObjectByType<ClickToFireScript>().SetClickButton(false);
+            FindFirstObjectByType<WeaponScript>().StopSlowMo();
+            Destroy(gameObject);
             
             
 
