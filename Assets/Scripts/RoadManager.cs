@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class RoadManager : MonoBehaviour
 {
@@ -7,7 +8,8 @@ public class RoadManager : MonoBehaviour
     public GameObject[] startSectionPrefabs;      // Начальные секции дороги
     public GameObject[] obstaclePrefabs;          // Массив префабов препятствий
     public GameObject[] coinPrefabs;
-    public GameObject npcPrefab;                  // Префаб NPC
+    public GameObject npcPrefab;// Префаб NPC
+    public GameObject WeaponZone;
 
     public int initialSections = 5;               // Количество начальных секций
     public float sectionLength = 119.5f;          // Длина одной секции
@@ -128,7 +130,7 @@ public class RoadManager : MonoBehaviour
         {
             GameObject obstaclePrefab = obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)];
             Collider obstacleCollider = obstaclePrefab.GetComponent<Collider>();
-            float obstacleSize = obstacleCollider ? obstacleCollider.bounds.size.z : 5f;
+            float obstacleSize = obstacleCollider ? obstacleCollider.bounds.size.z : 8f;
 
             float xPosition = lanePositions[Random.Range(0, lanePositions.Length)] + laneOffsetX;
             float currentMinDistance = Mathf.Max(obstacleSize * 2f, minDistanceBetweenObstacles - difficultyLevel * 0.15f);
@@ -245,7 +247,7 @@ public class RoadManager : MonoBehaviour
         {
             GameObject bonusPrefab = bonusPrefabs[Random.Range(0, bonusPrefabs.Length)];
             Collider bonusCollider = bonusPrefab.GetComponent<Collider>();
-            float bonusSize = bonusCollider ? bonusCollider.bounds.size.z : 7f;
+            float bonusSize = bonusCollider ? bonusCollider.bounds.size.z : 8f;
 
             float xPosition = lanePositions[Random.Range(0, lanePositions.Length)] + laneOffsetX;
 
@@ -260,7 +262,7 @@ public class RoadManager : MonoBehaviour
 
                 Vector3 potentialPosition = section.transform.position + new Vector3(xPosition, 0, zPosition);
 
-                Collider[] colliders = Physics.OverlapSphere(potentialPosition, Mathf.Max(bonusSize, 7f));
+                Collider[] colliders = Physics.OverlapSphere(potentialPosition, Mathf.Max(bonusSize, 8f));
                 if (colliders.Length > 0)
                 {
                     positionIsValid = false;
@@ -307,10 +309,15 @@ public class RoadManager : MonoBehaviour
 
     private void SpawnNPC(GameObject section)
     {
+
         if (!_gameManager._IsEnemyOnRoad) // Проверка наличия врага на сцене
         {
-            Vector3 npcPosition = section.transform.position + new Vector3(0, 5, 0); // Смещение NPC над секцией
+            float xPosition = lanePositions[Random.Range(1, lanePositions.Length - 1)] + laneOffsetX;
+            Vector3 WeaponlPosition = section.transform.position + new Vector3(xPosition, 32, 600);
+            Vector3 npcPosition = section.transform.position + new Vector3(0, 5, 0);
+            // Смещение NPC над секцией
             currentNPC = Instantiate(npcPrefab, npcPosition, Quaternion.identity);
+            currentNPC = Instantiate(WeaponZone, WeaponlPosition, Quaternion.identity);
             Debug.Log("NPC Spawned");
         }
     }
