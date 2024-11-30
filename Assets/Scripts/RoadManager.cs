@@ -81,6 +81,12 @@ public class RoadManager : MonoBehaviour
         // Увеличиваем счётчик секций
         sectionCounter++;
 
+        List<Vector3> obstaclePositions = new List<Vector3>();
+        List<Vector3> coinPositions = new List<Vector3>();
+
+        // Вызываем отдельные функции для спавна
+        
+
         // Проверяем состояние генерации препятствий
         if (sectionCounter % npcSpawnInterval == 0)
         {
@@ -105,29 +111,22 @@ public class RoadManager : MonoBehaviour
         else if (!_gameManager._IsEnemyOnRoad)
         {
             // Генерация препятствий и монет только если NPC отсутствует
-            
-            SpawnObstaclesAndCoins(newSection);
+
+            SpawnObstacles(newSection, obstaclePositions);
+            SpawnCoins(newSection, obstaclePositions, coinPositions);
+            SpawnBonuses(newSection, obstaclePositions, coinPositions);
         }
 
         nextPosition += new Vector3(0, 0, -sectionLength);
     }
 
-    private void SpawnObstaclesAndCoins(GameObject section)
+    private void SpawnObstacles(GameObject section, List<Vector3> obstaclePositions)
     {
-
         int obstaclesPerSection = (int)Mathf.Min(difficultyLevel * 2f, maxObstaclesPerSection);
-        int coinsPerSection = 10;
 
-        List<Vector3> obstaclePositions = new List<Vector3>();
-        List<Vector3> coinPositions = new List<Vector3>();
-        List<Vector3> bonusPositions = new List<Vector3>(); // Для учета бонусов
-
-        // Спавн препятствий
         for (int i = 0; i < obstaclesPerSection; i++)
         {
-            // Выбираем случайный префаб препятствия
             GameObject obstaclePrefab = obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)];
-
             Collider obstacleCollider = obstaclePrefab.GetComponent<Collider>();
             float obstacleSize = obstacleCollider ? obstacleCollider.bounds.size.z : 5f;
 
@@ -137,8 +136,7 @@ public class RoadManager : MonoBehaviour
             float zPosition;
             bool positionIsValid;
 
-            // Выбираем позицию для препятствия
-            int attemptCount = 0; // Ограничение попыток поиска валидной позиции
+            int attemptCount = 0;
             do
             {
                 zPosition = Random.Range(-sectionLength / 2 + obstacleSize, sectionLength / 2 - obstacleSize);
@@ -146,7 +144,6 @@ public class RoadManager : MonoBehaviour
 
                 foreach (Vector3 pos in obstaclePositions)
                 {
-                    // Проверяем расстояние только по Z
                     if (Mathf.Abs(zPosition - pos.z) < currentMinDistance && Mathf.Abs(xPosition - pos.x) < 0.15f)
                     {
                         positionIsValid = false;
@@ -155,9 +152,9 @@ public class RoadManager : MonoBehaviour
                 }
 
                 attemptCount++;
-            } while (!positionIsValid && attemptCount < 20); // Предотвращаем бесконечный цикл
+            } while (!positionIsValid && attemptCount < 20);
 
-            if (!positionIsValid) continue; // Если не смогли найти место, пропускаем
+            if (!positionIsValid) continue;
 
             Vector3 rayStart = section.transform.position + new Vector3(xPosition, spawnHeight, zPosition);
             Debug.DrawRay(rayStart, Vector3.down * 100f, Color.red, 2f);
@@ -169,15 +166,18 @@ public class RoadManager : MonoBehaviour
 
                 GameObject obstacle = Instantiate(obstaclePrefab, obstaclePosition, Quaternion.identity);
                 obstacle.transform.SetParent(section.transform);
-                obstaclePositions.Add(new Vector3(xPosition, 0, zPosition)); // Добавляем только X и Z
+                obstaclePositions.Add(new Vector3(xPosition, 0, zPosition));
             }
         }
+    }
 
-        // Спавн монет
+    private void SpawnCoins(GameObject section, List<Vector3> obstaclePositions, List<Vector3> coinPositions)
+    {
+        int coinsPerSection = 10;
+
         for (int j = 0; j < coinsPerSection; j++)
         {
             GameObject coinPrefab = coinPrefabs[Random.Range(0, coinPrefabs.Length)];
-
             Collider coinCollider = coinPrefab.GetComponent<Collider>();
             float coinSize = coinCollider ? coinCollider.bounds.size.z : 5f;
 
@@ -194,14 +194,12 @@ public class RoadManager : MonoBehaviour
 
                 Vector3 potentialPosition = section.transform.position + new Vector3(xPosition, 0, zPosition);
 
-                // Проверка перекрытия через Physics.OverlapSphere
                 Collider[] colliders = Physics.OverlapSphere(potentialPosition, Mathf.Max(coinSize, 6f));
                 if (colliders.Length > 0)
                 {
                     positionIsValid = false;
                 }
 
-                // Проверка на перекрытие с препятствиями
                 foreach (Vector3 pos in obstaclePositions)
                 {
                     if (Mathf.Abs(xPosition - pos.x) < coinSize && Mathf.Abs(zPosition - pos.z) < coinSize * 6f)
@@ -211,7 +209,6 @@ public class RoadManager : MonoBehaviour
                     }
                 }
 
-                // Проверка на перекрытие с другими монетами
                 foreach (Vector3 pos in coinPositions)
                 {
                     if (Mathf.Abs(xPosition - pos.x) < coinSize && Mathf.Abs(zPosition - pos.z) < coinSize * 6f)
@@ -226,7 +223,6 @@ public class RoadManager : MonoBehaviour
 
             if (!positionIsValid) continue;
 
-            // Спавн монеты
             Vector3 coinRayStart = section.transform.position + new Vector3(xPosition, spawnHeight, zPosition);
             Debug.DrawRay(coinRayStart, Vector3.down * 100f, Color.yellow, 2f);
 
@@ -241,12 +237,15 @@ public class RoadManager : MonoBehaviour
                 coinPositions.Add(new Vector3(xPosition, 0, zPosition));
             }
         }
+    }
 
-        if (Random.value < bonusSpawnChance) // Редкий шанс появления бонуса
+    private void SpawnBonuses(GameObject section, List<Vector3> obstaclePositions, List<Vector3> coinPositions)
+    {
+        if (Random.value < bonusSpawnChance)
         {
             GameObject bonusPrefab = bonusPrefabs[Random.Range(0, bonusPrefabs.Length)];
             Collider bonusCollider = bonusPrefab.GetComponent<Collider>();
-            float bonusSize = bonusCollider ? bonusCollider.bounds.size.z : 6f;
+            float bonusSize = bonusCollider ? bonusCollider.bounds.size.z : 7f;
 
             float xPosition = lanePositions[Random.Range(0, lanePositions.Length)] + laneOffsetX;
 
@@ -261,14 +260,12 @@ public class RoadManager : MonoBehaviour
 
                 Vector3 potentialPosition = section.transform.position + new Vector3(xPosition, 0, zPosition);
 
-                // Проверка перекрытия через Physics.OverlapSphere
-                Collider[] colliders = Physics.OverlapSphere(potentialPosition, Mathf.Max(bonusSize, 6f));
+                Collider[] colliders = Physics.OverlapSphere(potentialPosition, Mathf.Max(bonusSize, 7f));
                 if (colliders.Length > 0)
                 {
                     positionIsValid = false;
                 }
 
-                // Проверка на перекрытие с препятствиями
                 foreach (Vector3 pos in obstaclePositions)
                 {
                     if (Vector3.Distance(potentialPosition, section.transform.position + pos) < minDistanceFromObstacles)
@@ -278,7 +275,6 @@ public class RoadManager : MonoBehaviour
                     }
                 }
 
-                // Проверка на перекрытие с монетами
                 foreach (Vector3 pos in coinPositions)
                 {
                     if (Vector3.Distance(potentialPosition, section.transform.position + pos) < minDistanceFromObstacles)
@@ -293,7 +289,6 @@ public class RoadManager : MonoBehaviour
 
             if (positionIsValid)
             {
-                // Спавн бонуса
                 Vector3 bonusRayStart = section.transform.position + new Vector3(xPosition, spawnHeight, zPosition);
                 Debug.DrawRay(bonusRayStart, Vector3.down * 100f, Color.green, 2f);
 
@@ -304,8 +299,6 @@ public class RoadManager : MonoBehaviour
 
                     GameObject bonus = Instantiate(bonusPrefab, bonusPosition, Quaternion.identity);
                     bonus.transform.SetParent(section.transform);
-
-                    bonusPositions.Add(new Vector3(xPosition, 0, zPosition));
                 }
             }
         }

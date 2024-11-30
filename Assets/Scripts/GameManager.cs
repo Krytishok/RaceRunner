@@ -39,7 +39,6 @@ public class GameManager : MonoBehaviour
     public void Awake()
     {
 
-        Debug.Log(DataManager.Instance._currentCarData._carPrefab);
         if (DataManager.Instance._currentCarData._carPrefab == null)
         {
             Debug.Log("SelectedCarIsNull");

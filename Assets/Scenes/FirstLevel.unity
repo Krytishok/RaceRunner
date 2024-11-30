@@ -3037,8 +3037,11 @@ MonoBehaviour:
   startSectionPrefabs:
   - {fileID: 5538410024181082014}
   obstaclePrefabs:
-  - {fileID: 6588068486144254929, guid: 34ea6d7a8aab105439a0d0341fb28b2b, type: 3}
+  - {fileID: 5574941212075776204, guid: fe7f55dc857f45246b73ee8a2fe0d148, type: 3}
   - {fileID: 7723942495232824356, guid: 003acb84e4be8f842bfbf5dc523ca568, type: 3}
+  - {fileID: 7723942495232824356, guid: e0434d38142b3ed4d8bfb8fa02eb0ead, type: 3}
+  - {fileID: 6588068486144254929, guid: 34ea6d7a8aab105439a0d0341fb28b2b, type: 3}
+  - {fileID: 6588068486144254929, guid: 34ea6d7a8aab105439a0d0341fb28b2b, type: 3}
   coinPrefabs:
   - {fileID: 2519256228215097869, guid: 63c202c2fcaeed143b031d07eaac44be, type: 3}
   npcPrefab: {fileID: 3840341151668389699, guid: f58b0febcf3ce404097ec2536671c83f,
@@ -3047,17 +3050,17 @@ MonoBehaviour:
   sectionLength: 577.2
   despawnDistance: 1
   minDistanceBetweenObstacles: 150
-  difficultyIncreaseRate: 0.03
-  maxObstaclesPerSection: 7
-  npcSpawnInterval: 3
+  difficultyIncreaseRate: 0.05
+  maxObstaclesPerSection: 10
+  npcSpawnInterval: 10
   disableObstaclesBeforeNPC: 1
   laneOffsetX: 20
   spawnHeight: 50
   spawnHeightOffset: 1
   bonusPrefabs:
   - {fileID: 712892036374375862, guid: 45eb3779d13da714aaaab1b7048ea653, type: 3}
-  bonusSpawnChance: 0.05
-  minDistanceFromObstacles: 10
+  bonusSpawnChance: 0.15
+  minDistanceFromObstacles: 7
 --- !u!4 &1682178698
 Transform:
   m_ObjectHideFlags: 0
