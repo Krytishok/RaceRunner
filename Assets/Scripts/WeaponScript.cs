@@ -5,34 +5,28 @@ public class WeaponScript : MonoBehaviour
 {
 
     [SerializeField] private float _shootDuration;
-    [SerializeField] private GameObject _body;
 
     [SerializeField] private CarController _player;
+    [SerializeField] private GameManager _gameManager;
+    [SerializeField] private ClickToFireScript _clickController;
 
-
-    private bool _IsTriggered = false;
-    private void OnTriggerEnter(Collider other)
+    private void Start()
     {
-
-        if (other.gameObject.CompareTag("Player") && !_IsTriggered)
-        {
-            _IsTriggered = true;
-            _body.SetActive(false);
-            _player = other.GetComponent<CarController>();
-            FindFirstObjectByType<GameManager>()._IsTimeToShoot = true;
-            FindFirstObjectByType<ClickToFireScript>().SetClickButton(true);
-            StartCoroutine(ShootDuration(_shootDuration));
-            
-
-
-        }
+        _player = FindFirstObjectByType<CarController>();
     }
+
     public void StopSlowMo()
     {
         _player._speedModificator = 1f;
         StopAllCoroutines();
     }
 
+    public void StartSlowMo()
+    {
+        _gameManager._IsTimeToShoot = true;
+        _clickController.SetClickButton(true);
+        StartCoroutine(ShootDuration(_shootDuration));
+    }
     
 
     private IEnumerator ShootDuration(float duration)

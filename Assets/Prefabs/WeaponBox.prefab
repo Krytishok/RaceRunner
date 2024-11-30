@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3826833526496887557}
   - component: {fileID: 1871307872274485825}
-  - component: {fileID: 577885401837165208}
+  - component: {fileID: 1017604936146584118}
   m_Layer: 0
   m_Name: WeaponBox
   m_TagString: Untagged
@@ -55,7 +55,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.3142924, y: 3.3312087, z: 3.383057}
   m_Center: {x: -0.000043213367, y: 0.0004761219, z: 0.011238098}
---- !u!114 &577885401837165208
+--- !u!114 &1017604936146584118
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -64,12 +64,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1019731244211046430}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70cb42320a337ea4693d32e41c3c6219, type: 3}
+  m_Script: {fileID: 11500000, guid: bc010b01941e1cd4b8d2c9461dfe8abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shootDuration: 10
   _body: {fileID: 5298375921670380991}
-  _player: {fileID: 0}
 --- !u!1 &5298375921670380991
 GameObject:
   m_ObjectHideFlags: 0
