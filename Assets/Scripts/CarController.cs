@@ -18,8 +18,6 @@ public class CarController : MonoBehaviour
     [SerializeField] WheelCollider _wheelColliderFR;
     [SerializeField] WheelCollider _wheelColliderBR;
 
-    //BodyCar
-    [SerializeField] public Animator _bodyCarAnimator;
 
     //Car properties
     [SerializeField] private float _tiltAngle;
@@ -185,10 +183,7 @@ public class CarController : MonoBehaviour
     
     
 
-    public void CollisionWithObstacle()
-    {
-        _bodyCarAnimator.SetTrigger("CollisionWithObstacle");
-    }
+    
 
     private void InitializeCustomization()
     {
@@ -220,7 +215,6 @@ public class CarController : MonoBehaviour
         }
         else
         {
-            CollisionWithObstacle();
             FindFirstObjectByType<CameraController>().CameraShake();
         }
     }

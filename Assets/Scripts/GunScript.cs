@@ -7,6 +7,10 @@ public class GunScript : MonoBehaviour
     public float rotationSpeed = 5f; // Скорость поворота
     public Transform _parent;
 
+    [SerializeField] private ParticleSystem[] _shots;
+    private int _weaponIndex;
+
+
 
     private Quaternion initialRotation; // Изначальный поворот
 
@@ -14,10 +18,21 @@ public class GunScript : MonoBehaviour
     {
         // Сохраняем изначальный поворот
         initialRotation = transform.rotation;
+        _weaponIndex = DataManager.Instance._currentCarData._weaponId;
     }
+    public void Shot()
+    {
+        _shots[_weaponIndex].Play();
+    }
+
     public void SetTarget(Transform target=null)
     {
         _target = target;
+    }
+
+    public void Shoot()
+    {
+
     }
 
    

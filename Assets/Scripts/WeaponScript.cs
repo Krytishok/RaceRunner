@@ -9,6 +9,7 @@ public class WeaponScript : MonoBehaviour
     [SerializeField] private CarController _player;
     [SerializeField] private GameManager _gameManager;
     [SerializeField] private ClickToFireScript _clickController;
+    [SerializeField] private AudioManagerController _audioController;
 
     private void Start()
     {
@@ -19,6 +20,9 @@ public class WeaponScript : MonoBehaviour
     {
         _player._speedModificator = 1f;
         FindFirstObjectByType<CameraController>().CameraToGun(false);
+        _clickController.SetClickButton(false);
+        _audioController.SlowMoEffect(1f);
+        _gameManager._IsTimeToShoot = false;
         StopAllCoroutines();
     }
 
@@ -26,6 +30,7 @@ public class WeaponScript : MonoBehaviour
     {
         _gameManager._IsTimeToShoot = true;
         _clickController.SetClickButton(true);
+        _audioController.SlowMoEffect(0.2f);
         FindFirstObjectByType<CameraController>().CameraToGun(true);
         StartCoroutine(ShootDuration(_shootDuration));
     }

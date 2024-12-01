@@ -16,6 +16,8 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private GameObject _bomb;
     [SerializeField] GameObject _visualBomb;
     [SerializeField] GameObject _visualBody;
+    [SerializeField] ParticleSystem _particleBoom;
+    [SerializeField] ParticleSystem _particleDamaged;
 
 
 
@@ -51,7 +53,7 @@ public class EnemyController : MonoBehaviour
 
     public void RestartTargetting()
     {
-
+        SetSlowMo(1f);
         StartCoroutine(UpdateTargetPosition(_timeToGetPositionMin, _timeToGetPositionMax));
     }
 
@@ -121,8 +123,9 @@ public class EnemyController : MonoBehaviour
             FindFirstObjectByType<WeaponScript>().StopSlowMo();
             FindFirstObjectByType<GunScript>().SetTarget();
 
-            
+            _particleBoom.Play();
             _visualBody.GetComponent<Animator>().SetBool("Defeated", true);
+
 
             Destroy(gameObject, 2f);
             
@@ -130,6 +133,7 @@ public class EnemyController : MonoBehaviour
 
             
         }
+        _particleDamaged.Play();
     }
 
 }

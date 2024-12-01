@@ -6,26 +6,45 @@ public class ClickToFireScript : MonoBehaviour
 
     private CarController _player;
     private EnemyController _enemy;
+    private CameraController _camera;
+    private GunScript _guns;
 
     private int _numberOfShots = 3;
+    private int _shotCounter = 0;
 
 
     private void Start()
     {
         _buttonBody.SetActive(false);
         _player = FindFirstObjectByType<CarController>();
+        _camera = FindFirstObjectByType<CameraController>();
+        _guns = FindFirstObjectByType<GunScript>();
+
 
 
     }
     public void SetClickButton(bool flag)
     {
         _buttonBody.SetActive(flag);
+        _shotCounter = 0;
     }
 
     public void OnClick()
     {
+        if (_numberOfShots > _shotCounter)
+        {
+            FindFirstObjectByType<EnemyController>().GetDamage(_player._firePower);
+            _camera.CameraShake();
+            _guns.Shot();
 
-        FindFirstObjectByType<EnemyController>().GetDamage(_player._firePower);
+            _shotCounter++;
+        }
+        else
+        {
+            FindFirstObjectByType<WeaponScript>().StopSlowMo();
+            FindFirstObjectByType<EnemyController>().RestartTargetting();
+            _shotCounter = 0;
+        }
     }
 
 

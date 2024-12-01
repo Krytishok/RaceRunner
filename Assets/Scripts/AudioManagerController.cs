@@ -13,5 +13,13 @@ public class AudioManagerController : MonoBehaviour
         _audio[0].Stop();
     }
 
+    public void SlowMoEffect(float modificator)
+    {
+        foreach (AudioSource sound in _audio)
+        {
+            sound.pitch = modificator;
+        }
+    }
+
 
 }
