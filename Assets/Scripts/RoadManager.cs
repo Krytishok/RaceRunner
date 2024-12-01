@@ -43,6 +43,8 @@ public class RoadManager : MonoBehaviour
     public float bonusSpawnChance = 0.05f;    // Шанс спавна бонуса (например, 5%)
     public float minDistanceFromObstacles = 10f; // Минимальное расстояние от препятствий и монет
 
+    private int weaponZoneCounter = 0; // Счётчик для отслеживания секций между WeaponZone
+
 
     //Managers
     private GameManager _gameManager;
@@ -62,7 +64,7 @@ public class RoadManager : MonoBehaviour
             SpawnSection();
         }
 
-        Debug.Log("START");
+        
     }
 
     private void Update()
@@ -80,14 +82,11 @@ public class RoadManager : MonoBehaviour
 
         activeSections.Enqueue(newSection);
 
-        // Увеличиваем счётчик секций
         sectionCounter++;
+        weaponZoneCounter++;
 
         List<Vector3> obstaclePositions = new List<Vector3>();
         List<Vector3> coinPositions = new List<Vector3>();
-
-        // Вызываем отдельные функции для спавна
-        
 
         // Проверяем состояние генерации препятствий
         if (sectionCounter % npcSpawnInterval == 0)
@@ -100,23 +99,28 @@ public class RoadManager : MonoBehaviour
             int sectionsLeft = sectionCounter % npcSpawnInterval;
             if (sectionsLeft <= disableObstaclesBeforeNPC)
             {
-                // Останавливаем генерацию препятствий и монет
                 Debug.Log($"Disabling obstacles for the next {disableObstaclesBeforeNPC} sections.");
             }
             else
             {
-                // Спавним NPC, когда секции без препятствий закончились
                 SpawnNPC(newSection);
+                
                 disableObstacles = false;
             }
         }
         else if (!_gameManager._IsEnemyOnRoad)
         {
             // Генерация препятствий и монет только если NPC отсутствует
-
             SpawnObstacles(newSection, obstaclePositions);
             SpawnCoins(newSection, obstaclePositions, coinPositions);
             SpawnBonuses(newSection, obstaclePositions, coinPositions);
+        }
+
+        // Проверяем, нужно ли заспавнить WeaponZone
+        while (_gameManager._IsEnemyOnRoad && weaponZoneCounter >= 3)
+        {
+            WeaponeZone(newSection);
+            weaponZoneCounter = 0; // Сбрасываем счётчик
         }
 
         nextPosition += new Vector3(0, 0, -sectionLength);
@@ -175,13 +179,13 @@ public class RoadManager : MonoBehaviour
 
     private void SpawnCoins(GameObject section, List<Vector3> obstaclePositions, List<Vector3> coinPositions)
     {
-        int coinsPerSection = 10;
+        int coinsPerSection = 8;
 
         for (int j = 0; j < coinsPerSection; j++)
         {
             GameObject coinPrefab = coinPrefabs[Random.Range(0, coinPrefabs.Length)];
             Collider coinCollider = coinPrefab.GetComponent<Collider>();
-            float coinSize = coinCollider ? coinCollider.bounds.size.z : 5f;
+            float coinSize = coinCollider ? coinCollider.bounds.size.z : 6f;
 
             float xPosition = lanePositions[Random.Range(0, lanePositions.Length)] + laneOffsetX;
 
@@ -312,15 +316,29 @@ public class RoadManager : MonoBehaviour
 
         if (!_gameManager._IsEnemyOnRoad) // Проверка наличия врага на сцене
         {
-            float xPosition = lanePositions[Random.Range(1, lanePositions.Length - 1)] + laneOffsetX;
-            Vector3 WeaponlPosition = section.transform.position + new Vector3(xPosition, 32, 600);
+            
             Vector3 npcPosition = section.transform.position + new Vector3(0, 5, 0);
             // Смещение NPC над секцией
             currentNPC = Instantiate(npcPrefab, npcPosition, Quaternion.identity);
-            currentNPC = Instantiate(WeaponZone, WeaponlPosition, Quaternion.identity);
+           
             Debug.Log("NPC Spawned");
         }
     }
+
+    public void WeaponeZone(GameObject section)
+    {
+        // Проверка наличия врага на сцене
+        
+            float xPosition = lanePositions[Random.Range(1, (lanePositions.Length)-1)] + laneOffsetX;
+            Vector3 weaponPosition = section.transform.position + new Vector3(xPosition, 31.5f, 300);
+
+            GameObject weaponZoneInstance = Instantiate(WeaponZone, weaponPosition, Quaternion.identity);
+            weaponZoneInstance.transform.SetParent(section.transform, true);
+
+            Debug.Log("WeaponZone Spawned as child of the section.");
+        
+    }
+
 
     public void DespawnOldSection()
     {

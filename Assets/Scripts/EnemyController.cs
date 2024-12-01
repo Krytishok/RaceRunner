@@ -50,6 +50,7 @@ public class EnemyController : MonoBehaviour
 
     public void RestartTargetting()
     {
+
         StartCoroutine(UpdateTargetPosition(_timeToGetPositionMin, _timeToGetPositionMax));
     }
 
