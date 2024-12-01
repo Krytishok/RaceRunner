@@ -27,6 +27,7 @@ public class EnemyController : MonoBehaviour
     public float _speedModifier = 1;
 
     private bool _targetting;
+    private GameObject _currentBomb;
 
 
 
@@ -38,9 +39,9 @@ public class EnemyController : MonoBehaviour
     public void SpawnEnemy()
     {
         _player = FindFirstObjectByType<CarController>();
+        FindFirstObjectByType<GunScript>().SetTarget(transform);
         _gameManager = FindFirstObjectByType<GameManager>();
         transform.position = _player.transform.position + _spawnOffset;
-        //_rb.linearVelocity = new Vector3(0, 0, -_player.MinSpeedOfCar()); 
 
         _gameManager._IsEnemyOnRoad = true;
 
@@ -88,13 +89,23 @@ public class EnemyController : MonoBehaviour
     {
         if (!_gameManager._IsTimeToShoot)
         {
-            var bomb = _bomb;
+            
             Vector3 SpawnPosition = _visualBomb.transform.position;
             Quaternion SpawnRotation = _visualBomb.transform.rotation;
-            Instantiate(bomb, SpawnPosition, SpawnRotation);
+            _currentBomb = Instantiate(_bomb, SpawnPosition, SpawnRotation);
         }
 
     }
+    public void SetSlowMo(float modificator = 0.2f)
+    {
+        _speedModifier = modificator;
+
+        if (_currentBomb != null)
+        {
+            _currentBomb.GetComponent<BombScript>().SlowMo(modificator);
+        }
+    }
+
 
     
 
@@ -104,11 +115,16 @@ public class EnemyController : MonoBehaviour
         if(_health <= 0)
         {
             _gameManager._IsEnemyOnRoad = false;
-            _visualBody.SetActive(false);
             _gameManager._IsTimeToShoot = false;
+            StopAllCoroutines();
             FindAnyObjectByType<ClickToFireScript>().SetClickButton(false);
             FindFirstObjectByType<WeaponScript>().StopSlowMo();
-            Destroy(gameObject);
+            FindFirstObjectByType<GunScript>().SetTarget();
+
+            
+            _visualBody.GetComponent<Animator>().SetBool("Defeated", true);
+
+            Destroy(gameObject, 2f);
             
             
 

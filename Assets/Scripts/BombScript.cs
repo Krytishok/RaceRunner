@@ -11,13 +11,13 @@ public class BombScript : MonoBehaviour
 
     [SerializeField] private float _bombSpeed;
 
+
     private bool _IsTriggered = false;
     private void OnTriggerEnter(Collider other)
     {
 
         if (other.gameObject.CompareTag("Player") && !_IsTriggered)
         {
-            Debug.Log("Collision" + " HP:" + FindFirstObjectByType<CarController>()._hp.ToString());
             FindFirstObjectByType<CarController>().GetDamage(_damage);
             _IsTriggered = true;
             _colliderObstacle.enabled = false;
@@ -31,5 +31,9 @@ public class BombScript : MonoBehaviour
     {
         _rb.linearVelocity = new Vector3(0, -20, -_bombSpeed);
         Destroy(gameObject, 3f);
+    }
+    public void SlowMo(float _speedModificator = 0.2f)
+    {
+        Destroy(gameObject);
     }
 }

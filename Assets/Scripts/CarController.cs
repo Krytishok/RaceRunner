@@ -78,7 +78,6 @@ public class CarController : MonoBehaviour
     {
         gameObject.tag = "Player";
         _rigidbody = GetComponent<Rigidbody>();
-        _rigidbody.linearVelocity = new Vector3(0, 0, -40);
         
         InitializeCustomization();
 

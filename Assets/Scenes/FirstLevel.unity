@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 84110661}
   - component: {fileID: 84110660}
   m_Layer: 5
-  m_Name: Button
+  m_Name: ClickToFireButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -771,6 +771,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 218691348}
   m_CullTransparentMesh: 1
+--- !u!1 &275115662
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 275115663}
+  - component: {fileID: 275115664}
+  m_Layer: 0
+  m_Name: CameraNode
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &275115663
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 275115662}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.9852191, z: -0.17129928, w: 0}
+  m_LocalPosition: {x: 0.97, y: 4, z: 48.09}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 330585546}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &275115664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 275115662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd3b377dd6045d142b37febe58f39482, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 0}
+  _offset: {x: 0, y: 5, z: 7}
 --- !u!1 &288936660
 GameObject:
   m_ObjectHideFlags: 0
@@ -1040,12 +1087,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.9852191, z: -0.17129928, w: 0}
-  m_LocalPosition: {x: 0.97, y: 4, z: 48.09}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 275115663}
   m_LocalEulerAnglesHint: {x: 19.727, y: 180, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
@@ -1103,9 +1150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5194b46dfb3a7d42ad8fd63fddb0c94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _animator: {fileID: 330585549}
-  _offset: {x: 0, y: 5, z: 7}
 --- !u!95 &330585549
 Animator:
   serializedVersion: 7
@@ -3105,7 +3150,7 @@ MonoBehaviour:
   minDistanceBetweenObstacles: 150
   difficultyIncreaseRate: 0.05
   maxObstaclesPerSection: 10
-  npcSpawnInterval: 4
+  npcSpawnInterval: 3
   disableObstaclesBeforeNPC: 1
   laneOffsetX: 20
   spawnHeight: 50
@@ -3140,7 +3185,7 @@ GameObject:
   - component: {fileID: 1702730973}
   - component: {fileID: 1702730974}
   m_Layer: 5
-  m_Name: ClickToFireButton
+  m_Name: ClickToFireController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4007,7 +4052,7 @@ GameObject:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 330585546}
+  - {fileID: 275115663}
   - {fileID: 1682178698}
   - {fileID: 410087041}
   - {fileID: 1865798576}

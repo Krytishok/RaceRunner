@@ -4,18 +4,13 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] public GameObject _player;
     [SerializeField] private Animator _animator;
 
-    public Vector3 _offset = new Vector3(0, 3.5f, 8f);
 
 
 
 
-    public void Start()
-    {
-        _player = FindFirstObjectByType<GameManager>()._selectedCar.gameObject;
-    }
+    
 
     public void CameraShake()
     {
@@ -36,11 +31,12 @@ public class CameraController : MonoBehaviour
         _animator.SetBool("GetNitro", flag);
     }
 
-
-
-    private void LateUpdate()
+    public void CameraToGun(bool flag)
     {
-        transform.position = _player.transform.position + _offset;
-
+        _animator.SetBool("GetWeapon", flag);
     }
+
+
+
+    
 }

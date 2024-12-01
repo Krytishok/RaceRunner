@@ -8163,6 +8163,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1074328407488664849}
+  - component: {fileID: 1037022762505058567}
   m_Layer: 0
   m_Name: Guns
   m_TagString: Untagged
@@ -8179,7 +8180,7 @@ Transform:
   m_GameObject: {fileID: 7561601049753120316}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.6158362, y: 1.0056059, z: -0.9564949}
+  m_LocalPosition: {x: 0.638, y: 1.0056059, z: -0.9564949}
   m_LocalScale: {x: 0.77953947, y: 0.7795394, z: 0.77953947}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8188,6 +8189,21 @@ Transform:
   - {fileID: 2027409073767864941}
   m_Father: {fileID: 7256515518396016258}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1037022762505058567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7561601049753120316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 228830661fd3f6541ba5947a59b2c189, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _target: {fileID: 0}
+  rotationSpeed: 5
+  _parent: {fileID: 2148656157120388383}
 --- !u!1 &7954272476124135646
 GameObject:
   m_ObjectHideFlags: 0

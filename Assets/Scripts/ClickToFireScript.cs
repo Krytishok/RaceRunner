@@ -7,6 +7,8 @@ public class ClickToFireScript : MonoBehaviour
     private CarController _player;
     private EnemyController _enemy;
 
+    private int _numberOfShots = 3;
+
 
     private void Start()
     {
@@ -22,6 +24,7 @@ public class ClickToFireScript : MonoBehaviour
 
     public void OnClick()
     {
+
         FindFirstObjectByType<EnemyController>().GetDamage(_player._firePower);
     }
 

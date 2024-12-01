@@ -18,6 +18,7 @@ public class WeaponScript : MonoBehaviour
     public void StopSlowMo()
     {
         _player._speedModificator = 1f;
+        FindFirstObjectByType<CameraController>().CameraToGun(false);
         StopAllCoroutines();
     }
 
@@ -25,6 +26,7 @@ public class WeaponScript : MonoBehaviour
     {
         _gameManager._IsTimeToShoot = true;
         _clickController.SetClickButton(true);
+        FindFirstObjectByType<CameraController>().CameraToGun(true);
         StartCoroutine(ShootDuration(_shootDuration));
     }
     
@@ -33,13 +35,15 @@ public class WeaponScript : MonoBehaviour
     {
         EnemyController _enemy = FindFirstObjectByType<EnemyController>();
         _player._speedModificator = 0.2f;
-        _enemy._speedModifier = 0.2f;
+        _enemy.SetSlowMo(0.2f);
+        FindFirstObjectByType<CameraController>().CameraToGun(true);
         yield return new WaitForSecondsRealtime(duration);
         _player._speedModificator = 1f;
-        _enemy._speedModifier = 1f;
-        FindFirstObjectByType<GameManager>()._IsTimeToShoot = false;
-        FindFirstObjectByType<ClickToFireScript>().SetClickButton(false);
+        _enemy.SetSlowMo(1f);
+        _gameManager._IsTimeToShoot = false;
+        _clickController.SetClickButton(false);
         _enemy.RestartTargetting();
+        StopSlowMo();
     }
 
 }
