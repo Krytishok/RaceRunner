@@ -35,6 +35,7 @@ public class EnemyController : MonoBehaviour
 
     private void Start()
     {
+        _health = Random.Range(5f, 10f);
         SpawnEnemy();
     }
 

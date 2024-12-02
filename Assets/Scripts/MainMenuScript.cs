@@ -73,9 +73,16 @@ public class MainMenuScript : MonoBehaviour
     public void PlayGame()
     {
 
-        SceneManager.LoadScene("FirstLevel");
         // Дополнительная мера передачи информации о текущей машинке в следующую сцену
-        DataManager.Instance._currentCarData = CarCollectionController.GetCurrentCarData();
+        if (CarCollectionController.GetCurrentCarData() != null && CarCollectionController.GetCurrentCarData()._costForBuyCar == 0)
+        {
+            DataManager.Instance._currentCarData = CarCollectionController.GetCurrentCarData();
+            SceneManager.LoadScene("FirstLevel");
+        }
+        else
+        {
+            Debug.Log("Incorrect Car");
+        }
     }
     public void ExitGame()
     {

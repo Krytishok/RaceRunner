@@ -235,6 +235,7 @@ public class CarController : MonoBehaviour
         yield return new WaitForSecondsRealtime(delay); // Ждём реальное время
         _rigidbody.linearVelocity -= new Vector3(0, 0, -_minSpeed);
         FindFirstObjectByType<CameraController>().CameraAcceleration(false);
+        yield return new WaitForSecondsRealtime(0.5f);
         _carEffectController.ResetNitro();
         _damageCoef = 1;
     }

@@ -3152,7 +3152,7 @@ MonoBehaviour:
   minDistanceBetweenObstacles: 150
   difficultyIncreaseRate: 0.05
   maxObstaclesPerSection: 10
-  npcSpawnInterval: 3
+  npcSpawnInterval: 10
   disableObstaclesBeforeNPC: 1
   laneOffsetX: 20
   spawnHeight: 50

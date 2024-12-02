@@ -1,4 +1,5 @@
 
+using System;
 using UnityEngine;
 
 public class CarCollectionController : MonoBehaviour
@@ -62,6 +63,7 @@ public class CarCollectionController : MonoBehaviour
         if (currentCarIndex >= 0 && currentCarIndex < cars.Length)
         {
             cars[currentCarIndex].SetActive(true);
+            InizializeCustomizationOfCar();
         }
 
     }
@@ -154,8 +156,11 @@ public class CarCollectionController : MonoBehaviour
             if (DataManager.Instance._numberOfCoins >= _carsData[currentCarIndex]._priceForBodies[_currentIndexOfTuning])
             {
                 DataManager.Instance._numberOfCoins -= _carsData[currentCarIndex]._priceForBodies[_currentIndexOfTuning];
+
                 //Инициализируем покупку в SO
                 _carsData[currentCarIndex]._priceForBodies[_currentIndexOfTuning] = 0;
+                _carsData[currentCarIndex].ChangeBodyID(_currentIndexOfTuning);
+
                 FindFirstObjectByType<MainMenuScript>().HideOrSpawnCustomizationButtons(true);
             } 
         }
@@ -166,6 +171,7 @@ public class CarCollectionController : MonoBehaviour
                 DataManager.Instance._numberOfCoins -= _carsData[currentCarIndex]._priceForEngines[_currentIndexOfTuning];
                 //Инициализируем покупку в SO
                 _carsData[currentCarIndex]._priceForEngines[_currentIndexOfTuning] = 0;
+                _carsData[currentCarIndex].ChangeEngineID(_currentIndexOfTuning);
                 FindFirstObjectByType<MainMenuScript>().HideOrSpawnCustomizationButtons(true);
 
             }
@@ -177,6 +183,7 @@ public class CarCollectionController : MonoBehaviour
                 DataManager.Instance._numberOfCoins -= _carsData[currentCarIndex]._priceForWheels[_currentIndexOfTuning];
                 //Инициализируем покупку в SO
                 _carsData[currentCarIndex]._priceForWheels[_currentIndexOfTuning] = 0;
+                _carsData[currentCarIndex].ChangeWheelsID(_currentIndexOfTuning);
                 FindFirstObjectByType<MainMenuScript>().HideOrSpawnCustomizationButtons(true);
             }
         }
@@ -187,6 +194,7 @@ public class CarCollectionController : MonoBehaviour
                 DataManager.Instance._numberOfCoins -= _carsData[currentCarIndex]._priceForWeapons[_currentIndexOfTuning];
                 //Инициализируем покупку в SO
                 _carsData[currentCarIndex]._priceForWeapons[_currentIndexOfTuning] = 0;
+                _carsData[currentCarIndex].ChangeWeaponID(_currentIndexOfTuning);
                 FindFirstObjectByType<MainMenuScript>().HideOrSpawnCustomizationButtons(true);
             }
         }

@@ -16,7 +16,7 @@ MonoBehaviour:
   _carPrefab: {fileID: 3008264972053466207, guid: ac4c91b86a59a2a4ca9c66758f5b4ac3,
     type: 3}
   _costForBuyCar: 0
-  _priceForBodies: 000000000000000000000000
+  _priceForBodies: 000000000200000003000000
   _priceForWheels: 000000000200000003000000
   _priceForEngines: 000000000200000003000000
   _priceForWeapons: 000000000200000003000000

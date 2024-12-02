@@ -20,8 +20,24 @@ public class ClickToFireScript : MonoBehaviour
         _camera = FindFirstObjectByType<CameraController>();
         _guns = FindFirstObjectByType<GunScript>();
 
+        InitializeNumberOfShots();
 
 
+
+    }
+    private void InitializeNumberOfShots()
+    {
+        int weaponIndex = DataManager.Instance._currentCarData._weaponId;
+        if(weaponIndex == 0 )
+        {
+            _numberOfShots = 3;
+        } else if(weaponIndex == 1 )
+        {
+            _numberOfShots = 5;
+        } else if(weaponIndex == 2 )
+        {
+            _numberOfShots = 2;
+        }
     }
     public void SetClickButton(bool flag)
     {

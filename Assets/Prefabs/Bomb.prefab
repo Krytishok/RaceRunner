@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ad7ca942efa69a4390658b76bdb3392, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 5
+  _damage: 10
   _colliderObstacle: {fileID: 8758015503901865012}
   _explosion: {fileID: 5508368314157576414}
   _body: {fileID: 7396768365548187150}

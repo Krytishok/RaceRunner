@@ -9826,7 +9826,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c0d0204fe45f5f44ad5e768cc6b3955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 0
+  _damage: 15
   _colliderObstacle: {fileID: 6738830787389361014}
   _explosion: {fileID: 9074462243600159897}
   _body: {fileID: 6296781856675086068}
