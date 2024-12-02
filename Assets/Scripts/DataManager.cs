@@ -51,6 +51,7 @@ public class DataManager : MonoBehaviour
             // Если экземпляр уже существует, уничтожаем текущий объект, чтобы сохранить единственность
             Destroy(gameObject);
         }
+
     }
 
     public static void SaveData(ScriptableObject data, string key)
