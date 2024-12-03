@@ -35,8 +35,18 @@ public class EnemyController : MonoBehaviour
 
     private void Start()
     {
-        _health = Random.Range(5f, 10f);
         SpawnEnemy();
+    }
+    public void InitializeEnemy(float modificator)
+    {
+        _health *= modificator;
+        _movementSpeedOfEnemy *= modificator;
+        _timeToReachPosition *= modificator;
+        _timeToGetPositionMin *= modificator;
+        _timeToGetPositionMax *= modificator;
+        _timeToGetPositionMin *= modificator;
+        _timeToGetPositionMax *= modificator;
+
     }
 
     public void SpawnEnemy()

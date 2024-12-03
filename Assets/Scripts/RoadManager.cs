@@ -333,6 +333,9 @@ public class RoadManager : MonoBehaviour
             // Смещение NPC над секцией
             currentNPC = Instantiate(npcPrefab, npcPosition, Quaternion.identity);
 
+            //Используем инициализацию сложности NPC с определенным модификатором. Например: 1.1f увеличит все параметры на 10%
+            currentNPC.GetComponent<EnemyController>().InitializeEnemy(1f);
+
             Debug.Log("NPC Spawned");
         }
     }
