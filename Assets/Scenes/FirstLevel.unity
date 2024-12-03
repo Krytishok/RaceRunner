@@ -3149,10 +3149,10 @@ MonoBehaviour:
   initialSections: 3
   sectionLength: 577.2
   despawnDistance: 1
-  minDistanceBetweenObstacles: 150
-  difficultyIncreaseRate: 0.05
-  maxObstaclesPerSection: 10
-  npcSpawnInterval: 10
+  minDistanceBetweenObstacles: 170
+  difficultyIncreaseRate: 0.1
+  maxObstaclesPerSection: 9
+  npcSpawnInterval: 5
   disableObstaclesBeforeNPC: 1
   laneOffsetX: 20
   spawnHeight: 50
