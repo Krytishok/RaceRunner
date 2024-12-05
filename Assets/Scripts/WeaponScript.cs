@@ -19,6 +19,7 @@ public class WeaponScript : MonoBehaviour
     public void StopSlowMo()
     {
         _player._speedModificator = 1f;
+        _player.ChangeDamageCoef(1f);
         FindFirstObjectByType<CameraController>().CameraToGun(false);
         _clickController.SetClickButton(false);
         _audioController.SlowMoEffect(1f);
@@ -29,6 +30,7 @@ public class WeaponScript : MonoBehaviour
     public void StartSlowMo()
     {
         _gameManager._IsTimeToShoot = true;
+        _player.ChangeDamageCoef(0f);
         _clickController.SetClickButton(true);
         _audioController.SlowMoEffect(0.2f);
         FindFirstObjectByType<CameraController>().CameraToGun(true);

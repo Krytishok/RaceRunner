@@ -16,7 +16,7 @@ public class UI_Manager : MonoBehaviour
     [SerializeField] TextMeshProUGUI _distanceTraveledMenuText;
 
     private bool _isPause = false;
-    public int _health;
+    public float _health;
 
     private Transform _playerPosition;
     private float _distanceTraveled = 0;

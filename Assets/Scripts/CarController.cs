@@ -22,7 +22,7 @@ public class CarController : MonoBehaviour
     //Car properties
     [SerializeField] private float _tiltAngle;
     [SerializeField] public float _turningSpeed;
-    [SerializeField] public int _hp;
+    [SerializeField] public float _hp;
     [SerializeField] public float _firePower;
     [SerializeField] public float _nitroTime;
 
@@ -55,7 +55,7 @@ public class CarController : MonoBehaviour
 
     //auxiliary variables
     private float _tilt;
-    private int _damageCoef = 1;
+    private float _damageCoef = 1;
     private float _moveCoef = 1;
     private bool _isMoving = true;
 
@@ -238,6 +238,10 @@ public class CarController : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.5f);
         _carEffectController.ResetNitro();
         _damageCoef = 1;
+    }
+    public void ChangeDamageCoef(float damageCoef)
+    {
+        _damageCoef = damageCoef;
     }
 
     private void DestroyCar()
