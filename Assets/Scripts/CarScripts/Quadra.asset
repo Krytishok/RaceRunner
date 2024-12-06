@@ -23,7 +23,7 @@ MonoBehaviour:
   _bodyId: 0
   _engineId: 0
   _wheelsId: 0
-  _weaponId: 1
+  _weaponId: 0
   _hpConfig: 230000002d0000003c000000
   _nitroConfig:
   - 6

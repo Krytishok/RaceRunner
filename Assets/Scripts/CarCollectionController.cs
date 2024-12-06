@@ -100,6 +100,8 @@ public class CarCollectionController : MonoBehaviour
 
             DataManager.SaveData(_carsData[currentCarIndex], _carsData[currentCarIndex].name);
 
+            PlayerPrefs.SetInt("Coins", DataManager.Instance._numberOfCoins);
+
 
 
         }
@@ -162,6 +164,8 @@ public class CarCollectionController : MonoBehaviour
                 _carsData[currentCarIndex].ChangeBodyID(_currentIndexOfTuning);
 
                 FindFirstObjectByType<MainMenuScript>().HideOrSpawnCustomizationButtons(true);
+
+                PlayerPrefs.SetInt("Coins", DataManager.Instance._numberOfCoins);
             } 
         }
         else if (_whichTuningToShow == "Engine")
@@ -174,6 +178,8 @@ public class CarCollectionController : MonoBehaviour
                 _carsData[currentCarIndex].ChangeEngineID(_currentIndexOfTuning);
                 FindFirstObjectByType<MainMenuScript>().HideOrSpawnCustomizationButtons(true);
 
+                PlayerPrefs.SetInt("Coins", DataManager.Instance._numberOfCoins);
+
             }
         }
         else if (_whichTuningToShow == "Wheels")
@@ -185,6 +191,8 @@ public class CarCollectionController : MonoBehaviour
                 _carsData[currentCarIndex]._priceForWheels[_currentIndexOfTuning] = 0;
                 _carsData[currentCarIndex].ChangeWheelsID(_currentIndexOfTuning);
                 FindFirstObjectByType<MainMenuScript>().HideOrSpawnCustomizationButtons(true);
+
+                PlayerPrefs.SetInt("Coins", DataManager.Instance._numberOfCoins);
             }
         }
         else if (_whichTuningToShow == "Weapon")
@@ -196,6 +204,8 @@ public class CarCollectionController : MonoBehaviour
                 _carsData[currentCarIndex]._priceForWeapons[_currentIndexOfTuning] = 0;
                 _carsData[currentCarIndex].ChangeWeaponID(_currentIndexOfTuning);
                 FindFirstObjectByType<MainMenuScript>().HideOrSpawnCustomizationButtons(true);
+
+                PlayerPrefs.SetInt("Coins", DataManager.Instance._numberOfCoins);
             }
         }
         //Обновляем визуальные данные

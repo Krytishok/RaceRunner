@@ -1,3 +1,4 @@
+using NUnit.Framework.Internal;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -34,6 +35,7 @@ public class MainMenuScript : MonoBehaviour
     [SerializeField] TextMeshProUGUI _nitroTimeNumber;
     [SerializeField] TextMeshProUGUI _controllabilityNumber;
     [SerializeField] TextMeshProUGUI _firePowerNumber;
+    [SerializeField] TextMeshProUGUI _educationText;
 
 
 
@@ -291,6 +293,11 @@ public class MainMenuScript : MonoBehaviour
         
         
 
+    }
+
+    public void ChangeEducationText(string _text)
+    {
+        _educationText.text = _text;
     }
     
     

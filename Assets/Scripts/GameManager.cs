@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     private CarDataScript _currentCarData;
 
     //List of Playable cars
+    public GameObject[] _carPrefabs;
     public CarDataScript[] cars;
     public GameObject _selectedCar;
 
@@ -39,10 +40,11 @@ public class GameManager : MonoBehaviour
     public void Awake()
     {
 
+
         if (DataManager.Instance._currentCarData._carPrefab == null)
         {
             Debug.Log("SelectedCarIsNull");
-            _selectedCar = cars[0]._carPrefab;
+            _selectedCar = _carPrefabs[PlayerPrefs.GetInt("currentCarIndex")];
         }
         else
         {
