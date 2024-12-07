@@ -30,13 +30,13 @@ public class ClickToFireScript : MonoBehaviour
         int weaponIndex = DataManager.Instance._currentCarData._weaponId;
         if(weaponIndex == 0 )
         {
-            _numberOfShots = 3;
+            _numberOfShots = 4;
         } else if(weaponIndex == 1 )
         {
-            _numberOfShots = 5;
+            _numberOfShots = 2;
         } else if(weaponIndex == 2 )
         {
-            _numberOfShots = 2;
+            _numberOfShots = 1;
         }
     }
     public void SetClickButton(bool flag)

@@ -39,17 +39,18 @@ public class GameManager : MonoBehaviour
 
     public void Awake()
     {
+        DataManager.Instance._currentCarData._carPrefab = _selectedCar = _carPrefabs[PlayerPrefs.GetInt("currentCarIndex")];
+        _selectedCar = DataManager.Instance._currentCarData._carPrefab.gameObject;
 
-
-        if (DataManager.Instance._currentCarData._carPrefab == null)
-        {
-            Debug.Log("SelectedCarIsNull");
-            _selectedCar = _carPrefabs[PlayerPrefs.GetInt("currentCarIndex")];
-        }
-        else
-        {
-            _selectedCar = DataManager.Instance._currentCarData._carPrefab.gameObject;
-        }
+        //if (DataManager.Instance._currentCarData._carPrefab == null)
+        //{
+        //    Debug.Log("SelectedCarIsNull");
+        //    _selectedCar = _carPrefabs[PlayerPrefs.GetInt("currentCarIndex")];
+        //}
+        //else
+        //{
+        //    _selectedCar = DataManager.Instance._currentCarData._carPrefab.gameObject;
+        //}
 
 
         _selectedCar = Instantiate(_selectedCar, new Vector3(3,0, 30), new Quaternion(0, 180, 0, 0));

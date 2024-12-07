@@ -21,7 +21,7 @@ MonoBehaviour:
   _priceForEngines: 000000000000000000000000
   _priceForWeapons: 000000000200000003000000
   _bodyId: 0
-  _engineId: 0
+  _engineId: 2
   _wheelsId: 0
   _weaponId: 0
   _hpConfig: 0a0000001400000023000000
