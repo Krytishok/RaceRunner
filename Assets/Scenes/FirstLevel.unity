@@ -3094,7 +3094,7 @@ MonoBehaviour:
   sectionLength: 577.2
   despawnDistance: 1
   minDistanceBetweenObstacles: 170
-  difficultyIncreaseRate: 0.1
+  difficultyIncreaseRate: 0.15
   maxObstaclesPerSection: 9
   npcSpawnInterval: 5
   disableObstaclesBeforeNPC: 1
