@@ -16,15 +16,26 @@ public class CarEffectController : MonoBehaviour
 
     private float _particleRate;
 
+    private bool _checkWheel=true;
+
     private void Start()
     {
-        
+        CheckIonWheels();
+    }
+
+    private void CheckIonWheels()
+    {
+        CarDataScript _carData = DataManager.Instance._currentCarData;
+        if (_carData._wheelsId == 2 && (_carData._nameOfCar == "Delorian" || _carData._nameOfCar == "Quadra"))
+        {
+            _checkWheel = false;
+        }
     }
 
 
     public void UpdateEffect(float move)
     {
-        if(Mathf.Abs(move) == _valueToStartParticles)
+        if(Mathf.Abs(move) == _valueToStartParticles && _checkWheel)
         {
             _particleSystemLeft.Play();
             _particleSystemRight.Play();

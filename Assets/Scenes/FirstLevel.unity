@@ -4151,6 +4151,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4580631644880016262, guid: 59dd903821de45f42be178418a9d2ada,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4580631644880016262, guid: 59dd903821de45f42be178418a9d2ada,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5119160024861356388, guid: 59dd903821de45f42be178418a9d2ada,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4205,6 +4215,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RoadSection
+      objectReference: {fileID: 0}
+    - target: {fileID: 6448080970756724155, guid: 59dd903821de45f42be178418a9d2ada,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7457760179642736936, guid: 59dd903821de45f42be178418a9d2ada,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7999167166296530731, guid: 59dd903821de45f42be178418a9d2ada,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7999167166296530731, guid: 59dd903821de45f42be178418a9d2ada,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
