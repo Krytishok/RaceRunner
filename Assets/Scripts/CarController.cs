@@ -91,7 +91,10 @@ public class CarController : MonoBehaviour
         _audio.PlayEngine();
     }
 
-    public float MinSpeedOfCar() { return _minSpeed; }
+    public void ChangeMoveCoef(float coef)
+    {
+        _moveCoef = coef;
+    }
 
 
 
@@ -131,6 +134,7 @@ public class CarController : MonoBehaviour
                 -Math.Clamp(Mathf.Abs(_rigidbody.linearVelocity.z), _minSpeed, _maxSpeed) * _speedModificator);
         }
     }
+
 
 
 
