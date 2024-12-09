@@ -197,7 +197,7 @@ public class RoadManager : MonoBehaviour
 
     private void SpawnCoins(GameObject section, List<Vector3> obstaclePositions, List<Vector3> coinPositions)
     {
-        int coinsPerSection = 50;
+        int coinsPerSection = 8;
 
         for (int j = 0; j < coinsPerSection; j++)
         {
