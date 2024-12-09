@@ -46,6 +46,8 @@ public class RoadManager : MonoBehaviour
     private int weaponZoneCounter = 0; // Счётчик для отслеживания секций между WeaponZone
     private int PvPcount = 0;
 
+    private float NPC_Level = 1f;
+
 
     //Managers
     private GameManager _gameManager;
@@ -110,6 +112,10 @@ public class RoadManager : MonoBehaviour
                 SpawnNPC(newSection);
                 PvPcount = 0;
                 disableObstacles = false;
+                if (NPC_Level <= 1.5f)
+                {
+                    NPC_Level += 0.05f;
+                }
                
             }
         }
@@ -191,7 +197,7 @@ public class RoadManager : MonoBehaviour
 
     private void SpawnCoins(GameObject section, List<Vector3> obstaclePositions, List<Vector3> coinPositions)
     {
-        int coinsPerSection = 8;
+        int coinsPerSection = 50;
 
         for (int j = 0; j < coinsPerSection; j++)
         {
@@ -256,6 +262,7 @@ public class RoadManager : MonoBehaviour
             }
         }
     }
+
 
     private void SpawnBonuses(GameObject section, List<Vector3> obstaclePositions, List<Vector3> coinPositions)
     {
@@ -334,7 +341,7 @@ public class RoadManager : MonoBehaviour
             currentNPC = Instantiate(npcPrefab, npcPosition, Quaternion.identity);
 
             //Используем инициализацию сложности NPC с определенным модификатором. Например: 1.1f увеличит все параметры на 10%
-            currentNPC.GetComponent<EnemyController>().InitializeEnemy(1f);
+            currentNPC.GetComponent<EnemyController>().InitializeEnemy(NPC_Level);
 
             Debug.Log("NPC Spawned");
         }
