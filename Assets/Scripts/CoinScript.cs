@@ -7,6 +7,7 @@ public class CoinScript : MonoBehaviour
 {
     [SerializeField] float _rotation_speed;
     [SerializeField] GameObject _body;
+    [SerializeField] ParticleSystem _pickUpParticle;
 
     [SerializeField] AudioSource _pickUpSound;
     void Start()
@@ -19,6 +20,7 @@ public class CoinScript : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            _pickUpParticle.Play();
             FindFirstObjectByType<CoinManager>().AddOne();
             _body.SetActive(false);
             _pickUpSound.Play();
