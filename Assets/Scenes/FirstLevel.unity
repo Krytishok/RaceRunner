@@ -3186,6 +3186,9 @@ MonoBehaviour:
   - {fileID: 7723942495232824356, guid: 003acb84e4be8f842bfbf5dc523ca568, type: 3}
   - {fileID: 186127497100362042, guid: fe7f55dc857f45246b73ee8a2fe0d148, type: 3}
   - {fileID: 186127497100362042, guid: fe7f55dc857f45246b73ee8a2fe0d148, type: 3}
+  - {fileID: 186127497100362042, guid: fe7f55dc857f45246b73ee8a2fe0d148, type: 3}
+  - {fileID: 6588068486144254929, guid: b2a144e60cf3f6e4abbe6c5884fd1319, type: 3}
+  - {fileID: 6588068486144254929, guid: b2a144e60cf3f6e4abbe6c5884fd1319, type: 3}
   coinPrefabs:
   - {fileID: 2519256228215097869, guid: 63c202c2fcaeed143b031d07eaac44be, type: 3}
   npcPrefab: {fileID: 3840341151668389699, guid: f58b0febcf3ce404097ec2536671c83f,
