@@ -1249,7 +1249,7 @@ Light:
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_ColorTemperature: 4157
+  m_ColorTemperature: 10360
   m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
@@ -3179,13 +3179,13 @@ MonoBehaviour:
   startSectionPrefabs:
   - {fileID: 5538410024181082014}
   obstaclePrefabs:
-  - {fileID: 5574941212075776204, guid: fe7f55dc857f45246b73ee8a2fe0d148, type: 3}
   - {fileID: 7723942495232824356, guid: 003acb84e4be8f842bfbf5dc523ca568, type: 3}
-  - {fileID: 7723942495232824356, guid: e0434d38142b3ed4d8bfb8fa02eb0ead, type: 3}
+  - {fileID: 7723942495232824356, guid: 003acb84e4be8f842bfbf5dc523ca568, type: 3}
+  - {fileID: 7723942495232824356, guid: 003acb84e4be8f842bfbf5dc523ca568, type: 3}
   - {fileID: 6588068486144254929, guid: 34ea6d7a8aab105439a0d0341fb28b2b, type: 3}
   - {fileID: 6588068486144254929, guid: 34ea6d7a8aab105439a0d0341fb28b2b, type: 3}
-  - {fileID: 5574941212075776204, guid: fe7f55dc857f45246b73ee8a2fe0d148, type: 3}
-  - {fileID: 5574941212075776204, guid: fe7f55dc857f45246b73ee8a2fe0d148, type: 3}
+  - {fileID: 186127497100362042, guid: fe7f55dc857f45246b73ee8a2fe0d148, type: 3}
+  - {fileID: 186127497100362042, guid: fe7f55dc857f45246b73ee8a2fe0d148, type: 3}
   coinPrefabs:
   - {fileID: 2519256228215097869, guid: 63c202c2fcaeed143b031d07eaac44be, type: 3}
   npcPrefab: {fileID: 3840341151668389699, guid: f58b0febcf3ce404097ec2536671c83f,
