@@ -46,6 +46,7 @@ public class CarController : MonoBehaviour
     //EffectController
     [SerializeField] private CarEffectController _carEffectController;
     [SerializeField] private CarAudioScript _audio;
+    [SerializeField] private Animator _blinkAnimator;
 
 
 
@@ -65,6 +66,7 @@ public class CarController : MonoBehaviour
     private Rigidbody _rigidbody;
 
     private UI_Manager _uiManager;
+    private CameraController _camera;
 
 
 
@@ -79,6 +81,8 @@ public class CarController : MonoBehaviour
         
         InitializeCustomization();
 
+
+        _camera = FindFirstObjectByType<CameraController>();
         _uiManager = FindFirstObjectByType<UI_Manager>();
         _uiManager._health = _hp;
 
@@ -109,6 +113,7 @@ public class CarController : MonoBehaviour
 
         // Получаем ввод от клавиатуры (стрелки влево и вправо или A и D)
         float move = Input.GetAxis("Horizontal") * _speedModificator * _moveCoef * -1;
+        Debug.Log(move);
 
         UpdatePositionAndRotation(move);
 
@@ -219,7 +224,9 @@ public class CarController : MonoBehaviour
         }
         else
         {
-            FindFirstObjectByType<CameraController>().CameraShake();
+            _camera.CameraShake();
+
+            StartCoroutine(Blinking());
         }
     }
 
@@ -227,7 +234,7 @@ public class CarController : MonoBehaviour
     {
         _rigidbody.linearVelocity += new Vector3(0, 0, -_maxSpeed);
         _damageCoef = 0;
-        FindFirstObjectByType<CameraController>().CameraAcceleration(true);
+        _camera.CameraAcceleration(true);
         _carEffectController.SetNitro();
         StartCoroutine(NitroDelay(_nitroTime));
         
@@ -238,7 +245,7 @@ public class CarController : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(delay); // Ждём реальное время
         _rigidbody.linearVelocity -= new Vector3(0, 0, -_minSpeed);
-        FindFirstObjectByType<CameraController>().CameraAcceleration(false);
+        _camera.CameraAcceleration(false);
         yield return new WaitForSecondsRealtime(0.5f);
         _carEffectController.ResetNitro();
         _damageCoef = 1;
@@ -255,12 +262,41 @@ public class CarController : MonoBehaviour
 
         
 
-        _moveCoef = 0;
+        _moveCoef = 0f;
         _carEffectController.Explosion();
         _wheelColliderBL.gameObject.SetActive(false);
         _wheelColliderBR.gameObject.SetActive(false);
         _wheelColliderFL.gameObject.SetActive(false);
         _wheelColliderFR.gameObject.SetActive(false);
+    }
+
+    public void PushFromBorder(Vector3 direction, float force, int damage)
+    {
+        _rigidbody.linearVelocity = new Vector3(direction.x * force, _rigidbody.linearVelocity.y, _rigidbody.linearVelocity.z);
+        GetDamage(damage);
+        StartCoroutine(Delay(0.8f));
+    }
+
+    private IEnumerator Blinking()
+    {
+        if (_isMoving && _damageCoef != 0)
+        {
+            
+            _blinkAnimator.SetBool("Blink", true);
+            yield return new WaitForSeconds(0.5f);
+            _blinkAnimator.SetBool("Blink", false);
+
+        }
+    }
+
+    private IEnumerator Delay(float delay)
+    {
+        if (_isMoving)
+        {
+            ChangeMoveCoef(0f);
+            yield return new WaitForSeconds(delay);
+            ChangeMoveCoef(1f);
+        }
     }
 
 }

@@ -6452,6 +6452,7 @@ MonoBehaviour:
   _customizationScript: {fileID: 5929539600743678435}
   _carEffectController: {fileID: 6327192881544298076}
   _audio: {fileID: 2584703362337007319}
+  _blinkAnimator: {fileID: 3205488003230907509}
   _speed: 0
   _speedModificator: 1
 --- !u!1 &3506333267691709675
@@ -6925,6 +6926,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7256515518396016258}
   - component: {fileID: 5929539600743678435}
+  - component: {fileID: 3205488003230907509}
   m_Layer: 0
   m_Name: Quadra
   m_TagString: Untagged
@@ -7011,6 +7013,28 @@ MonoBehaviour:
   - {fileID: 4467318241479604573}
   - {fileID: 4467318241479604573}
   - {fileID: 4467318241479604573}
+--- !u!95 &3205488003230907509
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4370985774299159038}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 94a51e984c99d9941aa59b119dd1ef73, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4467318241479604573
 GameObject:
   m_ObjectHideFlags: 0

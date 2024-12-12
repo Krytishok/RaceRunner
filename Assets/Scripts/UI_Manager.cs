@@ -33,7 +33,8 @@ public class UI_Manager : MonoBehaviour
     {
         while (true)
         {
-            _distanceTraveledNumber.text = Mathf.Abs(MathF.Round(_playerPosition.position.z / 1000, 1)).ToString();
+            _distanceTraveled = Mathf.Abs(MathF.Round(_playerPosition.position.z / 1000, 1));
+            _distanceTraveledNumber.text = _distanceTraveled.ToString();
 
             Debug.Log("Distance Updated");
 
@@ -83,5 +84,20 @@ public class UI_Manager : MonoBehaviour
         _healthbar.fillAmount = currentHealth/_health;
         Debug.Log("fillAmount " + (currentHealth / _health).ToString());
         Debug.Log("Current Health" + currentHealth.ToString() + " _health " + _health.ToString());
+    }
+
+    public void UpdateBestScore()
+    {
+        if (PlayerPrefs.HasKey(("score")))
+        {
+            if (PlayerPrefs.GetFloat("score") < _distanceTraveled)
+            {
+                PlayerPrefs.SetFloat("score", _distanceTraveled);
+            }
+        }
+        else
+        {
+            PlayerPrefs.SetFloat("score", _distanceTraveled);
+        }
     }
 }

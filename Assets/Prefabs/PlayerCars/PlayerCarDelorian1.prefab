@@ -1286,8 +1286,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7520118684500184357}
+  - component: {fileID: 4877179005448796608}
   m_Layer: 0
-  m_Name: MainBody
+  m_Name: MainBodyDelorian
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1314,6 +1315,28 @@ Transform:
   - {fileID: 7795977063857540987}
   m_Father: {fileID: 7256515518396016258}
   m_LocalEulerAnglesHint: {x: 0, y: -0.876, z: 0}
+--- !u!95 &4877179005448796608
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670852110459538379}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 764f56138df76714ebf755cbc686fb2e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1714365866639673916
 GameObject:
   m_ObjectHideFlags: 0
@@ -7631,6 +7654,7 @@ MonoBehaviour:
   _customizationScript: {fileID: 5929539600743678435}
   _carEffectController: {fileID: 6327192881544298076}
   _audio: {fileID: 2584703362337007319}
+  _blinkAnimator: {fileID: 4877179005448796608}
   _speed: 0
   _speedModificator: 1
 --- !u!1 &3039117885750215392

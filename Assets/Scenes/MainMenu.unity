@@ -615,7 +615,8 @@ PrefabInstance:
       value: EnergyHoney (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7799789376592451251, guid: 96b537cc63187844894c9e8cae94ca55, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96b537cc63187844894c9e8cae94ca55, type: 3}
@@ -3360,7 +3361,8 @@ PrefabInstance:
       value: EnergyHoney
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7799789376592451251, guid: 96b537cc63187844894c9e8cae94ca55, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96b537cc63187844894c9e8cae94ca55, type: 3}

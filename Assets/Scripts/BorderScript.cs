@@ -1,38 +1,24 @@
+using Boxophobic.Utils;
 using UnityEngine;
 
 public class BorderScript : MonoBehaviour
 {
-    [SerializeField] private float bounceForce = 20f; // Сила отталкивания
+    private int _damage = 7;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Rigidbody rb = other.GetComponent<Rigidbody>();
+            // Определяем направление отталкивания (от центра границы к машинке)
+            Vector3 pushDirection = other.transform.position - transform.position;
 
-            if (rb != null)
-            {
-                // Определяем направление отталкивания (направление от границы к машине)
-                Vector3 bounceDirection = (other.transform.position - transform.position).normalized;
+            // Указываем силу отталкивания
+            float pushForce = 2f; // Настраиваемая величина
 
-                // Убираем движение вдоль оси Z (только горизонтальное)
-                bounceDirection.z = 0;
-
-                // Добавляем силу отталкивания
-                rb.AddForce(bounceDirection * bounceForce, ForceMode.Impulse);
-
-                // Отключаем движение машины временно
-                other.GetComponent<CarController>()?.ChangeMoveCoef(0f);
-            }
+            // Отталкиваем машинку
+            other.GetComponent<CarController>().PushFromBorder(pushDirection, pushForce, _damage);
         }
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            // Восстанавливаем движение
-            other.GetComponent<CarController>()?.ChangeMoveCoef(1f);
-        }
-    }
+   
 }
