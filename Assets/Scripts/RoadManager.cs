@@ -6,7 +6,8 @@ public class RoadManager : MonoBehaviour
 {
     public GameObject[] roadSectionPrefabs;       // Массив префабов секций дороги
     public GameObject[] startSectionPrefabs;      // Начальные секции дороги
-    public GameObject[] obstaclePrefabs;          // Массив префабов препятствий
+    public GameObject[] obstaclePrefabs;
+    public GameObject[] ActiveobstaclePrefabs;   // Массив префабов препятствий
     public GameObject[] coinPrefabs;
     public GameObject npcPrefab;// Префаб NPC
     public GameObject WeaponZone;
@@ -16,9 +17,9 @@ public class RoadManager : MonoBehaviour
     public int despawnDistance = 2;               // Расстояние для удаления старой секции
 
     public float minDistanceBetweenObstacles = 15f; // Минимальное расстояние между препятствиями
-    public float difficultyIncreaseRate = 0.05f;     // Скорость роста сложности
+    public float difficultyIncreaseRate = 0.15f;     // Скорость роста сложности
     public float maxObstaclesPerSection = 7;       // Максимальное количество препятствий на сегмент при высокой сложности
-    private float difficultyLevel = 1f;             // Текущий уровень сложности
+    private float difficultyLevel = 1.5f;             // Текущий уровень сложности
 
     private Queue<GameObject> activeSections = new Queue<GameObject>(); // Очередь активных секций
     private Vector3 nextPosition;                 // Позиция для следующего сегмента
@@ -48,6 +49,12 @@ public class RoadManager : MonoBehaviour
 
     private float NPC_Level = 1f;
 
+    private bool eventzone = false;
+    public int counttoevent = 1;
+    public int countObstelceInEvetZone = 1;
+    private GameObject[] ActiveObstcle;
+    private int obstaclesPerSection = 0;
+
 
     //Managers
     private GameManager _gameManager;
@@ -56,6 +63,12 @@ public class RoadManager : MonoBehaviour
     {
         _gameManager = FindFirstObjectByType<GameManager>();
         nextPosition = new Vector3(-17.27f, -29.843f, (-635.73f - sectionLength * (startSectionPrefabs.Length - 1)));
+
+        ActiveObstcle = new GameObject[countObstelceInEvetZone];
+        for (int i = 0; i < countObstelceInEvetZone; i++)
+        {
+            ActiveObstcle[i] = ActiveobstaclePrefabs[Random.Range(0, ActiveobstaclePrefabs.Length)];
+        }
 
         foreach (var section in startSectionPrefabs)
         {
@@ -123,8 +136,16 @@ public class RoadManager : MonoBehaviour
         {
             // Генерация препятствий и монет только если NPC отсутствует
             SpawnObstacles(newSection, obstaclePositions);
-            SpawnCoins(newSection, obstaclePositions, coinPositions);
-            SpawnBonuses(newSection, obstaclePositions, coinPositions);
+            if (!eventzone)
+            {
+                SpawnCoins(newSection, obstaclePositions, coinPositions);
+                SpawnBonuses(newSection, obstaclePositions, coinPositions);
+                for (int ii = 0; ii < countObstelceInEvetZone; ii++)
+                {
+                    ActiveObstcle[ii] = ActiveobstaclePrefabs[Random.Range(0, ActiveobstaclePrefabs.Length)];
+                }
+
+            }
             difficultyLevel += difficultyIncreaseRate;
             if (PvPcount < npcSpawnInterval)
             {
@@ -140,17 +161,34 @@ public class RoadManager : MonoBehaviour
             weaponZoneCounter = 0; // Сбрасываем счётчик
         }
         sectionCounter++;
-        
+        if (sectionCounter % npcSpawnInterval > npcSpawnInterval / 3 && sectionCounter % npcSpawnInterval < (npcSpawnInterval / 3) * 2)
+        {
+            eventzone = true;
+        } else { eventzone = false; }
+
         nextPosition += new Vector3(0, 0, -sectionLength);
     }
 
-    private void SpawnObstacles(GameObject section, List<Vector3> obstaclePositions)
+    public void SpawnObstacles(GameObject section, List<Vector3> obstaclePositions)
     {
-        int obstaclesPerSection = (int)Mathf.Min(difficultyLevel * 2f, maxObstaclesPerSection);
+        if (eventzone)
+        {
+            obstaclesPerSection = (int)maxObstaclesPerSection;
+        }
+        else 
+        { 
+            obstaclesPerSection = (int)Mathf.Min(difficultyLevel * 2f, maxObstaclesPerSection); 
+        }
+       
 
         for (int i = 0; i < obstaclesPerSection; i++)
         {
             GameObject obstaclePrefab = obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)];
+            if (eventzone)
+            {
+                obstaclePrefab = ActiveObstcle[Random.Range(0, ActiveObstcle.Length)];
+            }
+            
             Collider obstacleCollider = obstaclePrefab.GetComponent<Collider>();
             float obstacleSize = obstacleCollider ? obstacleCollider.bounds.size.z : 8f;
 
