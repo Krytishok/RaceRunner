@@ -10,7 +10,7 @@ public class AudioManagerController : MonoBehaviour
     }
     public void StopMusic()
     {
-        _audio[0].Stop();
+        _audio[0].Pause();
     }
 
     public void SlowMoEffect(float modificator)

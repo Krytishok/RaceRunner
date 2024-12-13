@@ -113,7 +113,6 @@ public class CarController : MonoBehaviour
 
         // Получаем ввод от клавиатуры (стрелки влево и вправо или A и D)
         float move = Input.GetAxis("Horizontal") * _speedModificator * _moveCoef * -1;
-        Debug.Log(move);
 
         UpdatePositionAndRotation(move);
 
@@ -269,6 +268,21 @@ public class CarController : MonoBehaviour
         _wheelColliderFL.gameObject.SetActive(false);
         _wheelColliderFR.gameObject.SetActive(false);
     }
+    public void RespawnCar()
+    {
+        _isMoving = true;
+        _moveCoef = 1f;
+
+        _wheelColliderBL.gameObject.SetActive(true);
+        _wheelColliderBR.gameObject.SetActive(true);
+        _wheelColliderFL.gameObject.SetActive(true);
+        _wheelColliderFR.gameObject.SetActive(true);
+
+        InitializeCustomization();
+        _uiManager.UpdateHealthBar(_hp);
+
+    }
+
 
     public void PushFromBorder(Vector3 direction, float force, int damage)
     {

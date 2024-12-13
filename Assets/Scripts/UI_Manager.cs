@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using YG;
 
 
 public class UI_Manager : MonoBehaviour
@@ -34,7 +35,7 @@ public class UI_Manager : MonoBehaviour
         while (true)
         {
             _distanceTraveled = Mathf.Abs(MathF.Round(_playerPosition.position.z / 1000, 1));
-            _distanceTraveledNumber.text = _distanceTraveled.ToString();
+            _distanceTraveledNumber.text = _distanceTraveled.ToString() + " КМ";
 
             Debug.Log("Distance Updated");
 
@@ -55,6 +56,7 @@ public class UI_Manager : MonoBehaviour
         StopAllCoroutines();
         _distanceTraveledMenuText.text = _distanceTraveledNumber.text;
         _distanceTraveledNumber.text = "";
+        UpdateBestScore();
 
     }
     public void PauseButtonLogic()
@@ -64,10 +66,14 @@ public class UI_Manager : MonoBehaviour
             Time.timeScale = 0f;
             _isPause = true;
             PauseBar.SetActive(true);
+            FindFirstObjectByType<AudioManagerController>().StopMusic();
+            FindFirstObjectByType<CarAudioScript>().StopEngine();
         }
         else
         {
             PauseBar.SetActive(false);
+            FindFirstObjectByType<AudioManagerController>().StartMusic();
+            FindFirstObjectByType<CarAudioScript>().PlayEngine();
             StartCoroutine(ResumeWithDelay(0.5f)); // Задержка в 0.5 секунд
         }
     }
@@ -88,16 +94,20 @@ public class UI_Manager : MonoBehaviour
 
     public void UpdateBestScore()
     {
+        long distance = (long)Math.Round(_distanceTraveled*1000);
+        Debug.Log(distance);
         if (PlayerPrefs.HasKey(("score")))
         {
             if (PlayerPrefs.GetFloat("score") < _distanceTraveled)
             {
                 PlayerPrefs.SetFloat("score", _distanceTraveled);
+                YandexGame.NewLeaderboardScores("score", distance);
             }
         }
         else
         {
             PlayerPrefs.SetFloat("score", _distanceTraveled);
+            YandexGame.NewLeaderboardScores("score", distance);
         }
     }
 }

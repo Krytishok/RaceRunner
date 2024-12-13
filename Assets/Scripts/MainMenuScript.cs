@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
+using YG;
 
 public class MainMenuScript : MonoBehaviour
 {
@@ -80,6 +81,7 @@ public class MainMenuScript : MonoBehaviour
         {
             DataManager.Instance._currentCarData = CarCollectionController.GetCurrentCarData();
             SceneManager.LoadScene("FirstLevel");
+            YandexGame.FullscreenShow();
         }
         else
         {
