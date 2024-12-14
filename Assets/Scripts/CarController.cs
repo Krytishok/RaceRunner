@@ -245,9 +245,9 @@ public class CarController : MonoBehaviour
         yield return new WaitForSecondsRealtime(delay); // Ждём реальное время
         _rigidbody.linearVelocity -= new Vector3(0, 0, -_minSpeed);
         _camera.CameraAcceleration(false);
-        yield return new WaitForSecondsRealtime(0.5f);
         _carEffectController.ResetNitro();
-        _damageCoef = 1;
+        yield return new WaitForSecondsRealtime(1f);
+        ChangeDamageCoef(1f);
     }
     public void ChangeDamageCoef(float damageCoef)
     {
@@ -278,8 +278,12 @@ public class CarController : MonoBehaviour
         _wheelColliderFL.gameObject.SetActive(true);
         _wheelColliderFR.gameObject.SetActive(true);
 
+        _audio.PlayEngine();
+
         InitializeCustomization();
         _uiManager.UpdateHealthBar(_hp);
+
+        StartCoroutine(RespawnDelay(2f));
 
     }
 
@@ -311,6 +315,13 @@ public class CarController : MonoBehaviour
             yield return new WaitForSeconds(delay);
             ChangeMoveCoef(1f);
         }
+    }
+    private IEnumerator RespawnDelay(float delay)
+    {
+        ChangeDamageCoef(0f);
+        yield return new WaitForSeconds(delay);
+        ChangeDamageCoef(1f);
+
     }
 
 }

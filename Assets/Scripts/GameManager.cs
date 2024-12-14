@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using YG;
 
 public class GameManager : MonoBehaviour
 {
@@ -37,9 +38,25 @@ public class GameManager : MonoBehaviour
         Debug.Log("Stop");
     }
 
+    public void ShowRewardAd()
+    {
+        YandexGame.RewVideoShow(0);
+        RestartGame();
+    }
+    
+
+
+    public void RestartGame()
+    {
+        _selectedCar.GetComponent<CarController>().RespawnCar();
+        FindAnyObjectByType<UI_Manager>().RestartUI();
+        FindFirstObjectByType<AudioManagerController>().StartMusic();
+    }
+
     public void Awake()
     {
         DataManager.Instance._currentCarData._carPrefab = _selectedCar = _carPrefabs[PlayerPrefs.GetInt("currentCarIndex")];
+        DataManager.Instance._currentCarData = cars[PlayerPrefs.GetInt("currentCarIndex")];
         _selectedCar = DataManager.Instance._currentCarData._carPrefab.gameObject;
 
         //if (DataManager.Instance._currentCarData._carPrefab == null)

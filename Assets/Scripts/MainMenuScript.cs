@@ -58,7 +58,15 @@ public class MainMenuScript : MonoBehaviour
     {
         Time.timeScale = 1.0f;
         //Костыль
-        DataManager.Instance._numberOfCoins = PlayerPrefs.GetInt("Coins");
+        if (PlayerPrefs.HasKey("Coins"))
+        {
+            DataManager.Instance._numberOfCoins = PlayerPrefs.GetInt("Coins");
+        }
+        else
+        {
+            PlayerPrefs.SetInt("Coins", 0);
+            DataManager.Instance._numberOfCoins = 0;
+        }
         _NumberOfCoinsText.text = DataManager.Instance._numberOfCoins.ToString();
 
 

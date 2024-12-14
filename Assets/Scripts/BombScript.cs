@@ -27,10 +27,12 @@ public class BombScript : MonoBehaviour
 
         }
     }
+
+    
     private void Start()
     {
         _rb.linearVelocity = new Vector3(0, -20, -_bombSpeed);
-        Destroy(gameObject, 3f);
+        Destroy(gameObject, 2f);
     }
     public void SlowMo(float _speedModificator = 0.2f)
     {

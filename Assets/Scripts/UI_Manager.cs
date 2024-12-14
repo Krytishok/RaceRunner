@@ -12,15 +12,20 @@ public class UI_Manager : MonoBehaviour
     [SerializeField] GameObject PauseBar;
     [SerializeField] GameObject PauseButton;
     [SerializeField] GameObject GameOverMenu;
+    [SerializeField] GameObject SecondChanceGroup;
+    [SerializeField] GameObject StartButton;
     [SerializeField] UnityEngine.UI.Image _healthbar;
     [SerializeField] TextMeshProUGUI _distanceTraveledNumber;
     [SerializeField] TextMeshProUGUI _distanceTraveledMenuText;
+    
 
     private bool _isPause = false;
     public float _health;
 
     private Transform _playerPosition;
     private float _distanceTraveled = 0;
+
+    private bool IsSecondChanceUsed = false;
 
 
     private void Start()
@@ -57,7 +62,38 @@ public class UI_Manager : MonoBehaviour
         _distanceTraveledMenuText.text = _distanceTraveledNumber.text;
         _distanceTraveledNumber.text = "";
         UpdateBestScore();
+        if (!IsSecondChanceUsed)
+        {
+            SecondChanceGroup.SetActive(true);
+        }
+        else
+        {
+            SecondChanceGroup.SetActive(false);
+        }
 
+    }
+    public void RestartUI()
+    {
+        if (!IsSecondChanceUsed)
+        {
+            IsSecondChanceUsed = true;
+            PauseButton.SetActive(true);
+            GameOverMenu.SetActive(false);
+            _distanceTraveledNumber.text = _distanceTraveledMenuText.text;
+            StartButton.SetActive(true);
+            StartCoroutine(UpdateDistance(0.8f));
+        }
+
+    }
+
+    public void BuySecondLife()
+    {
+        if (PlayerPrefs.GetInt("Coins") >= 500)
+        {
+            PlayerPrefs.SetInt("Coins", PlayerPrefs.GetInt("Coins") - 500);
+            Time.timeScale = 0;
+            FindFirstObjectByType<GameManager>().RestartGame();
+        }
     }
     public void PauseButtonLogic()
     {
