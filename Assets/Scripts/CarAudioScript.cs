@@ -13,4 +13,8 @@ public class CarAudioScript : MonoBehaviour
     {
         _sounds[0].Stop();
     }
+    public void PlayNitro()
+    {
+        _sounds[1].Play();
+    }
 }

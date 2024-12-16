@@ -74,6 +74,8 @@ public class MainMenuScript : MonoBehaviour
 
         CarCollectionController = FindFirstObjectByType<CarCollectionController>();
 
+
+
     }
 
     public void UpdateVisualCoins()
@@ -87,6 +89,7 @@ public class MainMenuScript : MonoBehaviour
         // Дополнительная мера передачи информации о текущей машинке в следующую сцену
         if (CarCollectionController.GetCurrentCarData() != null && CarCollectionController.GetCurrentCarData()._costForBuyCar == 0)
         {
+            YandexGame.GameplayStop();
             DataManager.Instance._currentCarData = CarCollectionController.GetCurrentCarData();
             SceneManager.LoadScene("FirstLevel");
             YandexGame.FullscreenShow();
@@ -132,6 +135,7 @@ public class MainMenuScript : MonoBehaviour
             _lockIcon.SetActive(true);
             _priceForBuy.text = GetCardata()._costForBuyCar.ToString();
         }
+        
 
     }
 
@@ -261,6 +265,7 @@ public class MainMenuScript : MonoBehaviour
             FindFirstObjectByType<MenuCameraController>().ToMainMenuView();
 
             _currentUIstyle = "MainMenu";
+
 
         } else if(_currentUIstyle == "MainMenu")
         {

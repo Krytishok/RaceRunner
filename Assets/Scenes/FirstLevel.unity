@@ -4010,6 +4010,9 @@ MonoBehaviour:
   - {fileID: 7723942495232824356, guid: 003acb84e4be8f842bfbf5dc523ca568, type: 3}
   - {fileID: 6588068486144254929, guid: 34ea6d7a8aab105439a0d0341fb28b2b, type: 3}
   - {fileID: 6588068486144254929, guid: b2a144e60cf3f6e4abbe6c5884fd1319, type: 3}
+  - {fileID: 7723942495232824356, guid: 1a2437d2e393d244bb850acfd9d8288d, type: 3}
+  - {fileID: 7723942495232824356, guid: bf44cde90d83fef48a18128e0dc648b8, type: 3}
+  - {fileID: 883483928190609782, guid: 886bad22fdff5014ea02ca8eccb078f2, type: 3}
   ActiveobstaclePrefabs:
   - {fileID: 186127497100362042, guid: fe7f55dc857f45246b73ee8a2fe0d148, type: 3}
   - {fileID: 186127497100362042, guid: 729183cde3762e44c9d9fb8efe12e82a, type: 3}

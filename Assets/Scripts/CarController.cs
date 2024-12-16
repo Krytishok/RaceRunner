@@ -235,6 +235,7 @@ public class CarController : MonoBehaviour
         _damageCoef = 0;
         _camera.CameraAcceleration(true);
         _carEffectController.SetNitro();
+        _audio.PlayNitro();
         StartCoroutine(NitroDelay(_nitroTime));
         
     }

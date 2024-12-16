@@ -42,7 +42,6 @@ public class UI_Manager : MonoBehaviour
             _distanceTraveled = Mathf.Abs(MathF.Round(_playerPosition.position.z / 1000, 1));
             _distanceTraveledNumber.text = _distanceTraveled.ToString() + " КМ";
 
-            Debug.Log("Distance Updated");
 
             yield return new WaitForSeconds(delay);
         }
@@ -56,6 +55,7 @@ public class UI_Manager : MonoBehaviour
     }
     public void GameOverUI()
     {
+        YandexGame.GameplayStop();
         PauseButton.SetActive(false);
         GameOverMenu.SetActive(true);
         StopAllCoroutines();
@@ -104,6 +104,7 @@ public class UI_Manager : MonoBehaviour
             PauseBar.SetActive(true);
             FindFirstObjectByType<AudioManagerController>().StopMusic();
             FindFirstObjectByType<CarAudioScript>().StopEngine();
+            YandexGame.GameplayStop();
         }
         else
         {
@@ -111,6 +112,7 @@ public class UI_Manager : MonoBehaviour
             FindFirstObjectByType<AudioManagerController>().StartMusic();
             FindFirstObjectByType<CarAudioScript>().PlayEngine();
             StartCoroutine(ResumeWithDelay(0.5f)); // Задержка в 0.5 секунд
+            YandexGame.GameplayStart();
         }
     }
 
@@ -124,14 +126,11 @@ public class UI_Manager : MonoBehaviour
     public void UpdateHealthBar(float currentHealth)
     {
         _healthbar.fillAmount = currentHealth/_health;
-        Debug.Log("fillAmount " + (currentHealth / _health).ToString());
-        Debug.Log("Current Health" + currentHealth.ToString() + " _health " + _health.ToString());
     }
 
     public void UpdateBestScore()
     {
         long distance = (long)Math.Round(_distanceTraveled*1000);
-        Debug.Log(distance);
         if (PlayerPrefs.HasKey(("score")))
         {
             if (PlayerPrefs.GetFloat("score") < _distanceTraveled)

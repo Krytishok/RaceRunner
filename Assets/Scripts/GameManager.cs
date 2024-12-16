@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
 
     public void StopGame()
     {
+        YandexGame.GameplayStop();
         //Add collected coins in level to total
         NumberOfCoinsAtLevel += FindFirstObjectByType<CoinManager>()._numberOfCoinsInLevel;
 
@@ -50,7 +51,6 @@ public class GameManager : MonoBehaviour
     {
         _selectedCar.GetComponent<CarController>().RespawnCar();
         FindAnyObjectByType<UI_Manager>().RestartUI();
-        FindFirstObjectByType<AudioManagerController>().StartMusic();
     }
 
     public void Awake()
@@ -85,6 +85,8 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
         _selectedCar.GetComponent<CarController>().StartCar();
+        FindFirstObjectByType<AudioManagerController>().StartMusic();
+        YandexGame.GameplayStart();
     }
 
 
