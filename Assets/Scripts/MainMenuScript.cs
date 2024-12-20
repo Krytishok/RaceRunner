@@ -28,6 +28,7 @@ public class MainMenuScript : MonoBehaviour
 
     [SerializeField] GameObject _infoBar;
     [SerializeField] GameObject _lockIcon;
+    [SerializeField] GameObject _comicsImage;
 
     [SerializeField] TextMeshProUGUI _priceForBuy;
     [SerializeField] TextMeshProUGUI _priceForBuyTuning;
@@ -61,11 +62,13 @@ public class MainMenuScript : MonoBehaviour
         if (PlayerPrefs.HasKey("Coins"))
         {
             DataManager.Instance._numberOfCoins = PlayerPrefs.GetInt("Coins");
+            _comicsImage.SetActive(false);
         }
         else
         {
             PlayerPrefs.SetInt("Coins", 0);
             DataManager.Instance._numberOfCoins = 0;
+            _comicsImage.SetActive(true);
         }
         _NumberOfCoinsText.text = DataManager.Instance._numberOfCoins.ToString();
 
@@ -73,6 +76,10 @@ public class MainMenuScript : MonoBehaviour
         _currentUIstyle = "MainMenu";
 
         CarCollectionController = FindFirstObjectByType<CarCollectionController>();
+
+        
+        ChangeGameReadyAPI(false);
+        
 
 
 
@@ -259,6 +266,7 @@ public class MainMenuScript : MonoBehaviour
             _buttonSelect.SetActive(false);
             _buttonBackToPreviousUI.SetActive(false);
             _lockIcon.SetActive(false);
+            
 
             _buttonToGarage.SetActive(true);
 
@@ -266,10 +274,15 @@ public class MainMenuScript : MonoBehaviour
 
             _currentUIstyle = "MainMenu";
 
+            ChangeGameReadyAPI(false);
+
 
         } else if(_currentUIstyle == "MainMenu")
         {
             _buttonBackToPreviousUI.SetActive(false);
+        } else if(_currentUIstyle == "Comics")
+        {
+
         }
     }
     public void ChangeCurrentUIstyleInfo(string uiStyle)
@@ -315,6 +328,18 @@ public class MainMenuScript : MonoBehaviour
         _educationText.text = _text;
     }
     
+
+    public void ChangeGameReadyAPI(bool flag)
+    {
+        if (flag)
+        {
+            YandexGame.GameplayStart();
+        }
+        else
+        {
+            YandexGame.GameplayStop();
+        }
+    }
     
 
 }

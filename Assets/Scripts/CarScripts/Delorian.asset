@@ -13,15 +13,14 @@ MonoBehaviour:
   m_Name: Delorian
   m_EditorClassIdentifier: 
   _nameOfCar: Delorian
-  _carPrefab: {fileID: 3008264972053466207, guid: d672bbda0d288854e8db3492cb724d5c,
-    type: 3}
+  _carPrefab: {fileID: 0}
   _costForBuyCar: 0
-  _priceForBodies: 000000000000000000000000
-  _priceForWheels: 000000000000000000000000
-  _priceForEngines: 000000000000000000000000
-  _priceForWeapons: 000000000000000000000000
+  _priceForBodies: 000000009001000058020000
+  _priceForWheels: 0000000020030000b0040000
+  _priceForEngines: 000000002c01000000000000
+  _priceForWeapons: 000000005802000020030000
   _bodyId: 0
-  _engineId: 0
+  _engineId: 2
   _wheelsId: 0
   _weaponId: 0
   _hpConfig: 140000001900000028000000
@@ -30,4 +29,4 @@ MonoBehaviour:
   - 8
   - 10
   _tiltSpeedConfig: 08000000090000000c000000
-  _damageConfig: 010000000200000003000000
+  _damageConfig: 02000000050000000f000000
