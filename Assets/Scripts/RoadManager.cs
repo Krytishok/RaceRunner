@@ -61,6 +61,21 @@ public class RoadManager : MonoBehaviour
 
     private void Start()
     {
+        if (!PlayerPrefs.HasKey("FirstGame"))
+        {
+            //Упрощение игры для первой сессии
+            PlayerPrefs.SetInt("FirstGame", 1);
+            npcSpawnInterval = 8;
+            maxObstaclesPerSection = 6;
+            FindFirstObjectByType<CarController>()._hp += 15;
+        } else if (PlayerPrefs.GetInt("FirstGame") < 3)
+        {
+            PlayerPrefs.SetInt("FirstGame", PlayerPrefs.GetInt("FirstGame") + 1);
+            npcSpawnInterval = 10;
+            maxObstaclesPerSection = 7;
+            FindFirstObjectByType<CarController>()._hp += 10;
+        }
+
         _gameManager = FindFirstObjectByType<GameManager>();
         nextPosition = new Vector3(-17.27f, -29.843f, (-635.73f - sectionLength * (startSectionPrefabs.Length - 1)));
 
@@ -83,13 +98,7 @@ public class RoadManager : MonoBehaviour
 
     }
 
-    private void Update()
-    {
-        // Постепенно увеличиваем сложность по мере прохождения игроком дороги
-        
-
-
-    }
+    
 
     public void SpawnSection()
     {
@@ -125,7 +134,7 @@ public class RoadManager : MonoBehaviour
                 SpawnNPC(newSection);
                 PvPcount = 0;
                 disableObstacles = false;
-                if (NPC_Level <= 1.5f)
+                if (NPC_Level <= 2f)
                 {
                     NPC_Level += 0.05f;
                 }

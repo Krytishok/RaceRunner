@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
 
     public void ShowRewardAd()
     {
+        Time.timeScale = 0f;
         YandexGame.RewVideoShow(0);
         RestartGame();
     }

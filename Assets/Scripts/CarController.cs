@@ -3,7 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
+using UnityEngine.UIElements.InputSystem;
+using SimpleInputNamespace;
 
 public class CarController : MonoBehaviour
 {
@@ -50,6 +53,8 @@ public class CarController : MonoBehaviour
 
 
 
+
+
     //�������� ������
     public float _speed;
 
@@ -71,6 +76,8 @@ public class CarController : MonoBehaviour
 
 
     public float _speedModificator = 1f;
+
+    public float move = 0;
 
 
 
@@ -102,6 +109,9 @@ public class CarController : MonoBehaviour
 
 
 
+
+
+
     
 
     private void FixedUpdate()
@@ -111,8 +121,16 @@ public class CarController : MonoBehaviour
         
         MoveForward();
 
-        // Получаем ввод от клавиатуры (стрелки влево и вправо или A и D)
-        float move = Input.GetAxis("Horizontal") * _speedModificator * _moveCoef * -1;
+        move = SimpleInput.GetAxis( "Horizontal" ) * _speedModificator * _moveCoef * -1;
+
+        //Получаем ввод от клавиатуры (стрелки влево и вправо или A и D)
+        //move = Input.GetAxis("Horizontal") * _speedModificator * _moveCoef * -1;
+
+        
+
+
+        
+        
 
         UpdatePositionAndRotation(move);
 

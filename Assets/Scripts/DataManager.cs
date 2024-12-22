@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
+using YG;
 
 
 [System.Serializable]
@@ -16,6 +17,8 @@ public class DataManager : MonoBehaviour
     public GameObject _currentCar;
 
     public CarDataScript _currentCarData;
+
+    public string _deviceType;
 
 
     
@@ -51,6 +54,8 @@ public class DataManager : MonoBehaviour
             // Если экземпляр уже существует, уничтожаем текущий объект, чтобы сохранить единственность
             Destroy(gameObject);
         }
+
+        _deviceType = YandexGame.EnvironmentData.deviceType;
 
     }
 

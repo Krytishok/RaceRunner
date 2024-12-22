@@ -16,18 +16,18 @@ MonoBehaviour:
   _carPrefab: {fileID: 3008264972053466207, guid: ac4c91b86a59a2a4ca9c66758f5b4ac3,
     type: 3}
   _costForBuyCar: 0
-  _priceForBodies: 000000002c01000000000000
-  _priceForWheels: 000000005e010000c2010000
-  _priceForEngines: 00000000c80000002c010000
-  _priceForWeapons: 000000009001000058020000
-  _bodyId: 2
+  _priceForBodies: 0000000096000000f4010000
+  _priceForWheels: 00000000c8000000ee020000
+  _priceForEngines: 0000000096000000c2010000
+  _priceForWeapons: 00000000f4010000e8030000
+  _bodyId: 0
   _engineId: 0
   _wheelsId: 0
   _weaponId: 0
-  _hpConfig: 0a0000001400000023000000
+  _hpConfig: 140000001e00000028000000
   _nitroConfig:
   - 5
   - 7
   - 10
-  _tiltSpeedConfig: 080000000a0000000c000000
+  _tiltSpeedConfig: 0a0000000b0000000c000000
   _damageConfig: 02000000050000000f000000

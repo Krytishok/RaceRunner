@@ -35,7 +35,7 @@ public class CarEffectController : MonoBehaviour
 
     public void UpdateEffect(float move)
     {
-        if(Mathf.Abs(move) == _valueToStartParticles && _checkWheel)
+        if(Mathf.Abs(move) >= 0.95f && _checkWheel)
         {
             _particleSystemLeft.Play();
             _particleSystemRight.Play();

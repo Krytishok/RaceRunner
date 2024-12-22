@@ -17,6 +17,8 @@ public class UI_Manager : MonoBehaviour
     [SerializeField] UnityEngine.UI.Image _healthbar;
     [SerializeField] TextMeshProUGUI _distanceTraveledNumber;
     [SerializeField] TextMeshProUGUI _distanceTraveledMenuText;
+
+    [SerializeField] GameObject _mobileController;
     
 
     private bool _isPause = false;
@@ -31,6 +33,16 @@ public class UI_Manager : MonoBehaviour
     private void Start()
     {
         _playerPosition = FindFirstObjectByType<CarController>().transform;
+
+        string deviceType = DataManager.Instance._deviceType;
+        if(deviceType == "mobile")
+        {
+            _mobileController.SetActive(true);
+        }
+        else
+        {
+            _mobileController.SetActive(false);
+        }
 
         StartCoroutine(UpdateDistance(0.8f));
     }

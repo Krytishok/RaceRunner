@@ -307,7 +307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 108d9b4adb6912b41bf8ddd19c9bc871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 10
+  _damage: 8
   rb: {fileID: 4287660541523672286}
   _physicalCollider: {fileID: 5191336161861319910}
   _visualBody: {fileID: 5246710831762151928}
