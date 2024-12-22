@@ -100,9 +100,9 @@ public class UI_Manager : MonoBehaviour
 
     public void BuySecondLife()
     {
-        if (PlayerPrefs.GetInt("Coins") >= 500)
+        if (PlayerPrefs.GetInt("Coins") >= 300)
         {
-            PlayerPrefs.SetInt("Coins", PlayerPrefs.GetInt("Coins") - 500);
+            PlayerPrefs.SetInt("Coins", PlayerPrefs.GetInt("Coins") - 300);
             Time.timeScale = 0;
             FindFirstObjectByType<GameManager>().RestartGame();
         }

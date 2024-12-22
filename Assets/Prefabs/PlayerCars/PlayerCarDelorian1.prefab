@@ -7646,7 +7646,7 @@ MonoBehaviour:
   _nitroTime: 0
   _maxAngleOfWheel: 30
   _bodyRotation: 35
-  _speedOfBodyRotation: 1
+  _speedOfBodyRotation: 0.9
   _minX: -3
   _maxX: 11
   _minYangle: 135
@@ -7659,6 +7659,7 @@ MonoBehaviour:
   _blinkAnimator: {fileID: 4877179005448796608}
   _speed: 0
   _speedModificator: 1
+  move: 0
 --- !u!1 &3039117885750215392
 GameObject:
   m_ObjectHideFlags: 0

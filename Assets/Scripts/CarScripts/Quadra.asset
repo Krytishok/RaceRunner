@@ -15,7 +15,7 @@ MonoBehaviour:
   _nameOfCar: Quadra
   _carPrefab: {fileID: 3008264972053466207, guid: ac4fa34c807398f4781d64ad570095e9,
     type: 3}
-  _costForBuyCar: 5000
+  _costForBuyCar: 0
   _priceForBodies: 00000000e8030000d0070000
   _priceForWheels: 00000000b004000000000000
   _priceForEngines: 0000000058020000e8030000

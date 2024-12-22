@@ -1743,7 +1743,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -25.199951, y: -24.199951}
+  m_AnchoredPosition: {x: -24.800049, y: -23.599976}
   m_SizeDelta: {x: 40.393, y: 40.393}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &489382522
@@ -1766,7 +1766,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 889bd804fcad0ae4db8280d49110c404, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 81a33bf608a673a45bcf215922f39edd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3667,12 +3667,12 @@ PrefabInstance:
     - target: {fileID: 224047778984712946, guid: 3066c3a8fcfd6fc4482868bf62045594,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 838.23
+      value: 850.847
       objectReference: {fileID: 0}
     - target: {fileID: 224047778984712946, guid: 3066c3a8fcfd6fc4482868bf62045594,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 87.735
+      value: 152.417
       objectReference: {fileID: 0}
     - target: {fileID: 224047778984712946, guid: 3066c3a8fcfd6fc4482868bf62045594,
         type: 3}
@@ -3712,12 +3712,12 @@ PrefabInstance:
     - target: {fileID: 224047778984712946, guid: 3066c3a8fcfd6fc4482868bf62045594,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 460
+      value: 459
       objectReference: {fileID: 0}
     - target: {fileID: 224047778984712946, guid: 3066c3a8fcfd6fc4482868bf62045594,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 116.32193
+      value: 148.662
       objectReference: {fileID: 0}
     - target: {fileID: 224047778984712946, guid: 3066c3a8fcfd6fc4482868bf62045594,
         type: 3}
@@ -4571,6 +4571,11 @@ MonoBehaviour:
   - {fileID: 186127497100362042, guid: fe7f55dc857f45246b73ee8a2fe0d148, type: 3}
   - {fileID: 186127497100362042, guid: 729183cde3762e44c9d9fb8efe12e82a, type: 3}
   - {fileID: 4435729184743208417, guid: 3a5295f0d49a8cf4bac0a754f8fad8a7, type: 3}
+  - {fileID: 6560677030798054977, guid: a0d989d143e61f74a8251f6e30ac0952, type: 3}
+  - {fileID: 186127497100362042, guid: fe7f55dc857f45246b73ee8a2fe0d148, type: 3}
+  - {fileID: 186127497100362042, guid: 729183cde3762e44c9d9fb8efe12e82a, type: 3}
+  - {fileID: 4435729184743208417, guid: 3a5295f0d49a8cf4bac0a754f8fad8a7, type: 3}
+  - {fileID: 712892036374375862, guid: 45eb3779d13da714aaaab1b7048ea653, type: 3}
   coinPrefabs:
   - {fileID: 2519256228215097869, guid: 63c202c2fcaeed143b031d07eaac44be, type: 3}
   npcPrefab: {fileID: 3840341151668389699, guid: f58b0febcf3ce404097ec2536671c83f,
@@ -5142,7 +5147,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 500
+  m_text: 300
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d0e2605503fc1c94880ddebeb7d0bf82, type: 2}
   m_sharedMaterial: {fileID: -7432694277032512671, guid: d0e2605503fc1c94880ddebeb7d0bf82,

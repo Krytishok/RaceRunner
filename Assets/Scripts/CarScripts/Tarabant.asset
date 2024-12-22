@@ -17,12 +17,12 @@ MonoBehaviour:
     type: 3}
   _costForBuyCar: 0
   _priceForBodies: 0000000096000000f4010000
-  _priceForWheels: 00000000c8000000ee020000
+  _priceForWheels: 00000000c800000000000000
   _priceForEngines: 0000000096000000c2010000
   _priceForWeapons: 00000000f4010000e8030000
   _bodyId: 0
   _engineId: 0
-  _wheelsId: 0
+  _wheelsId: 2
   _weaponId: 0
   _hpConfig: 140000001e00000028000000
   _nitroConfig:

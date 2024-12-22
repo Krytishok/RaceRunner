@@ -249,6 +249,7 @@ public class CarController : MonoBehaviour
 
     public void GetNitro()
     {
+        StopAllCoroutines();
         _rigidbody.linearVelocity += new Vector3(0, 0, -_maxSpeed);
         _damageCoef = 0;
         _camera.CameraAcceleration(true);
