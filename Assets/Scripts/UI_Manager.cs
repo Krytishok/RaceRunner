@@ -18,8 +18,9 @@ public class UI_Manager : MonoBehaviour
     [SerializeField] TextMeshProUGUI _distanceTraveledNumber;
     [SerializeField] TextMeshProUGUI _distanceTraveledMenuText;
 
-    [SerializeField] GameObject _mobileController;
-    
+    [SerializeField] GameObject _leftArrow;
+    [SerializeField] GameObject _rightArrow;
+
 
     private bool _isPause = false;
     public float _health;
@@ -35,13 +36,15 @@ public class UI_Manager : MonoBehaviour
         _playerPosition = FindFirstObjectByType<CarController>().transform;
 
         string deviceType = DataManager.Instance._deviceType;
-        if(deviceType == "mobile")
+        if (deviceType == "mobile")
         {
-            _mobileController.SetActive(true);
+            _leftArrow.SetActive(true);
+            _rightArrow.SetActive(true);
         }
         else
         {
-            _mobileController.SetActive(false);
+            _leftArrow.SetActive(false);
+            _rightArrow.SetActive(false);
         }
 
         StartCoroutine(UpdateDistance(0.8f));

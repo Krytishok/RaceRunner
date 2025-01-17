@@ -271,6 +271,7 @@ public class MainMenuScript : MonoBehaviour
             _buttonToGarage.SetActive(true);
 
             FindFirstObjectByType<MenuCameraController>().ToMainMenuView();
+            FindFirstObjectByType<RewardController>().SetActiveRewardButton(true);
 
             _currentUIstyle = "MainMenu";
 

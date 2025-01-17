@@ -15,7 +15,7 @@ MonoBehaviour:
   _nameOfCar: Delorian
   _carPrefab: {fileID: 3008264972053466207, guid: d672bbda0d288854e8db3492cb724d5c,
     type: 3}
-  _costForBuyCar: 0
+  _costForBuyCar: 2000
   _priceForBodies: 0000000020030000b0040000
   _priceForWheels: 0000000020030000b0040000
   _priceForEngines: 000000002c010000f4010000
